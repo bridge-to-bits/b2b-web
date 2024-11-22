@@ -3,7 +3,7 @@
 import { FC } from 'react';
 import AuthProvider from '@/lib/providers/auth-provider';
 import { Toaster } from '@/components/ui/toast/toaster';
-import { DesktopSidebarNavigation } from '@/components/layout/components/DesktopSidebarNavigation';
+import { Header } from '@/components/layout/components/Header';
 import { QueryClientProvider } from '@/lib/providers/query-client-provider';
 
 interface ApplicationLayoutProps {
@@ -14,13 +14,13 @@ const ApplicationLayout: FC<ApplicationLayoutProps> = ({ children }) => {
   return (
     <QueryClientProvider>
       <AuthProvider>
-        <div className='min-h-screen w-full md:flex'>
-          <DesktopSidebarNavigation />
+        <div className='min-h-screen w-full'>
+          <Header />
 
-          <div className='h-full min-h-screen w-full overflow-x-auto p-2'>
+          <main className='h-full w-full p-2 pt-20'>
             {children}
             <Toaster />
-          </div>
+          </main>
         </div>
       </AuthProvider>
     </QueryClientProvider>
