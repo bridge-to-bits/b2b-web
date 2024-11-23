@@ -5,6 +5,7 @@ import AuthProvider from '@/lib/providers/auth-provider';
 import { Toaster } from '@/components/ui/toast/toaster';
 import { Header } from '@/components/layout/components/Header';
 import { QueryClientProvider } from '@/lib/providers/query-client-provider';
+import { Footer } from '@/components/layout/components/Footer';
 
 interface ApplicationLayoutProps {
   children: React.ReactNode;
@@ -21,6 +22,8 @@ const ApplicationLayout: FC<ApplicationLayoutProps> = ({ children }) => {
             {children}
             <Toaster />
           </main>
+
+          <Footer/>
         </div>
       </AuthProvider>
     </QueryClientProvider>

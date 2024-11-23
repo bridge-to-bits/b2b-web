@@ -4,8 +4,15 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+    --orange: #EC5D0B;
+    --blue: #1E18C2;
+    --white: #E5E5DE;
+    --background-black-primary: #030303;
+    --background-black-secondary: #1F1E1E;
+    --header-footer: #202229;
+
+    --background: var(--background-black-primary);
+    --foreground: var(--white);
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
     --popover: 0 0% 100%;
@@ -27,8 +34,9 @@
   }
 
   .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
+    --background: var(--background-black-secondary);
+    --foreground: var(--white);
+
     --card: 224 71.4% 4.1%;
     --card-foreground: 210 20% 98%;
     --popover: 224 71.4% 4.1%;
@@ -55,6 +63,8 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background: linear-gradient(to bottom, var(--background-black-primary), var(--background-black-secondary));
+    color: var(--foreground);
+    height: 100%;
   }
 }
