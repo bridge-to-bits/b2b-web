@@ -8,7 +8,7 @@ const links = [
 
 export const HeaderLinks: FC = () => {
   return (
-    <ul className='flex gap-8 items-center'>
+    <ul className='flex gap-8 lg:items-center flex-col lg:flex-row'>
       {links.map(({ href, text }) => (
         <li key={href}>
           <Link href={href} className='text-nowrap'>
