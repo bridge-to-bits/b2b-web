@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils/cn';
 import useAuth from '@/lib/hooks/useAuth';
 import { FC } from 'react';
 
-interface AvatarAndNameProps {
+interface AvatarProps {
   size?: 'small' | 'default';
 }
 
@@ -14,7 +14,7 @@ const sizes = {
   default: 'h-12 w-12',
 };
 
-export const AvatarAndName: FC<AvatarAndNameProps> = ({ size = 'default' }) => {
+export const CustomAvatar: FC<AvatarProps> = ({ size = 'default' }) => {
   const { user } = useAuth();
 
   return (
@@ -26,7 +26,6 @@ export const AvatarAndName: FC<AvatarAndNameProps> = ({ size = 'default' }) => {
         />
         <AvatarFallback>{user?.firstName}</AvatarFallback>
       </Avatar>
-      <span className='font-medium'>{user?.firstName}</span>
     </Link>
   );
 };
