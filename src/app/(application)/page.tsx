@@ -1,9 +1,17 @@
-import { FC } from 'react';
+"use client";
 
-interface Props {}
+import PerformersSection from "@/components/pages/main/PerformersSection";
+import { ProducersSection } from '@/components/pages/main/ProducersSection';
+import Banner from '@/components/pages/main/Banner';
 
-const Page: FC<Props> = ({}) => {
-  return <div>main page</div>;
+const Page: React.FC = () => {
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <Banner />
+      <PerformersSection />
+      <ProducersSection />
+    </div>
+  );
 };
 
 export default Page;
