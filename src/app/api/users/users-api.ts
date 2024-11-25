@@ -1,7 +1,5 @@
-import axios from 'axios';
 import { PaginatedPerformer, PaginatedProducer, QueryAllUsersDTO } from '@/app/api/users/users-api-types';
-
-const API_BASE_URL = 'http://localhost:7001/api';
+import { instance } from '@/app/api/instance';
 
 class UsersApi {
   static async getPerformers(query: QueryAllUsersDTO): Promise<PaginatedPerformer> {
@@ -16,7 +14,7 @@ class UsersApi {
         genreIds: query.genreIds?.join(','),
       };
 
-      const response = await axios.get(`${API_BASE_URL}/performers`, { params });
+      const response = await instance.get('/performers', { params });
       return response.data;
     } catch (error) {
       console.error('Error fetching performers:', error);
@@ -36,7 +34,7 @@ class UsersApi {
         genreIds: query.genreIds?.join(','),
       };
 
-      const response = await axios.get(`${API_BASE_URL}/producers`, { params });
+      const response = await instance.get('/producers', { params });
       return response.data;
     } catch (error) {
       console.error('Error fetching performers:', error);

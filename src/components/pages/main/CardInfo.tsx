@@ -14,9 +14,9 @@ export const CardInfo: React.FC<CardInfoProps> = ({ name, genres, rating, image 
         backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(${image})`,
       }}
     >
-      <div className="pl-[5%] text-[var(--white)]">
-        <h3 className="text-[24px] font-bold text-[var(--white)]">{name}</h3>
-        <p className="text-[18px] text-[var(--white)]">Жанр: {genresRow}</p>
+      <div className="pl-[5%] text-foreground">
+        <h3 className="text-[24px] font-bold text-foreground">{name}</h3>
+        <p className="text-[18px] text-foreground">Жанр: {genresRow}</p>
         <div className="flex items-center gap-2 mt-2">
           <div className="flex text-orange-500">
             {Array.from({ length: Math.floor(rating) }).map((_, index) => (

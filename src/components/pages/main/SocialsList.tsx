@@ -29,7 +29,7 @@ export const SocialsList: React.FC<SocialsListProps> = ({ socials }) => {
             rel="noopener noreferrer"
             className="cursor-pointer"
           >
-            <Icon className="w-8 h-8 text-[var(--white)] hover:text-orange-500" />
+            <Icon className="w-8 h-8 text-foreground hover:text-orange-500" />
           </a>
         );
       })}

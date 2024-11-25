@@ -1,32 +1,26 @@
 import { ProducerCard } from "./ProducerCard";
 import Link from 'next/link';
 import SectionHeader from '@/components/pages/main/SectionHeader';
-import { useEffect, useState } from 'react';
 import UsersApi from '@/app/api/users/users-api';
-import { Producer } from '@/app/api/users/users-api-types';
+import { useQuery } from '@tanstack/react-query';
 
 export const ProducersSection: React.FC = () => {
-  const [producers, setProducers] = useState<Producer[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { data: producers, isLoading, isError } = useQuery({
+    queryKey: ["performers", { pageNumber: 1, pageSize: 6 }],
+    queryFn: async () => {
+      const query = { pageNumber: 1, pageSize: 6 };
+      const performersPaginatedData = await UsersApi.getProducers(query);
+      return performersPaginatedData.data;
+    },
+    staleTime: 300000,
+  });
 
-  useEffect(() => {
-    const fetchPerformers = async () => {
-      try {
-        const query = { pageNumber: 1, pageSize: 6 };
-        const producersPaginatedData = await UsersApi.getProducers(query);
-        setProducers(producersPaginatedData.data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPerformers();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return <div className="text-center">Loading...</div>;
+  }
+
+  if (isError) {
+    return <div className="text-center text-red-500">Error fetching performers!</div>;
   }
 
   return (
@@ -36,7 +30,7 @@ export const ProducersSection: React.FC = () => {
 
       {/* Producers List */}
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[20px] mt-[20px] px-[5%]">
-        {producers.map((producer) => (
+        {producers?.map((producer) => (
           <ProducerCard key={producer.firstName} producer={producer}/>
         ))}
       </div>

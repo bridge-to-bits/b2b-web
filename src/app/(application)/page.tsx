@@ -2,7 +2,7 @@
 
 import PerformersSection from "@/components/pages/main/PerformersSection";
 import { ProducersSection } from '@/components/pages/main/ProducersSection';
-import Banner from '@/components/pages/main/Hero';
+import Banner from '@/components/pages/main/Banner';
 
 const Page: React.FC = () => {
   return (

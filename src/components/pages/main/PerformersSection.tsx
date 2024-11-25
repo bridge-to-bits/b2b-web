@@ -1,34 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { PerformerCard } from "@/components/pages/main/PerformerCard";
 import SectionHeader from "@/components/pages/main/SectionHeader";
-import { Performer } from '@/app/api/users/users-api-types';
 import UsersApi from '@/app/api/users/users-api';
+import { useQuery } from '@tanstack/react-query';
+import { Performer } from '@/app/api/users/users-api-types';
 
 const PerformersSection: React.FC = () => {
-  const [performers, setPerformers] = useState<Performer[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { data: performers, isLoading, isError } = useQuery({
+    queryKey: ["performers", { pageNumber: 1, pageSize: 6 }],
+    queryFn: async () => {
+      const query = { pageNumber: 1, pageSize: 6 };
+      const performersPaginatedData = await UsersApi.getPerformers(query);
+      return performersPaginatedData.data;
+    },
+    staleTime: 300000,
+  });
 
-  useEffect(() => {
-    const fetchPerformers = async () => {
-      try {
-        const query = { pageNumber: 1, pageSize: 6 };
-        const performersPaginatedData = await UsersApi.getPerformers(query);
-        setPerformers(performersPaginatedData.data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPerformers();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return <div className="text-center">Loading...</div>;
+  }
+
+  if (isError) {
+    return <div className="text-center text-red-500">Error fetching performers!</div>;
   }
 
   return (
@@ -38,7 +33,7 @@ const PerformersSection: React.FC = () => {
 
       {/* Performers Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[1%] gap-y-[2.5%] mt-[2%] mx-[5%]">
-        {performers.map((performer) => (
+        {performers?.map((performer: Performer) => (
           <PerformerCard key={performer.firstName} performer={performer} />
         ))}
       </div>

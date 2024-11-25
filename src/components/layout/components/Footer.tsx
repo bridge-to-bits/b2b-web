@@ -3,16 +3,16 @@ import Link from 'next/link';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-[var(--header-footer)] py-10 px-[5%]">
+    <footer className="w-full bg-[var(--background-header-footer)] py-10 px-[5%]">
       <div className="flex flex-col md:flex-row justify-between items-center md:items-start">
         {/* Left Section: Logo and Contact */}
-        <div className="text-[var(--white)] text-center md:text-left mb-5 md:mb-0 md:w-[30%]">
+        <div className="text-foreground text-center md:text-left mb-5 md:mb-0 md:w-[30%]">
           <div className="font-bold text-[30px]">Bridge to Bits</div>
           <p className="mt-2">
             Незалежний сайт для музикантів та продюсерів
           </p>
           <p className="mt-5">Тех підтримка?</p>
-          <p className="text-[16px]">+00000000000</p>
+          <p> +00000000000</p>
         </div>
 
         {/* Center Section: Navigation */}
@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Right Section: Socials */}
-        <div className="flex flex-col items-center md:items-end text-[var(--white)] mt-5 md:mt-0">
+        <div className="flex flex-col items-center md:items-end text-foreground mt-5 md:mt-0">
           <h3 className="font-bold text-[18px] mb-2">Соцмережі</h3>
           <div className="flex gap-5">
             <a href="https://github.com" target="_blank" rel="noopener noreferrer">
