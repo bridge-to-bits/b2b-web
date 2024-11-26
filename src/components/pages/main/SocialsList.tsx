@@ -19,17 +19,17 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 export const SocialsList: React.FC<SocialsListProps> = ({ socials }) => {
   return (
     <div className="mt-[3%] flex gap-[4%]">
-      {socials.map((social, index) => {
-        const Icon = iconMap[social.name.toLowerCase()] || iconMap.default;
+      {socials.map(({link, name}) => {
+        const Icon = iconMap[name.toLowerCase()] || iconMap.default;
         return (
           <a
-            key={index}
-            href={social.link}
+            key={link}
+            href={link}
             target="_blank"
             rel="noopener noreferrer"
             className="cursor-pointer"
           >
-            <Icon className="w-8 h-8 text-foreground hover:text-orange-500" />
+            <Icon className="w-9 h-9 text-foreground hover:text-orange" />
           </a>
         );
       })}
