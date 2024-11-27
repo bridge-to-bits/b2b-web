@@ -30,13 +30,13 @@ const PerformersSection: React.FC = () => {
       {/* Performers Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[1%] gap-y-[2.5%] mt-[2%] mx-[5%]">
         {performers?.map((performer) => (
-          <PerformerCard key={performer.firstName} performer={performer} />
+          <PerformerCard key={performer.username} performer={performer} />
         ))}
       </div>
 
       {/* View More Link */}
       <Link
-        href="/auth/log-in"
+        href="/search?userType=performer"
         className="mt-[8%] mb-[2%] text-[21px] font-rubik italic text-orange"
       >
         Дивитись більше...

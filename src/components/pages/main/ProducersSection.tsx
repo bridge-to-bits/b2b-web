@@ -29,13 +29,13 @@ export const ProducersSection: React.FC = () => {
       {/* Producers List */}
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[20px] mt-[20px] px-[5%]">
         {producers?.map((producer) => (
-          <ProducerCard key={producer.firstName} producer={producer}/>
+          <ProducerCard key={producer.username} producer={producer}/>
         ))}
       </div>
 
       {/* View More Link */}
       <Link
-        href="/auth/log-in"
+        href="/search?userType=producer"
         className="mt-[4%] text-[21px] font-rubik italic text-orange"
       >
         Дивитись більше...
