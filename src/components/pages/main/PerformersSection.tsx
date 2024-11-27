@@ -5,21 +5,17 @@ import { PerformerCard } from "@/components/pages/main/PerformerCard";
 import SectionHeader from "@/components/pages/main/SectionHeader";
 import UsersApi from '@/app/api/users/users-api';
 import { useQuery } from '@tanstack/react-query';
-import { Performer } from '@/app/api/users/users-api-types';
+import { Loader } from '@/components/common/components/Loader';
 
 const PerformersSection: React.FC = () => {
   const { data: performers, isLoading, isError } = useQuery({
-    queryKey: ["performers", { pageNumber: 1, pageSize: 6 }],
-    queryFn: async () => {
-      const query = { pageNumber: 1, pageSize: 6 };
-      const performersPaginatedData = await UsersApi.getPerformers(query);
-      return performersPaginatedData.data;
-    },
-    staleTime: 300000,
+    queryKey: ['performers', { pageNumber: 1, pageSize: 6 }],
+    queryFn: () => UsersApi.getPerformers({ pageNumber: 1, pageSize: 6 }),
+    select: (data) => data.data,
   });
 
   if (isLoading) {
-    return <div className="text-center">Loading...</div>;
+    return <Loader />;
   }
 
   if (isError) {
@@ -33,7 +29,7 @@ const PerformersSection: React.FC = () => {
 
       {/* Performers Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[1%] gap-y-[2.5%] mt-[2%] mx-[5%]">
-        {performers?.map((performer: Performer) => (
+        {performers?.map((performer) => (
           <PerformerCard key={performer.firstName} performer={performer} />
         ))}
       </div>
@@ -41,7 +37,7 @@ const PerformersSection: React.FC = () => {
       {/* View More Link */}
       <Link
         href="/auth/log-in"
-        className="mt-[8%] mb-[2%] text-[21px] font-rubik italic text-[var(--orange)]"
+        className="mt-[8%] mb-[2%] text-[21px] font-rubik italic text-orange"
       >
         Дивитись більше...
       </Link>

@@ -23,7 +23,7 @@ const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
     select: (data) => data.data,
   });
 
-  isError && replace('/auth/sign-up');
+  // isError && replace('/auth/sign-up');
 
   return (
     <AuthContext.Provider value={{ user: user || null, loading: isLoading }}>

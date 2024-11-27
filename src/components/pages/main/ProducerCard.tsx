@@ -7,10 +7,10 @@ interface ProducerCardProps {
 }
 
 export const ProducerCard: React.FC<ProducerCardProps> = ({
-     producer
-   }) => {
+   producer
+  }) => {
   return (
-    <div className="w-full aspect-[4] border-[4px] border-[var(--background-header-footer)] p-[20px] rounded-[25px] shadow-md">
+    <div className="w-full aspect-[4] border-[4px] border-graphite p-5 rounded-md shadow-md">
       {/* Info Section */}
       <CardInfo name={producer.firstName} genres={producer.genres} rating={producer.rating} image={producer.avatar} />
 
