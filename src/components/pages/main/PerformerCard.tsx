@@ -16,7 +16,7 @@ export const PerformerCard: React.FC<PerformerCardProps> = ({
   return (
     <div className="w-full aspect-[4] border-[4px] border-graphite p-4 rounded-xl shadow-md">
       {/* Info Section */}
-      <CardInfo name={performer.firstName} genres={performer.genres} rating={performer.rating} image={performer.avatar} />
+      <CardInfo name={performer.username} genres={performer.genres} rating={performer.rating} image={performer.avatar} />
 
       {/* Track Section */}
       <div className="mt-[2%] bg-orange rounded-xl px-[5%] py-[1.5%] flex items-center justify-between">

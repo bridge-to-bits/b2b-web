@@ -2,6 +2,11 @@ import { PaginatedPerformer, PaginatedProducer, QueryAllUsersDTO } from '@/app/a
 import { instance } from '@/app/api/instance';
 
 class UsersApi {
+  static async getAvailableGenres() {
+    const response = await instance.get('/users/register/availableGenres');
+    return response.data;
+  }
+
   static async getPerformers(query: QueryAllUsersDTO): Promise<PaginatedPerformer> {
     try {
       const params = {
@@ -11,7 +16,7 @@ class UsersApi {
         sortDirection: query.sortDirection,
         filterBy: query.filterBy,
         filterValue: query.filterValue,
-        genreIds: query.genreIds?.join(','),
+        genreIds: query.genreIds,
       };
 
       const response = await instance.get('/performers', { params });
@@ -31,7 +36,7 @@ class UsersApi {
         sortDirection: query.sortDirection,
         filterBy: query.filterBy,
         filterValue: query.filterValue,
-        genreIds: query.genreIds?.join(','),
+        genreIds: query.genreIds,
       };
 
       const response = await instance.get('/producers', { params });
@@ -39,6 +44,16 @@ class UsersApi {
     } catch (error) {
       console.error('Error fetching performers:', error);
       throw new Error('Unable to fetch performers.');
+    }
+  }
+
+  static async getUsers(query: QueryAllUsersDTO, userType: 'performer' | 'producer') {
+    if(userType === 'producer') {
+      return this.getProducers(query);
+    }
+    else {
+      console.log('trying get performers');
+      return this.getPerformers(query);
     }
   }
 }

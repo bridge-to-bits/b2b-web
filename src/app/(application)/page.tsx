@@ -3,6 +3,7 @@
 import PerformersSection from "@/components/pages/main/PerformersSection";
 import { ProducersSection } from '@/components/pages/main/ProducersSection';
 import Banner from '@/components/pages/main/Banner';
+import Link from 'next/link';
 
 const Page: React.FC = () => {
   return (
