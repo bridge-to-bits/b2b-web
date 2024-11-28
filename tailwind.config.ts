@@ -24,8 +24,8 @@ const config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        background: 'var(--background-main)',
+        foreground: 'var(--foreground)',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
@@ -54,6 +54,15 @@ const config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        orange: {
+          DEFAULT: 'var(--orange)',
+        },
+        blue: {
+          DEFAULT: 'var(--blue)',
+        },
+        graphite: {
+          DEFAULT: 'var(--graphite)',
+        }
       },
       borderRadius: {
         lg: 'var(--radius)',

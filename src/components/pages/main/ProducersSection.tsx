@@ -3,24 +3,22 @@ import Link from 'next/link';
 import SectionHeader from '@/components/pages/main/SectionHeader';
 import UsersApi from '@/app/api/users/users-api';
 import { useQuery } from '@tanstack/react-query';
+import { Loader } from '@/components/common/components/Loader';
+
 
 export const ProducersSection: React.FC = () => {
   const { data: producers, isLoading, isError } = useQuery({
-    queryKey: ["performers", { pageNumber: 1, pageSize: 6 }],
-    queryFn: async () => {
-      const query = { pageNumber: 1, pageSize: 6 };
-      const performersPaginatedData = await UsersApi.getProducers(query);
-      return performersPaginatedData.data;
-    },
-    staleTime: 300000,
+    queryKey: ['producers', { pageNumber: 1, pageSize: 6 }],
+    queryFn: () => UsersApi.getProducers({ pageNumber: 1, pageSize: 6 }),
+    select: (data) => data.data,
   });
 
   if (isLoading) {
-    return <div className="text-center">Loading...</div>;
+    return <Loader/>;
   }
 
   if (isError) {
-    return <div className="text-center text-red-500">Error fetching performers!</div>;
+    return <div className="text-center text-orange">Error fetching producers!</div>;
   }
 
   return (
@@ -38,7 +36,7 @@ export const ProducersSection: React.FC = () => {
       {/* View More Link */}
       <Link
         href="/auth/log-in"
-        className="mt-[4%] text-[21px] font-rubik italic text-[var(--orange)]"
+        className="mt-[4%] text-[21px] font-rubik italic text-orange"
       >
         Дивитись більше...
       </Link>
