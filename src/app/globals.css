@@ -4,13 +4,12 @@
 
 @layer base {
   :root {
-    --orange: #EC5D0B;
-    --blue: #1E18C2;
-    --muted: #E5E5DE;
+    --orange: #ec5d0b;
+    --blue: #1e18c2;
+    --muted: #e5e5de;
     --background-main: #030303;
-    --background-secondary: #1F1E1E;
+    --background-secondary: #1f1e1e;
     --graphite: #202229;
-
 
     --background: var(--background-main);
     --foreground: var(--muted);
@@ -61,9 +60,20 @@
   * {
     @apply border-border;
   }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #202229 inset !important;
+    -webkit-text-fill-color: white !important;
+  }
 
   body {
-    background: linear-gradient(to bottom, var(--background-main), var(--background-secondary));
+    background: linear-gradient(
+      to bottom,
+      var(--background-main),
+      var(--background-secondary)
+    );
     color: var(--foreground);
     height: 100%;
   }
