@@ -4,10 +4,15 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { AuthButtons } from './AuthButtons';
 import { HeaderLinks } from './HeaderLinks';
 import { UserMenu } from './UserMenu';
-import useAuth from '@/lib/hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
+import { authApi } from '@/app/api/auth/auth-api';
 
 export const MobileMenu = () => {
-  const { user } = useAuth();
+  const { data: user } = useQuery({
+    queryKey: ['getMe'],
+    queryFn: authApi.getMe,
+    select: (data) => data.data,
+  });
 
   return (
     <Sheet>
