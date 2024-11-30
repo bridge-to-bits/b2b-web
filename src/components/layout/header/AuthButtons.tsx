@@ -5,11 +5,11 @@ import Link from 'next/link';
 export const AuthButtons: FC = () => {
   return (
     <div className='flex items-center gap-2'>
-      <Link href='/login'>
+      <Link href='/auth/sign-in'>
         <Button variant='default'>Log in</Button>
       </Link>
 
-      <Link href='/sign-up'>
+      <Link href='/auth/sign-up'>
         <Button variant='outline'>Sign up</Button>
       </Link>
     </div>

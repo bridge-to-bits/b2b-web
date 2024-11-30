@@ -1,10 +1,15 @@
-import useAuth from '@/lib/hooks/useAuth';
+import { authApi } from '@/app/api/auth/auth-api';
 import { AuthButtons } from './AuthButtons';
 import { HeaderLinks } from './HeaderLinks';
 import { UserMenu } from './UserMenu';
+import { useQuery } from '@tanstack/react-query';
 
 export const DecktopMenu = () => {
-  const { user } = useAuth();
+  const { data: user } = useQuery({
+    queryKey: ['getMe'],
+    queryFn: authApi.getMe,
+    select: (data) => data.data,
+  });
 
   return (
     <>

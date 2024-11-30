@@ -17,21 +17,27 @@ import { useRouter } from 'next/navigation';
 import { isAxiosError } from 'axios';
 import { useCommonToast } from '@/components/ui/toast/use-common-toast';
 import { TSignIn, SignInSchema } from '@/lib/schemas/auth.schemas';
+import { setAuthToken } from '@/app/api/auth/server-auth-api';
+import { PasswordInput } from '@/components/ui/password-input';
 
 export const LoginForm = () => {
-  const { toastError } = useCommonToast();
+  const { toastError, toastSuccess } = useCommonToast();
   const { push } = useRouter();
+
   const form = useForm<TSignIn>({
     resolver: zodResolver(SignInSchema),
     defaultValues: {
       email: '',
+      password: '',
     },
   });
 
   async function onSubmit(values: TSignIn) {
     try {
-      await authApi.login(values);
-      push('/auth/email?email=' + values.email);
+      const { data: token } = await authApi.login(values);
+      setAuthToken(token);
+      toastSuccess('Ви успішно увійшли');
+      push('/');
     } catch (error) {
       if (isAxiosError(error) && error.response?.status === 404) {
         form.setError(
@@ -56,8 +62,17 @@ export const LoginForm = () => {
           name='email'
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-sm font-normal'>Email</FormLabel>
-              <Input {...field} />
+              <Input {...field} placeholder='Пошта' />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='password'
+          render={({ field }) => (
+            <FormItem>
+              <PasswordInput {...field} placeholder='Пароль' />
               <FormMessage />
             </FormItem>
           )}
