@@ -35,7 +35,7 @@ export const LoginForm = () => {
   async function onSubmit(values: TSignIn) {
     try {
       const { data: token } = await authApi.login(values);
-      setAuthToken(token);
+      await setAuthToken(token);
       toastSuccess('Ви успішно увійшли');
       push('/');
     } catch (error) {
