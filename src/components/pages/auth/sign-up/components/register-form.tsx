@@ -39,7 +39,7 @@ export const RegisterForm = () => {
   const onSubmit = async (data: TSignUp) => {
     try {
       const { data: token } = await authApi.register(transformAuthData(data));
-      setAuthToken(token);
+      await setAuthToken(token);
       toastSuccess('Ви успішно зареєструвались');
       push('/');
     } catch (error) {
