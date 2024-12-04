@@ -6,12 +6,17 @@ import { HeaderLinks } from './HeaderLinks';
 import { UserMenu } from './UserMenu';
 import { useQuery } from '@tanstack/react-query';
 import { authApi } from '@/app/api/auth/auth-api';
+import { AuthToken } from '@/lib/types/auth.types';
+import { getClientCookie } from '@/lib/utils/getClientCookie';
 
 export const MobileMenu = () => {
+  const cookie = getClientCookie(AuthToken.AccessToken);
+
   const { data: user } = useQuery({
-    queryKey: ['getMe'],
+    queryKey: ['getMe', cookie],
     queryFn: authApi.getMe,
     select: (data) => data.data,
+    enabled: !!cookie,
   });
 
   return (

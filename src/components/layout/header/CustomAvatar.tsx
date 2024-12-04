@@ -5,6 +5,8 @@ import { cn } from '@/lib/utils/cn';
 import { FC } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { authApi } from '@/app/api/auth/auth-api';
+import { AuthToken } from '@/lib/types/auth.types';
+import { getClientCookie } from '@/lib/utils/getClientCookie';
 
 interface AvatarProps {
   size?: 'small' | 'default';
@@ -16,10 +18,13 @@ const sizes = {
 };
 
 export const CustomAvatar: FC<AvatarProps> = ({ size = 'default' }) => {
+  const cookie = getClientCookie(AuthToken.AccessToken);
+
   const { data: user } = useQuery({
-    queryKey: ['getMe'],
+    queryKey: ['getMe', cookie],
     queryFn: authApi.getMe,
     select: (data) => data.data,
+    enabled: !!cookie,
   });
 
   return (
