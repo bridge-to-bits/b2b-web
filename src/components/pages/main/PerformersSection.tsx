@@ -36,7 +36,10 @@ const PerformersSection: React.FC = () => {
       {/* Performers Grid */}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-x-[1%] gap-y-[2.5%] mt-[2%] mx-[5%]'>
         {performers?.map((performer) => (
-          <PerformerCard key={performer.userName} performer={performer} />
+          <PerformerCard
+            key={performer.userName + performer.email}
+            performer={performer}
+          />
         ))}
       </div>
 

@@ -20,6 +20,7 @@ export interface Performer {
   rating: number;
   avatar: string;
   socials: Social[];
+  email: string;
 }
 
 export interface PaginatedPerformer {
@@ -36,6 +37,7 @@ export interface Producer {
   rating: number;
   avatar: string;
   socials: Social[];
+  email: string;
 }
 
 interface Social {
