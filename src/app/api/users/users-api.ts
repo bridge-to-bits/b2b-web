@@ -1,5 +1,12 @@
-import { PaginatedPerformer, PaginatedProducer, QueryAllUsersDTO } from '@/app/api/users/users-api-types';
+import {
+  PaginatedPerformer,
+  PaginatedProducer,
+  QueryAllUsersDTO,
+  UpdateUserDTO,
+  User,
+} from '@/app/api/users/users-api-types';
 import { instance } from '@/app/api/instance';
+import { TProfile } from '@/lib/schemas/profile.schemas';
 
 class UsersApi {
   static async getAvailableGenres() {
@@ -7,7 +14,9 @@ class UsersApi {
     return response.data;
   }
 
-  static async getPerformers(query: QueryAllUsersDTO): Promise<PaginatedPerformer> {
+  static async getPerformers(
+    query: QueryAllUsersDTO
+  ): Promise<PaginatedPerformer> {
     try {
       const params = {
         pageNumber: query.pageNumber || 1,
@@ -16,7 +25,7 @@ class UsersApi {
         sortDirection: query.sortDirection,
         filterBy: query.filterBy,
         filterValue: query.filterValue,
-        genreIds: query.genreIds,
+        genreIds: query.genreIds?.join(','),
       };
 
       const response = await instance.get('/performers', { params });
@@ -27,7 +36,9 @@ class UsersApi {
     }
   }
 
-  static async getProducers(query: QueryAllUsersDTO): Promise<PaginatedProducer> {
+  static async getProducers(
+    query: QueryAllUsersDTO
+  ): Promise<PaginatedProducer> {
     try {
       const params = {
         pageNumber: query.pageNumber || 1,
@@ -54,6 +65,30 @@ class UsersApi {
     else {
       console.log('trying get performers');
       return this.getPerformers(query);
+    }
+  }
+
+  static async getUserById(userId: string) {
+    try {
+      return await instance.get<User>(`/users/${userId}/profile`);
+    } catch (error) {
+      throw new Error('Unable to get user by id.');
+    }
+  }
+
+  static async updateProfile(userId: string, body: TProfile) {
+    const formData = new FormData();
+    if (body.avatar) {
+      formData.append('avatar', body.avatar[0]);
+    }
+    if (body.banner) {
+      formData.append('profileBackground', body.banner[0]);
+    }
+
+    try {
+      return await instance.patch(`/users/${userId}/profile`, body);
+    } catch (error) {
+      throw new Error('Unable to update profile.');
     }
   }
 }
