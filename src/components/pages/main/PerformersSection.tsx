@@ -45,7 +45,7 @@ const PerformersSection: React.FC = () => {
 
       {/* View More Link */}
       <Link
-        href='/auth/log-in'
+        href='/search?userType=performer'
         className='mt-[8%] mb-[2%] text-[21px] font-rubik italic text-orange'
       >
         Дивитись більше...

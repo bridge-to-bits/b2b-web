@@ -43,7 +43,7 @@ export const ProducersSection: React.FC = () => {
 
       {/* View More Link */}
       <Link
-        href='/auth/log-in'
+        href='/search?userType=producer'
         className='mt-[4%] text-[21px] font-rubik italic text-orange'
       >
         Дивитись більше...
