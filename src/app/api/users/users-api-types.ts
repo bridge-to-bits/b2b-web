@@ -15,7 +15,8 @@ export interface QueryAllUsersDTO extends QueryAllDTO {
 
 //PerformerResponse
 export interface Performer {
-  firstName: string;
+  id: string;
+  username: string;
   genres: Genre[];
   rating: number;
   avatar: string;
@@ -31,7 +32,8 @@ export interface PaginatedPerformer {
 }
 
 export interface Producer {
-  firstName: string;
+  id: string;
+  username: string;
   genres: Genre[];
   rating: number;
   avatar: string;
