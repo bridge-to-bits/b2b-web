@@ -11,7 +11,7 @@ export const ProducerCard: React.FC<ProducerCardProps> = ({ producer }) => {
     <div className='w-full aspect-[4] border-[4px] border-graphite p-5 rounded-md shadow-md'>
       {/* Info Section */}
       <CardInfo
-        name={producer.userName}
+        name={producer.username}
         genres={producer.genres}
         rating={producer.rating}
         image={producer.avatar}

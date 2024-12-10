@@ -29,7 +29,8 @@ export interface UpdateUserDTO {
 
 //PerformerResponse
 export interface Performer {
-  userName: string;
+  id: string;
+  username: string;
   genres: Genre[];
   rating: number;
   avatar: string;
@@ -46,7 +47,8 @@ export interface PaginatedPerformer {
 }
 
 export interface Producer {
-  userName: string;
+  id: string;
+  username: string;
   genres: Genre[];
   rating: number;
   avatar: string;
@@ -61,7 +63,7 @@ export interface User {
   rating: number;
   genres: Genre[];
   location: string;
-  desciption: string;
+  description: string;
 }
 
 interface Social {

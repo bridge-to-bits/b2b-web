@@ -15,7 +15,7 @@ export const PerformerCard: React.FC<PerformerCardProps> = ({ performer }) => {
     <div className='w-full aspect-[4] border-[4px] border-graphite p-4 rounded-xl shadow-md'>
       {/* Info Section */}
       <CardInfo
-        name={performer.userName}
+        name={performer.username}
         genres={performer.genres}
         rating={performer.rating}
         image={performer.avatar}
