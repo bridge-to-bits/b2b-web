@@ -4,10 +4,20 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { AuthButtons } from './AuthButtons';
 import { HeaderLinks } from './HeaderLinks';
 import { UserMenu } from './UserMenu';
-import useAuth from '@/lib/hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
+import { authApi } from '@/app/api/auth/auth-api';
+import { AuthToken } from '@/lib/types/auth.types';
+import { getClientCookie } from '@/lib/utils/getClientCookie';
 
 export const MobileMenu = () => {
-  const { user } = useAuth();
+  const cookie = getClientCookie(AuthToken.AccessToken);
+
+  const { data: user } = useQuery({
+    queryKey: ['getMe', cookie],
+    queryFn: authApi.getMe,
+    select: (data) => data.data,
+    enabled: !!cookie,
+  });
 
   return (
     <Sheet>

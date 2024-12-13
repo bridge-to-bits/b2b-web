@@ -1,3 +1,5 @@
+import { UserType } from '@/lib/types/user-type';
+
 // QueryAllDTO
 export interface QueryAllDTO {
   pageNumber?: number;
@@ -13,6 +15,18 @@ export interface QueryAllUsersDTO extends QueryAllDTO {
   genreIds?: string[];
 }
 
+// UpdateUserDTO
+export interface UpdateUserDTO {
+  username: string;
+  city: string;
+  avatar: File | null;
+  profileBackground: File | null;
+  aboutMe: string;
+  type: UserType;
+  socials: Social[];
+  genreIds: string[];
+}
+
 //PerformerResponse
 export interface Performer {
   id: string;
@@ -21,6 +35,7 @@ export interface Performer {
   rating: number;
   avatar: string;
   socials: Social[];
+  email: string;
 }
 
 export interface PaginatedPerformer {
@@ -28,7 +43,7 @@ export interface PaginatedPerformer {
   nextPage: number;
   prevPage: number;
   totalPages: number;
-  data: Performer[]
+  data: Performer[];
 }
 
 export interface Producer {
@@ -38,6 +53,17 @@ export interface Producer {
   rating: number;
   avatar: string;
   socials: Social[];
+  email: string;
+}
+
+export interface User {
+  banner: string;
+  avatar: string;
+  username: string;
+  rating: number;
+  genres: Genre[];
+  location: string;
+  description: string;
 }
 
 interface Social {
@@ -50,7 +76,7 @@ export interface PaginatedProducer {
   nextPage: number;
   prevPage: number;
   totalPages: number;
-  data: Producer[]
+  data: Producer[];
 }
 
 export interface Genre {

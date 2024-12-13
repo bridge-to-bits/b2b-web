@@ -1,5 +1,4 @@
 'use client';
-import { authApi } from '@/app/api/auth/auth-api';
 
 import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
@@ -7,43 +6,60 @@ import { Button } from '@/components/ui/button';
 
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Checkbox } from '@/components/ui/checkbox';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { PasswordInput } from '@/components/ui/password-input';
+import { SignUpSchema, TSignUp } from '@/lib/schemas/auth.schemas';
+import { SignUpDefaultValues } from '@/components/pages/auth/sign-up/constants/auth.constants';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { authApi } from '@/app/api/auth/auth-api';
+import { transformAuthData } from '../utils/transform-auth-data';
+import { USER_TYPE } from '@/lib/types/user-type';
+import { useCommonToast } from '@/components/ui/toast/use-common-toast';
 import { useRouter } from 'next/navigation';
+import { setAuthToken } from '@/app/api/auth/server-auth-api';
 import { isAxiosError } from 'axios';
-import { TSignUp, SignUpSchema } from '@/lib/schemas/auth.schemas';
-import { RegisterBody } from '@/app/api/auth/auth-api.types';
+import { getErrorMessage } from '@/lib/utils/getErrorMessage';
 
 export const RegisterForm = () => {
-  const { push } = useRouter();
   const form = useForm<TSignUp>({
     resolver: zodResolver(SignUpSchema),
-    defaultValues: {
-      email: '',
-      firstName: '',
-      lastName: '',
-      middleName: '',
-    },
+    defaultValues: SignUpDefaultValues,
     mode: 'onChange',
   });
-  async function onSubmit(values: TSignUp) {
+
+  const { toastSuccess } = useCommonToast();
+  const { push } = useRouter();
+
+  const onSubmit = async (data: TSignUp) => {
     try {
-      await authApi.register(values as RegisterBody);
-      push('/auth/email?email=' + values.email);
+      const { data: token } = await authApi.register(transformAuthData(data));
+      await setAuthToken(token);
+      toastSuccess('Ви успішно зареєструвались');
+      push('/');
     } catch (error) {
-      if (isAxiosError(error) && error.response?.status === 400) {
+      if (
+        isAxiosError(error) &&
+        getErrorMessage(error) === 'Email is already in use'
+      ) {
         return form.setError('email', {
           type: 'manual',
           message: 'Користувач з такою поштою вже існує',
         });
+      } else {
+        form.setError(
+          'email',
+          { message: 'Упс, щось пішло не так, спробуйте пізніше' },
+          { shouldFocus: true }
+        );
       }
     }
-  }
+  };
 
   return (
     <Form {...form}>
@@ -53,11 +69,10 @@ export const RegisterForm = () => {
       >
         <FormField
           control={form.control}
-          name='email'
+          name='userName'
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-sm font-normal'>Email</FormLabel>
-              <Input {...field} />
+              <Input {...field} placeholder='Ім’я\Псевдонім' />
               <FormMessage />
             </FormItem>
           )}
@@ -67,64 +82,82 @@ export const RegisterForm = () => {
           name='lastName'
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-sm font-normal'>Прізвище</FormLabel>
-              <Input {...field} />
+              <Input {...field} placeholder="Прізвище (не обов'язково)" />
               <FormMessage />
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name='firstName'
+          name='email'
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-sm font-normal'>Ім&apos;я</FormLabel>
-              <Input {...field} />
+              <Input {...field} placeholder='Пошта' />
               <FormMessage />
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name='middleName'
+          name='password'
           render={({ field }) => (
             <FormItem>
-              <FormLabel
-                className={`text-sm font-normal ${field.value === null && 'opacity-60'}`}
-              >
-                По-батькові
-              </FormLabel>
-              <Input
-                disabled={field.value === null}
-                value={field.value === null ? '' : field.value}
-                onChange={field.onChange}
-              />
+              <PasswordInput placeholder='Пароль' {...field} />
               <FormMessage />
-              <div className='my-2 flex items-center gap-2'>
-                <Checkbox
-                  checked={field.value === null}
-                  onCheckedChange={() =>
-                    field.onChange({
-                      target: { value: field.value !== null ? null : '' },
-                    })
-                  }
-                />
-                <label
-                  htmlFor='terms1'
-                  className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='confirmPassword'
+          render={({ field }) => (
+            <FormItem>
+              <PasswordInput {...field} placeholder='Повторіть пароль' />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='type'
+          render={({ field }) => (
+            <FormItem className='space-y-3'>
+              <FormControl>
+                <RadioGroup
+                  {...field}
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className='flex flex-col space-y-1'
                 >
-                  Немає по-батькові
-                </label>
-              </div>
+                  {[
+                    { value: USER_TYPE.PRODUCER, label: 'Продюсер' },
+                    { value: USER_TYPE.PERFORMER, label: 'Виконавець' },
+                  ].map(({ label, value }) => (
+                    <FormItem
+                      key={value}
+                      className='flex items-center space-x-3 space-y-0'
+                    >
+                      <FormControl>
+                        <RadioGroupItem value={value} />
+                      </FormControl>
+                      <FormLabel className='font-normal'>{label}</FormLabel>
+                    </FormItem>
+                  ))}
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
+
         <Button
-          type='submit'
           className='w-full'
+          onClick={() => form.handleSubmit(onSubmit)}
           disabled={form.formState.isSubmitting}
         >
-          Зареєструватись
+          Sign up
         </Button>
       </form>
     </Form>
