@@ -31,7 +31,7 @@ export const CustomAvatar: FC<AvatarProps> = ({ size = 'default' }) => {
     <Link href='/' className='flex items-center gap-3'>
       <Avatar className={cn(sizes[size], 'border-2 border-gray-200')}>
         <AvatarImage
-          src={user?.avatar ?? '/from-image.png'}
+          src={user?.avatar || '/from-image.png'}
           className='rounded-full object-cover'
         />
         <AvatarFallback>{user?.userName}</AvatarFallback>
