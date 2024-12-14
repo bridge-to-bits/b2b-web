@@ -23,11 +23,9 @@ export async function getServerUser() {
 }
 
 export async function setAuthToken(token: string) {
-  console.log('setAuthToken', cookieOptions);
   cookies().set(AuthToken.AccessToken, token, cookieOptions);
 }
 
 export async function getAccessToken() {
-  const AccessToken = cookies().get(AuthToken.AccessToken);
-  return AccessToken;
+  return cookies().get(AuthToken.AccessToken);
 }

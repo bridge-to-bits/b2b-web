@@ -1,4 +1,6 @@
 import { isServer } from '@/lib/constants/isServer';
+import { AuthToken } from '@/lib/types/auth.types';
+import { getClientCookie } from '@/lib/utils/getClientCookie';
 import axios from 'axios';
 
 const instance = axios.create({
@@ -6,15 +8,17 @@ const instance = axios.create({
   withCredentials: true,
   paramsSerializer: (params) => {
     return Object.keys(params)
-      .map(key => {
-        if (params[key] === undefined) { return ''; }
+      .map((key) => {
+        if (params[key] === undefined) {
+          return '';
+        }
         if (Array.isArray(params[key])) {
-          return params[key].map(value => `${key}=${value}`).join('&');
+          return params[key].map((value) => `${key}=${value}`).join('&');
         }
         return `${key}=${params[key]}`;
       })
       .join('&');
-  }
+  },
 });
 
 const cookiesInterceptor = async (req: any) => {
@@ -25,6 +29,15 @@ const cookiesInterceptor = async (req: any) => {
       .map((item) => `${item.name}=${item.value}`)
       .join('; ');
     req.headers.Cookie = cookiesString;
+    const cookie = cookies().get(AuthToken.AccessToken);
+    if (cookie) {
+      req.headers.Authorization = `Bearer ${cookie}`;
+    }
+  } else {
+    const cookie = getClientCookie(AuthToken.AccessToken);
+    if (cookie) {
+      req.headers.Authorization = `Bearer ${cookie}`;
+    }
   }
   return req;
 };
@@ -32,4 +45,3 @@ const cookiesInterceptor = async (req: any) => {
 instance.interceptors.request.use(cookiesInterceptor);
 
 export { instance };
-
