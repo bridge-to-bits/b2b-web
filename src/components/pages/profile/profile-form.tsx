@@ -25,7 +25,7 @@ interface Props {
 }
 
 export const ProfileForm: FC<Props> = ({
-  user: { avatar, desciption, banner },
+  user: { avatar, banner },
   userId,
 }) => {
   const { toastError, toastSuccess } = useCommonToast();
