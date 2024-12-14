@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { authApi } from '@/app/api/auth/auth-api';
 import { AuthToken } from '@/lib/types/auth.types';
 import { getClientCookie } from '@/lib/utils/getClientCookie';
+import { ToggleTheme } from './ToggleTheme';
 
 export const MobileMenu = () => {
   const cookie = getClientCookie(AuthToken.AccessToken);
@@ -31,6 +32,7 @@ export const MobileMenu = () => {
           </div>
 
           <HeaderLinks />
+          <ToggleTheme />
         </div>
       </SheetContent>
     </Sheet>
