@@ -1,6 +1,6 @@
 import { getQueryClient } from '@/app/api/get-query-client';
 import UsersApi from '@/app/api/users/users-api';
-import { ProfileForm } from '@/components/pages/profile/profile-form';
+import { ProfilePage } from '@/components/pages/profile/profile-page';
 import { FC } from 'react';
 
 interface ProfilePageProps {
@@ -9,18 +9,19 @@ interface ProfilePageProps {
   };
 }
 
-const ProfilePage: FC<ProfilePageProps> = async ({ params: { userId } }) => {
+const Page: FC<ProfilePageProps> = async ({ params: { userId } }) => {
   const qc = getQueryClient();
-  const { data } = await qc.fetchQuery({
+
+  const { data: userById } = await qc.fetchQuery({
     queryKey: ['user-by-id', userId],
     queryFn: () => UsersApi.getUserById(userId),
   });
 
   return (
     <section>
-      <ProfileForm user={data} userId={userId} />
+      <ProfilePage user={userById} userId={userId} />
     </section>
   );
 };
 
-export default ProfilePage;
+export default Page;

@@ -22,6 +22,7 @@ import UsersApi from '@/app/api/users/users-api';
 interface Props {
   user: User;
   userId: string;
+  toggleEditing: () => void;
 }
 
 export const ProfileForm: FC<Props> = ({
