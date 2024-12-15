@@ -1,5 +1,4 @@
 'use client';
-import { Button } from '@/components/ui/button';
 
 import { User } from '@/app/api/users/users-api-types';
 import { FC, useState } from 'react';
@@ -32,7 +31,7 @@ export const ProfilePage: FC<Props> = ({ user, userId }) => {
 
   return (
     <>
-      {false ? (
+      {!isEditing ? (
         <ProfileView
           isMe={isMe}
           user={user}

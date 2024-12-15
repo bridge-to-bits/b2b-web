@@ -14,18 +14,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import { useRouter } from 'next/navigation';
-import { isAxiosError } from 'axios';
 import { useCommonToast } from '@/components/ui/toast/use-common-toast';
-import { PasswordInput } from '@/components/ui/password-input';
-import { FileInput } from '@/components/ui/file-input';
 import { TProfile, ProfileSchema } from '@/lib/schemas/profile.schemas';
 import { User } from '@/app/api/users/users-api-types';
 import { FC } from 'react';
-import { PlusIcon } from 'lucide-react';
 import { BannerFileInput } from './banner-file-input';
 import { AvatarFileInput } from './avatar-file-input';
 import UsersApi from '@/app/api/users/users-api';
 import { Genres } from './genres';
+import { useQueryClient } from '@tanstack/react-query';
+import { prepareProfileData } from '../utils/prepareProfileData';
 
 interface Props {
   user: User;
@@ -36,32 +34,44 @@ interface Props {
 export const ProfileForm: FC<Props> = ({
   user: { avatar, banner, genres, description, location, username, socials },
   userId,
+  toggleEditing,
 }) => {
   const { toastError, toastSuccess } = useCommonToast();
-  const { push } = useRouter();
+  const { refresh } = useRouter();
+
+  const queryClient = useQueryClient();
 
   const socialsDefaults = socials?.reduce(
     (acc, social) => ({ ...acc, [social.name]: social.link }),
     {}
   );
 
+  const initialValues: Partial<TProfile> = {
+    userName: username,
+    city: location,
+    socials: socialsDefaults,
+    aboutMe: description,
+    genres: genres.map((g) => g.id),
+  };
+
   const form = useForm<TProfile>({
     resolver: zodResolver(ProfileSchema),
-    defaultValues: {
-      userName: username,
-      city: location,
-      socials: socialsDefaults,
-      aboutMe: description,
-    },
+    defaultValues: initialValues,
   });
 
   async function onSubmit(values: TProfile) {
+    const data = prepareProfileData(values, initialValues);
     try {
-      UsersApi.updateProfile(userId, values);
+      const { data: newProfileData } = await UsersApi.updateProfile(
+        userId,
+        data
+      );
+      await queryClient.setQueryData(['user-by-id', userId], newProfileData);
       toastSuccess('Ви успішно змінили профіль');
-      // push('/');
+      toggleEditing();
+      refresh();
     } catch (error) {
-      toastError('Спробуйте ще раз пізніше', undefined);
+      toastError(error);
     }
   }
 

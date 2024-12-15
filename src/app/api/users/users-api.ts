@@ -82,40 +82,9 @@ class UsersApi {
     }
   }
 
-  static async updateProfile(userId: string, body: TProfile) {
-    const formData = new FormData();
-    if (body.avatarFile) {
-      formData.append('avatarFile', body.avatarFile[0]);
-    }
-    if (body.bannerFile) {
-      formData.append('profileBackgroundFile', body.bannerFile[0]);
-    }
-
-    formData.append('userName', body.userName);
-    if (body.city) {
-      formData.append('city', body.city);
-    }
-    if (body.aboutMe) {
-      formData.append('aboutMe', body.aboutMe);
-    }
-
-    const socials = Object.entries(body.socials || {}).reduce(
-      (acc, [name, url]) => {
-        if (url) {
-          acc.push({ name, link: url });
-        }
-        return acc;
-      },
-      [] as Social[]
-    );
-    formData.append('socials', JSON.stringify(socials));
-
-    const genreIds = body.genres.filter((genre): genre is string => !!genre);
-    formData.append('genreIds', JSON.stringify(genreIds));
-
-    console.log(formData);
+  static async updateProfile(userId: string, body: Partial<UpdateUserDTO>) {
     try {
-      return await instance.patch(`/users/${userId}/profile`, formData, {
+      return await instance.patch(`/users/${userId}/profile`, body, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
     } catch (error) {
