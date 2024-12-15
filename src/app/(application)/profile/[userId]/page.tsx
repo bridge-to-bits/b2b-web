@@ -1,6 +1,6 @@
 import { getQueryClient } from '@/app/api/get-query-client';
 import UsersApi from '@/app/api/users/users-api';
-import { ProfilePage } from '@/components/pages/profile/profile-page';
+import { ProfilePage } from '@/components/pages/profile/components/profile-page';
 import { FC } from 'react';
 
 interface ProfilePageProps {

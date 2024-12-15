@@ -10,7 +10,6 @@ import UsersApi from '@/app/api/users/users-api';
 
 interface Props {
   initialGenres: Genre[];
-
   field: ControllerRenderProps<TProfile, 'genres'>;
 }
 

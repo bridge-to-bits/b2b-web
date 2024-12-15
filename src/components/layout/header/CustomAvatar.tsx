@@ -28,7 +28,7 @@ export const CustomAvatar: FC<AvatarProps> = ({ size = 'default' }) => {
   });
 
   return (
-    <Link href='/' className='flex items-center gap-3'>
+    <Link href={`/profile/${user?.id}`} className='flex items-center gap-3'>
       <Avatar className={cn(sizes[size], 'border-2 border-gray-200')}>
         <AvatarImage
           src={user?.avatar || '/from-image.png'}

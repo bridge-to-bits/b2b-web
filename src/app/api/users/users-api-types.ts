@@ -19,8 +19,8 @@ export interface QueryAllUsersDTO extends QueryAllDTO {
 export interface UpdateUserDTO {
   username: string;
   city: string;
-  avatar: File | null;
-  profileBackground: File | null;
+  avatarFile: File | null;
+  profileBackgroundFile: File | null;
   aboutMe: string;
   type: UserType;
   socials: Social[];
