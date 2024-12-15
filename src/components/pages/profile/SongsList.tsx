@@ -41,7 +41,7 @@ const SongsList: FC<{ userId: string }> = ({ userId }) => {
     <div className="space-y-4">
       {songs.map((song) => (
         <div key={song.id} className="flex items-center">
-          <div  className="flex items-center justify-between bg-gray-800 p-4 rounded-lg w-full">
+          <div  className="flex items-center justify-between bg-graphite px-2 py-1 rounded-xl w-full">
             <div className="text-white font-semibold">{song.title}</div>
             <div className="flex items-center gap-4">
               <span className="text-gray-400">{song.duration}</span>
