@@ -57,6 +57,8 @@ export interface Producer {
 }
 
 export interface User {
+  userType: UserType;
+  socials: Social[];
   banner: string;
   avatar: string;
   username: string;
@@ -66,7 +68,7 @@ export interface User {
   description: string;
 }
 
-interface Social {
+export interface Social {
   name: string;
   link: string;
 }

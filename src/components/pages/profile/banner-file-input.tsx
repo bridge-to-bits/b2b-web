@@ -15,7 +15,7 @@ import { useCommonToast } from '@/components/ui/toast/use-common-toast';
 import { Button } from '@/components/ui/button';
 
 interface BannerFileInputProps<
-  TFieldValues extends Record<string, FileList | null>
+  TFieldValues extends Record<string, FileList | null>,
 > {
   form: UseFormReturn<TFieldValues, any>;
   name: Path<TFieldValues>;
@@ -91,7 +91,7 @@ export const BannerFileInput = <TFieldValues extends Record<string, any>>({
             </Button>
 
             {previewSrc && (
-              <span className='relative my-4 block w-full pt-[41%]'>
+              <span className='relative block w-full pt-[41%]'>
                 <Image
                   src={previewSrc}
                   alt='Image preview will appear here'
