@@ -1,0 +1,62 @@
+.track {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Отступ между названием и аудиоплеером */
+    align-items: flex-start; /* Выравнивание по левому краю */
+  }
+  
+  .trackInfo {
+    font-size: 20px;
+    color: #1F1E1E;
+    font-weight: medium;
+   
+  }
+  
+  .trackTitle {
+    display:flex;
+    color: white; /* Цвет названия трека */
+    z-index: 1;
+    font-size: 22px;
+  }
+  
+  .trackArtist {
+    display:flex;
+    color: #666; /* Цвет имени исполнителя */
+    font-style: italic;
+  }
+  
+  .track audio {
+    display: flex;
+    width: 80%; /* Аудиоплеер занимает 80% ширины */
+  }
+  
+  .heart-icon {
+    display:flex;
+    color: #d3761e;
+    font-size: 50px;
+    
+    position: relative;
+    left: 150px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    width:20%;
+  }
+  
+  .heartIcon:hover {
+    transform: scale(1.2); /* Увеличение при наведении */
+  }
+  .artistInfo{
+    display:flex ;
+    flex-direction: column;
+  align-items: center;;
+  margin-left: 0px;
+  text-align: right;
+  align-items: flex-start;
+  margin-bottom: 0px;
+  color: white;
+  background-color:#1F1E1E;;
+  
+  }
+  .banner.active {
+    background-color:  blue;
+  }

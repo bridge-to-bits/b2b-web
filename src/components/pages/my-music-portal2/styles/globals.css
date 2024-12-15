@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* src/styles/globals.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 24px;
+  background-color: #202229;
+}
+
+body {
+  /*font-family: Arial, sans-serif;*/
+  background-color: #f4f4f4;
+  font-family: 'Rubik', sans-serif;
+}
+@font-face {
+  font-family: 'Rubik';
+  src: url('/fonts/Rubik-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src: url('/fonts/Rubik-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  margin: 20px 0;
+  padding: 10px, 10px;
+  background-color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color:  #1F1E1E;
+  font-size: medium;
+
+}
+
+.banner.active {
+  background-color: blue;
+}
+
+.banner img {
+  width: 81px;
+  height: 81px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 15px;
+  margin-left: 27px;
+  background-color: #1F1E1E;
+}
+
+.track-controls {
+  display: flex;
+  align-items: center;
+}
+
+audio {
+  margin-left: 10px;
+}
+
+.icon-facebook {
+  color: white /* Цвет Facebook */
+}
+
+.icon-facebook:hover {
+  color: white; /* Изменение цвета при наведении */
+}
+.icon-twitter{
+  color: white; /* Цвет Facebook */
+
+}
+.icon-twitter:hover {
+  color: white; /* Изменение цвета при наведении */
+}
+.icon-instagram{
+  color: white; /* Цвет Facebook */
+
+}
+.icon-instagram:hover {
+  color:white; /* Изменение цвета при наведении */
+}
+/* globals.css */
+
+/* globals.css */
+
+/* globals.css */
+
+.artists-container {
+  display: grid;
+  grid-template-columns: 1fr;  /*Одна колонка для каждой карточки исполнителя */
+  gap: 20px; /* Междустрочный интервал между карточками */
+  padding: 20px;
+  background-color: #1F1E1E;
+}
+
+.artist-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%; /* Карточка занимает всю ширину страницы */
+  background-color:#1F1E1E;;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner-track-container {
+  display: flex;
+  justify-content: space-between; /* Горизонтальное распределение баннера и трека */
+  width: 100%; /* Баннер и трек занимают всю ширину карточки */
+  align-items: center; /* Выравнивание элементов по вертикали */
+  background-color: #1F1E1E;
+}
+
+
+
+.track-info {
+  width: 70%; /* Выставляем ширину для трека */
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Вертикальное выравнивание элементов */
+  background-color: #1F1E1E;
+}
+
+.track-title {
+  font-weight: regular;
+    position: relative;
+    bottom: 45px;
+    left: 250px;
+    z-index: 1;
+    display: flex;
+    color:white;
+    width: 250px;
+    font-size: 20px;
+    background-color: #1F1E1E;
+
+}
+
+.heart-icon {
+  color:#EC5D0B;
+  cursor: pointer;
+  position: relative;
+  left:250px;
+}
+.heart{
+  margin-left: 20px;
+}
+.audio-info{
+  margin-left: 10px;
+  width:90%;
+  background-color: #202229;
+}
+audio::-webkit-media-controls-panel {
+  background-color: #202229; /* Цвет панели */
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-pause-button {
+  color: rgb(42, 42, 172); /* Цвет иконок */
+  background-color: #f4f4f4;
+}
+
+audio::-webkit-media-controls-timeline {
+  background-color: rgb(226, 236, 240);
+  /* Цвет линии таймлайна */
+}
+
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  color: rgb(225, 225, 235); /* Цвет времени */
+}
+audio::-webkit-media-controls-mute-button {
+  color: blue; /* Цвет кнопки выключения звука */
+  background-color: #f4f4f4;
+}
+audio::-webkit-media-controls-volume-slider {
+  appearance: none; /* Сбрасываем стандартный стиль */
+  background-color: #202229; /* Цвет фона слайдера */
+  height: 5px; /* Высота слайдера */
+  border-radius: 5px; /* Закругленные края */
+}
+/* Для кнопки управления громкостью */
+audio::-webkit-media-controls-mute-button {
+  color: blue; /* Цвет кнопки выключения звука */
+}
+.top-singers{
+  width: 21%;
+   height: 50px;
+   background-color:#EC5D0B;
+   color:white;
+   margin-left: 27px;  
+   
+
+}
+h2.top-singers{
+  margin-top: 20px;
+  
+}
