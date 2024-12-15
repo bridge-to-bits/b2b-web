@@ -1,7 +1,9 @@
 import {
+  Genre,
   PaginatedPerformer,
   PaginatedProducer,
   QueryAllUsersDTO,
+  Social,
   UpdateUserDTO,
   User,
 } from '@/app/api/users/users-api-types';
@@ -10,7 +12,9 @@ import { TProfile } from '@/lib/schemas/profile.schemas';
 
 class UsersApi {
   static async getAvailableGenres() {
-    const response = await instance.get('/users/register/availableGenres');
+    const response = await instance.get<Genre[]>(
+      '/users/register/availableGenres'
+    );
     return response.data;
   }
 
@@ -58,11 +62,13 @@ class UsersApi {
     }
   }
 
-  static async getUsers(query: QueryAllUsersDTO, userType: 'performer' | 'producer') {
-    if(userType === 'producer') {
+  static async getUsers(
+    query: QueryAllUsersDTO,
+    userType: 'performer' | 'producer'
+  ) {
+    if (userType === 'producer') {
       return this.getProducers(query);
-    }
-    else {
+    } else {
       console.log('trying get performers');
       return this.getPerformers(query);
     }
@@ -78,15 +84,40 @@ class UsersApi {
 
   static async updateProfile(userId: string, body: TProfile) {
     const formData = new FormData();
-    if (body.avatar) {
-      formData.append('avatar', body.avatar[0]);
+    if (body.avatarFile) {
+      formData.append('avatarFile', body.avatarFile[0]);
     }
-    if (body.banner) {
-      formData.append('profileBackground', body.banner[0]);
+    if (body.bannerFile) {
+      formData.append('profileBackgroundFile', body.bannerFile[0]);
     }
 
+    formData.append('userName', body.userName);
+    if (body.city) {
+      formData.append('city', body.city);
+    }
+    if (body.aboutMe) {
+      formData.append('aboutMe', body.aboutMe);
+    }
+
+    const socials = Object.entries(body.socials || {}).reduce(
+      (acc, [name, url]) => {
+        if (url) {
+          acc.push({ name, link: url });
+        }
+        return acc;
+      },
+      [] as Social[]
+    );
+    formData.append('socials', JSON.stringify(socials));
+
+    const genreIds = body.genres.filter((genre): genre is string => !!genre);
+    formData.append('genreIds', JSON.stringify(genreIds));
+
+    console.log(formData);
     try {
-      return await instance.patch(`/users/${userId}/profile`, body);
+      return await instance.patch(`/users/${userId}/profile`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
     } catch (error) {
       throw new Error('Unable to update profile.');
     }

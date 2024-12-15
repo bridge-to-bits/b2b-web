@@ -32,7 +32,7 @@ export const ProfilePage: FC<Props> = ({ user, userId }) => {
 
   return (
     <>
-      {!isEditing ? (
+      {false ? (
         <ProfileView
           isMe={isMe}
           user={user}
