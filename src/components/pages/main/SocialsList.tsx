@@ -18,7 +18,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export const SocialsList: React.FC<SocialsListProps> = ({ socials }) => {
   return (
-    <div className="mt-[3%] flex gap-[4%]">
+    <div className="mt-3 flex gap-4">
       {socials.map(({link, name}) => {
         const Icon = iconMap[name.toLowerCase()] || iconMap.default;
         return (
