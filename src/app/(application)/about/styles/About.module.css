@@ -1,0 +1,161 @@
+/* styles/AboutUs.module.css */
+.container {
+   
+    padding: 10px;
+    width: 1920px;
+    height:3249px;
+    margin-left: 245px;
+   
+   
+    
+  }
+  
+ 
+  .bannerAndText {
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    justify-content: center;
+  }
+  
+  .bannerContainer {
+    display:flex;
+    position: relative;
+    width: 810px;
+    height: 492px;  
+  }
+  
+  .banner {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .bannerText {
+   display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 96px;
+    font-family: 'Rubik', sans-serif;
+    
+  }
+  .textBlock {
+    display: flex;
+    width: 971px;
+    height: 318px;
+    font-size: 36px;
+    font-family: 'Rubik', sans-serif;
+    margin-left: 20px;
+  }
+  
+  .textBlockLarge {
+    display: flex;
+    width: 1470px;
+    height: 298px;
+    margin: 20px 0;
+    font-family: 'Rubik', sans-serif;
+    font-size: 36px;
+    margin-left: 25%;
+    margin-top: 5%;
+    
+  }
+  
+  .bannerAndTextBelow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 150px;
+    justify-content: center;
+  }
+  
+  .secondBanner {
+    display: flex;
+    width: 950px;
+    height: 608px;
+    margin-right: 20px;
+  }
+  
+  .textBlockRight {
+    display:flex;
+    width: 768px;
+    height: 470px;
+    margin-left: 20px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 36px;
+  }
+  
+  .missionBlock {
+    display:flex;
+    width: 652px;
+    height: 201px;
+    font-size: 96px;
+    font-family: 'Rubik', sans-serif;
+    margin-top: 1%;
+    margin-left: 65%;
+  }
+  
+  .missionText {
+    display: flex;
+    width: 1638px;
+    height: 160px;
+    margin-top: 20px;
+    margin-left: 7%;
+    font-size: 36px;
+    font-family: 'Rubik', sans-serif;
+  }
+  
+  .visionBlock {
+    display: flex;
+    width: 652px;
+    height: 201px;
+    font-size: 96px;
+    font-family: 'Rubik', sans-serif;
+    margin-top: 30px;
+    margin-left: 14px;
+  }
+  
+  .visionText {
+    display: flex;
+    width: 1638px;
+    height: 160px;
+    font-size: 36px;
+    font-family: 'Rubik', sans-serif;
+    margin-top: 20px;
+    margin-left: 141px;
+  }
+  
+  .joinUsBlock {
+    display: flex;
+    width: 1132px;
+    height: 201px;
+    font-size: 96px;
+    font-family: 'Rubik Italic', sans-serif;
+    
+    margin-top: 50px;
+    margin-left: 394px;
+  }
+  
+  .joinUsText {
+    display: flex;
+    width: 1638px;
+    height: 160px;
+    margin-top: 20px;
+    margin-left: 141px;
+    font-family: 'Rubik', sans-serif;
+    font-size:36px;
+
+  }
+  @media (max-width: 700px) { 
+    .container{
+      width:fit-content;
+    }
+    .bannerContainer, .banner, .secondBanner {
+       width: 100%; height: auto; } 
+       .textBlock, .textBlockRight, .textBlockLarge, .missionText, .visionText, .joinUsText { width: 100%; } 
+       .missionBlock, .visionBlock, .joinUsBlock { margin-left: 0; } 
+       .bannerText { font-size: 48px; } .textBlock, 
+       .textBlockRight { font-size: 24px; } 
+       .missionBlock, .visionBlock, .joinUsBlock { font-size: 48px;}}

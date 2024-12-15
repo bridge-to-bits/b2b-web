@@ -29,24 +29,26 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.399.0",
     "next": "14.2.4",
+    "punycode": "^2.3.1",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "uri-js": "^4.2.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.51.15",
     "@tanstack/react-query-devtools": "^5.51.21",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "22.10.2",
+    "@types/react": "^18.3.16",
+    "@types/react-dom": "^18.3.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "5.7.2"
   }
 }
