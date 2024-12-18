@@ -14,7 +14,7 @@ const Page: FC<ProfilePageProps> = async ({ params: { userId } }) => {
 
   const { data: userById } = await qc.fetchQuery({
     queryKey: ['user-by-id', userId],
-    queryFn: () => UsersApi.getUserById(userId),
+    queryFn: () => UsersApi.getProfileById(userId),
   });
 
   return (

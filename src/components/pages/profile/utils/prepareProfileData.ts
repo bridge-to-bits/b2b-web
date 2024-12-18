@@ -1,4 +1,5 @@
-import { UpdateUserDTO, Social } from '@/app/api/users/users-api-types';
+import { Social } from '@/app/api/api-common.types';
+import { UpdateUserDTO } from '@/app/api/users/users-api-types';
 import { TProfile } from '@/lib/schemas/profile.schemas';
 
 export const prepareProfileData = (

@@ -1,9 +1,9 @@
 import { ProducerCard } from './ProducerCard';
 import Link from 'next/link';
 import SectionHeader from '@/components/pages/main/SectionHeader';
-import UsersApi from '@/app/api/users/users-api';
 import { useQuery } from '@tanstack/react-query';
 import { Loader } from '@/components/common/components/Loader';
+import { producersApi } from '@/app/api/producers/producers-api';
 
 export const ProducersSection: React.FC = () => {
   const {
@@ -12,7 +12,7 @@ export const ProducersSection: React.FC = () => {
     isError,
   } = useQuery({
     queryKey: ['producers', { pageNumber: 1, pageSize: 6 }],
-    queryFn: () => UsersApi.getProducers({ pageNumber: 1, pageSize: 6 }),
+    queryFn: () => producersApi.getAll({ pageNumber: 1, pageSize: 6 }),
     select: (data) => data.data,
   });
 
