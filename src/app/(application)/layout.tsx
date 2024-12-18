@@ -23,7 +23,7 @@ const ApplicationLayout: FC<ApplicationLayoutProps> = ({ children }) => {
         <div className='min-h-screen w-full'>
           <Header />
 
-          <main className='h-full w-full p-2 pt-20'>
+          <main className='h-full w-full pt-20'>
             {children}
             <Toaster />
           </main>

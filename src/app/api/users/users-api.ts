@@ -82,6 +82,14 @@ class UsersApi {
     }
   }
 
+  static async getFavoritePerformers(userId: string) {
+    try {
+      return await instance.get<User>(`/users/${userId}`);
+    } catch (error) {
+      throw new Error('Unable to get user`s favorite performers');
+    }
+  }
+
   static async updateProfile(userId: string, body: Partial<UpdateUserDTO>) {
     try {
       return await instance.patch(`/users/${userId}/profile`, body, {
