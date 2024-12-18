@@ -2,9 +2,8 @@
 import { HeartIcon, MapPin, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { User } from '@/app/api/users/users-api-types';
-import { socials } from '@/components/layout/footer/constants';
 import { Button } from '@/components/ui/button';
 import SongsList from '@/components/pages/profile/SongsList';
 import { SocialsList } from '@/components/pages/main/SocialsList';
@@ -18,7 +17,16 @@ interface Props {
 }
 
 export const ProfileView: FC<Props> = ({
-  user: { avatar, banner, description, genres, location, rating, username, socials },
+  user: {
+    avatar,
+    banner,
+    description,
+    genres,
+    location,
+    rating,
+    username,
+    socials,
+  },
   userId,
   isMe,
   toggleEditing,
@@ -70,8 +78,6 @@ export const ProfileView: FC<Props> = ({
           )}
         </div>
 
-
-
         {/* User Info Section */}
         <div className='mt-[-60px]'>
           <div className='flex items-center gap-4'>
@@ -95,7 +101,7 @@ export const ProfileView: FC<Props> = ({
               : 'Не вказані'}
           </p>
           <p className='flex items-center gap-2 mt-2'>
-            <MapPin className='text-orange'/> {location || 'Не вказано'}
+            <MapPin className='text-orange' /> {location || 'Не вказано'}
           </p>
           <p className='mt-2'>{description || 'Опис не вказано'}</p>
 
@@ -107,7 +113,7 @@ export const ProfileView: FC<Props> = ({
           {/*    </li>*/}
           {/*  ))}*/}
           {/*</ul>*/}
-          <SocialsList socials={socials}/>
+          <SocialsList socials={socials} />
         </div>
 
         {/* Conditional Song or Related Performers Section */}

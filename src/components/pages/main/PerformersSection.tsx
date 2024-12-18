@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { PerformerCard } from '@/components/pages/main/PerformerCard';
 import SectionHeader from '@/components/pages/main/SectionHeader';
-import UsersApi from '@/app/api/users/users-api';
 import { useQuery } from '@tanstack/react-query';
 import { Loader } from '@/components/common/components/Loader';
+import { performersApi } from '@/app/api/performers/performers-api';
 
 const PerformersSection: React.FC = () => {
   const {
@@ -14,7 +14,7 @@ const PerformersSection: React.FC = () => {
     isError,
   } = useQuery({
     queryKey: ['performers', { pageNumber: 1, pageSize: 6 }],
-    queryFn: () => UsersApi.getPerformers({ pageNumber: 1, pageSize: 6 }),
+    queryFn: () => performersApi.getAll({ pageNumber: 1, pageSize: 6 }),
     select: (data) => data.data,
   });
 

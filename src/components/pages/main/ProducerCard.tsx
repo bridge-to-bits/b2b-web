@@ -1,6 +1,6 @@
+import { Producer } from '@/app/api/producers/producers-api-types';
 import { CardInfo } from './CardInfo';
 import { SocialsList } from './SocialsList';
-import { Producer } from '@/app/api/users/users-api-types';
 
 interface ProducerCardProps {
   producer: Producer;

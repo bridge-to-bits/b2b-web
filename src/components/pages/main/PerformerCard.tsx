@@ -2,7 +2,7 @@ import { Play, Pause } from 'lucide-react';
 import { CardInfo } from './CardInfo';
 import { SocialsList } from './SocialsList';
 import { useState } from 'react';
-import { Performer } from '@/app/api/users/users-api-types';
+import { Performer } from '@/app/api/performers/performers-api-types';
 
 interface PerformerCardProps {
   performer: Performer;

@@ -3,10 +3,10 @@
 import { FC, useEffect, useState } from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 import { TProfile } from '@/lib/schemas/profile.schemas';
-import { Genre } from '@/app/api/users/users-api-types';
 import { MultiSelect } from '@/components/ui/multi-select';
 import { useQuery } from '@tanstack/react-query';
 import UsersApi from '@/app/api/users/users-api';
+import { Genre } from '@/app/api/api-common.types';
 
 interface Props {
   initialGenres: Genre[];
