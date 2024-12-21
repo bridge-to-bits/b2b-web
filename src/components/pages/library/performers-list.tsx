@@ -45,7 +45,9 @@ export function LibraryPerformersList({
                   <span className='mb-1 block'>{item.username}</span>
                   <ul className='flex gap-2'>
                     {item.socials?.map((social) => (
-                      <li> {socialIcons[social.name.toLowerCase()]}</li>
+                      <li key={social.name}>
+                        {socialIcons[social.name.toLowerCase()]}
+                      </li>
                     ))}
                   </ul>
                 </div>
