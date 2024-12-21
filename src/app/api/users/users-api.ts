@@ -14,10 +14,8 @@ import {
 import { PaginatedProducer } from '../producers/producers-api-types';
 
 class UsersApi {
-  static async getAvailableGenres() {
-    const response = await instance.get<Genre[]>(
-      '/users/register/availableGenres'
-    );
+  static async getgenres() {
+    const response = await instance.get<Genre[]>('/users/register/genres');
     return response.data;
   }
 
