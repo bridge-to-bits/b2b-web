@@ -17,9 +17,9 @@ export const Genres: FC<Props> = ({ initialGenres, field }) => {
   const [selectedGenres, setSelectedGenres] = useState<string[]>(
     initialGenres.map((g) => g.id)
   );
-  const { data: availableGenres } = useQuery({
-    queryKey: ['availableGenres'],
-    queryFn: UsersApi.getAvailableGenres,
+  const { data: genres } = useQuery({
+    queryKey: ['genres'],
+    queryFn: UsersApi.getgenres,
   });
 
   useEffect(() => {
@@ -28,9 +28,9 @@ export const Genres: FC<Props> = ({ initialGenres, field }) => {
 
   return (
     <div className='my-4 flex flex-col items-start gap-2 max-w-xl'>
-      {availableGenres && (
+      {genres && (
         <MultiSelect
-          options={availableGenres?.map((genre) => ({
+          options={genres?.map((genre) => ({
             label: genre.name,
             value: genre.id,
           }))}

@@ -28,9 +28,9 @@ const SearchPage = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   // Fetch available genres from API
-  const { data: availableGenres, isLoading: genresLoading } = useQuery({
-    queryKey: ['availableGenres'],
-    queryFn: async () => UsersApi.getAvailableGenres(),
+  const { data: genres, isLoading: genresLoading } = useQuery({
+    queryKey: ['genres'],
+    queryFn: async () => UsersApi.getgenres(),
     select: (data) => data,
   });
 
@@ -127,7 +127,7 @@ const SearchPage = () => {
       <div className='flex justify-between py-3 mx-[5%]'>
         {/* Genre Filter */}
         <GenresDropdown
-          genres={availableGenres || []}
+          genres={genres || []}
           selected={genreIds}
           onChange={handleGenreChange}
         />
