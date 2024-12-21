@@ -18,6 +18,19 @@ class ProducersApi {
       throw new Error('Unable to fetch producers.');
     }
   }
+
+  async sendAgreement(producerId: string, performerIds: string[]) {
+    try {
+      const response = await instance.post(
+        `/producers/${producerId}/send-agreement`,
+        { performerIds }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error to send agreement request', error);
+      throw new Error('Error to send agreement request');
+    }
+  }
 }
 
 export const producersApi = new ProducersApi();
