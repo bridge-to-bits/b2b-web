@@ -18,3 +18,11 @@ export interface PaginatedPerformer {
   totalPages: number;
   data: Performer[];
 }
+
+export interface CreateTrackDto {
+  name: string;
+  description?: string;
+  performerId: string;
+  genreIds: string[];
+  track: File;
+}

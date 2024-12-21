@@ -1,4 +1,5 @@
 import { instance } from '../instance';
+import { CreateTrackDto } from './tracks-api-types';
 
 class TracksApi {
   async addListen(id: string) {
@@ -7,6 +8,18 @@ class TracksApi {
       return response.data;
     } catch (error) {
       throw new Error('Error increment listen');
+    }
+  }
+  async create(body: CreateTrackDto) {
+    try {
+      const response = await instance.post(`/tracks`, body, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw new Error('Error adding track');
     }
   }
 }

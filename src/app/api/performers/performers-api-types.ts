@@ -2,7 +2,7 @@ import { Genre, Social } from '../api-common.types';
 
 //PerformerResponse
 export interface Performer {
-  id: string;
+  userId: string;
   username: string;
   genres: Genre[];
   rating: number;

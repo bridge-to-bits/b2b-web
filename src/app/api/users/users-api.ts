@@ -15,7 +15,7 @@ import { PaginatedProducer } from '../producers/producers-api-types';
 
 class UsersApi {
   static async getgenres() {
-    const response = await instance.get<Genre[]>('/users/register/genres');
+    const response = await instance.get<Genre[]>('/genres');
     return response.data;
   }
 
