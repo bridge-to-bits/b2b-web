@@ -1,12 +1,7 @@
 'use client';
 import { FC, useEffect, useState } from 'react';
 import { Play, Heart, Pause } from 'lucide-react';
-
-interface Song {
-  id: number;
-  title: string;
-  duration: string;
-}
+import { Song } from '@/app/api/api-common.types';
 
 const mockSongsData: Song[] = [
   { id: 1, title: 'Song 1', duration: '4:56' },
@@ -38,13 +33,13 @@ const SongsList: FC<{ userId: string }> = ({ userId }) => {
   }
 
   return (
-    <div className="space-y-4">
+    <div className='space-y-4'>
       {songs.map((song) => (
-        <div key={song.id} className="flex items-center">
-          <div  className="flex items-center justify-between bg-gray-800 p-4 rounded-lg w-full">
-            <div className="text-white font-semibold">{song.title}</div>
-            <div className="flex items-center gap-4">
-              <span className="text-gray-400">{song.duration}</span>
+        <div key={song.id} className='flex items-center'>
+          <div className='flex items-center justify-between bg-gray-800 p-4 rounded-lg w-full'>
+            <div className='text-white font-semibold'>{song.title}</div>
+            <div className='flex items-center gap-4'>
+              <span className='text-gray-400'>{song.duration}</span>
               <button
                 onClick={() => setIsPlaying((prev) => !prev)}
                 className='bg-foreground ml-[15px] rounded-full w-12 h-12 flex items-center justify-center'
@@ -57,7 +52,7 @@ const SongsList: FC<{ userId: string }> = ({ userId }) => {
               </button>
             </div>
           </div>
-          <Heart className="cursor-pointer text-gray-400 hover:text-orange ml-3" />
+          <Heart className='cursor-pointer text-gray-400 hover:text-orange ml-3' />
         </div>
       ))}
     </div>

@@ -11,6 +11,12 @@ export interface Genre {
   name: string;
 }
 
+export interface Song {
+  id: number;
+  title: string;
+  duration: string;
+}
+
 // QueryAllDTO
 export interface QueryAllDTO {
   pageNumber?: number;

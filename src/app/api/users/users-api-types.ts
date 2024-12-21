@@ -24,3 +24,18 @@ export interface User {
   location: string;
   description: string;
 }
+
+export interface FavoritePerformer {
+  userId: string;
+  username: string;
+  socials: Social[] | null;
+  rating: number;
+  avatar?: string;
+}
+
+export interface FavoriteTrack {
+  id: string;
+  description?: string;
+  url: string;
+  name: string;
+}
