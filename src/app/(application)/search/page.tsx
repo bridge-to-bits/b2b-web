@@ -146,12 +146,12 @@ const SearchPage = () => {
       </div>
 
       {/* User Grid */}
-      <div className='flex flex-wrap gap-[10px] mt-[2%] mx-[5%]'>
+      <div className='flex flex-col gap-[10px] mt-[2%] mx-[5%]'>
         {users?.map((user: Performer | Producer) => {
           if (userType === 'performer') {
             return (
               <div
-                className='flex-grow basis-[calc(50%-1%)] sm:basis-[calc(50%-1%)]'
+                className='flex-grow basis-[calc(50%-1%)] sm:basis-[calc(50%-10px)]'
                 key={user.id}
               >
                 <PerformerCard performer={user} />
