@@ -5,23 +5,41 @@ import Banner from './../../../components/pages/my-music-portal2/Banner';
 import artists from './../../../lib/data/artists'; // Замена на фактический путь к данным артиста
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import AudioPlayer from '@/components/pages/my-music-portal2/AudioPlayer';
 /*import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';*/
+/*import './../../../../public/music/track1.mp3';*/
+
 
 
 
 
 const HomePage: React.FC = () => {
   const [activeArtistId, setActiveArtistId] = useState<number | null>(null);
+ 
 
   return (
-    <div>
-      <header>
-      {/*<h1 style={{color:'white'}}>Музичний портал</h1>*/}
-      </header>
+    <div className='container'>
+       <div className='contaner_baner_audio'>
        <div  className='top-singers' >
-          <h1 style={{backgroundColor:'#EC5D0B', marginLeft:'17px', marginRight:'5px',}}>  Уподобані виконавці</h1> 
+          <div className='favorites-title'>Уподобані виконавці</div> 
                 </div>
-      
+                
+                
+                <div className="audio-container">
+  <audio controls className='audio'>
+    <source src="/music/track1.mp3" type="audio/mpeg"/>
+    Ваш браузер не поддерживает элемент <code>audio</code>.
+  </audio>
+  <div className='heart'>
+              <FontAwesomeIcon icon={faHeart} style={{ fontSize: "46px", color: "#EC5D0B" }} />
+              </div>
+
+
+                
+
+                </div>
+                
+                </div>
       <div className="artists-container">
         {artists.map((artist) => (
           <div key={artist.id} className="artist-card">

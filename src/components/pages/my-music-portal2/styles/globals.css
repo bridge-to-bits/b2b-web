@@ -30,6 +30,15 @@ body {
   font-style: normal;
 }
 
+.container {
+  max-width: 1920px;
+  height: auto;
+ 
+  align-items: center;
+  color: white;
+  padding: 20px;
+  background-color: #202229;
+}
 
 
 .banner {
@@ -59,6 +68,12 @@ body {
   margin-left: 27px;
   background-color: #1F1E1E;
 }
+.audio-container{
+  display:flex;
+  margin-right: 10px;
+    width: 90%;
+    background-color: #202229;
+}
 
 .track-controls {
   display: flex;
@@ -66,7 +81,10 @@ body {
 }
 
 audio {
+  
   margin-left: 10px;
+  width:90%;
+  background-color: #202229;
 }
 
 .icon-facebook {
@@ -192,18 +210,44 @@ audio::-webkit-media-controls-volume-slider {
 }
 /* Для кнопки управления громкостью */
 audio::-webkit-media-controls-mute-button {
-  color: blue; /* Цвет кнопки выключения звука */
+  color: rgb(23, 23, 26); /* Цвет кнопки выключения звука */
+}
+.contaner_baner_audio{
+  display:flex;
+  gap:152px;
+}
+.audio{
+  width:75%;
+  
 }
 .top-singers{
-  width: 21%;
+ /* width: 21%;
    height: 50px;
-   background-color:#EC5D0B;
+   /*background-color:#EC5D0B;*/
+   width: 495px;
+   height: 82px;
+   display: flex;
+   justify-content: center;
+   background: linear-gradient(to top, #EC5D0B, #202229);
    color:white;
    margin-left: 27px;  
    
 
 }
-h2.top-singers{
-  margin-top: 20px;
-  
+.favorites-title {
+  display: flex;
+    justify-content: center;
+  font-size: 24px;
+  font-weight: 500;
+  font-family: 'Rubik', sans-serif;
+  color: white;
+  background: linear-gradient(to top, #EC5D0B, #202229);
 }
+ /*h1.top-singers{
+  display:flex;
+  margin-top: 0px;
+  margin-left:17px;
+  margin-right:5px;
+ background: linear-gradient(to top, #EC5D0B, #202229);
+  
+}*/
