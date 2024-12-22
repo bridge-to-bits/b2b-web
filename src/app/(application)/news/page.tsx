@@ -3,14 +3,23 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import NewsApi from '@/app/api/news/news-api'
-import { ChevronRight } from 'lucide-react'
+import Link from 'next/link'
+import Image from 'next/image';
 
 // Define props for the Section component
 interface SectionProps<T> {
   title: string
   items: T[]
   isScrollable?: boolean
-  showMoreButton?: boolean
+  type: 'articles' | 'interviews'
+}
+
+// Update interface to include id
+interface CardProps {
+  id: string
+  title: string
+  backgroundPhotoUrl: string
+  type: 'articles' | 'interviews'
 }
 
 // Main Page Component
@@ -18,13 +27,13 @@ const MainPage: React.FC = () => {
   const { data: articles, isLoading: articlesLoading } = useQuery({
     queryKey: ['articles'],
     queryFn: NewsApi.getArticles,
-    select: (data) => data,
+    select: (data) => data.slice(0,4),
   })
 
   const { data: interviews, isLoading: interviewsLoading } = useQuery({
     queryKey: ['interviews'],
     queryFn: NewsApi.getInterviews,
-    select: (data) => data,
+    select: (data) => data.slice(0,4),
   })
 
   if (articlesLoading || interviewsLoading) {
@@ -43,12 +52,13 @@ const MainPage: React.FC = () => {
       {/* Navigation Buttons */}
       <nav className="flex justify-center space-x-4 mb-8">
         {navigationItems.map((item) => (
-          <button
+          <Link
             key={item.label}
+            href={item.href}
             className="bg-orange px-8 py-2 rounded-lg text-white hover:opacity-90 transition-opacity"
           >
             {item.label}
-          </button>
+          </Link>
         ))}
       </nav>
 
@@ -56,71 +66,76 @@ const MainPage: React.FC = () => {
       <Section
         title="Головні новини тижня"
         items={articles ?? []}
+        type="articles"
       />
 
       {/* Interviews Section */}
       <Section
         title="Топ тижневих інтерв'ю"
         items={interviews ?? []}
+        type="interviews"
         isScrollable
-        showMoreButton
       />
     </div>
   )
 }
 
 // Section Component
-  const Section = <T extends { id: string; title: string; backgroundPhotoUrl: string }>({
-                                                                                          title,
-                                                                                          items,
-                                                                                          isScrollable = false,
-                                                                                          showMoreButton = false,
-                                                                                        }: SectionProps<T>) => (
-    <div className="mb-12">
-      <h2 className="text-xl font-bold mb-6 bg-[#1E0B40] py-3 px-4 rounded-lg">
+const Section = <T extends { id: string; title: string; backgroundPhotoUrl: string }>({
+                                                                                        title,
+                                                                                        items,
+                                                                                        isScrollable = false,
+                                                                                        type,
+                                                                                      }: SectionProps<T>) => (
+  <div className="mb-12">
+    <div className="relative py-3">
+      {/* Background gradient container */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue to-transparent opacity-20" />
+
+      {/* Title with its own gradient for text */}
+      <h2 className="text-xl font-bold text-center relative z-10 bg-clip-text">
         {title}
       </h2>
-      <div className="relative">
+    </div>
+    <div className="relative mt-6">
+      <div className="max-w-7xl mx-auto">
         <div
           className={`grid ${
             isScrollable
-              ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6'
-              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
-          } gap-4`}
+              ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4'
+              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+          } gap-4 justify-items-center`}
         >
           {items.map((item) => (
-            <Card key={item.id} title={item.title} backgroundPhotoUrl={item.backgroundPhotoUrl} />
+            <Card
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              backgroundPhotoUrl={item.backgroundPhotoUrl}
+              type={type}
+            />
           ))}
         </div>
-        {showMoreButton && (
-          <button
-            className="absolute -right-2 top-1/2 -translate-y-1/2 text-blue-500 p-2"
-            aria-label="Show more"
-          >
-            <ChevronRight size={24} className="text-blue" />
-          </button>
-        )}
       </div>
     </div>
-  )
+  </div>
+)
 
 // Card Component
-  interface CardProps {
-    title: string
-    backgroundPhotoUrl: string
-  }
-
-  const Card: React.FC<CardProps> = ({ title, backgroundPhotoUrl }) => (
-    <div className="relative aspect-[4/3] rounded-lg overflow-hidden group cursor-pointer">
-      <img
-        src={backgroundPhotoUrl}
-        alt={title}
-        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-      />
-      <div className="absolute inset-0 bg-black/50 flex items-end p-4 opacity-100">
-        <p className="text-white text-sm font-medium">{title}</p>
-      </div>
+const Card: React.FC<CardProps> = ({ id, title, backgroundPhotoUrl, type }) => (
+  <Link
+    href={`/news/${type}/${id}`}
+    className="relative aspect-[4/3] rounded-lg overflow-hidden group cursor-pointer w-full max-w-sm block"
+  >
+    <Image
+      src={backgroundPhotoUrl}
+      alt={title}
+      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+    />
+    <div className="absolute inset-0 bg-black/50 flex items-end p-4 opacity-100">
+      <p className="text-white text-sm font-medium">{title}</p>
     </div>
-  )
+  </Link>
+)
 
-  export default MainPage
+export default MainPage
