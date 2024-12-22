@@ -18,12 +18,12 @@ import { useCommonToast } from '@/components/ui/toast/use-common-toast';
 import { TProfile, ProfileSchema } from '@/lib/schemas/profile.schemas';
 import { User } from '@/app/api/users/users-api-types';
 import { FC } from 'react';
-import { BannerFileInput } from './banner-file-input';
-import { AvatarFileInput } from './avatar-file-input';
 import UsersApi from '@/app/api/users/users-api';
-import { Genres } from './genres';
 import { useQueryClient } from '@tanstack/react-query';
-import { prepareProfileData } from '../utils/prepareProfileData';
+import { prepareProfileData } from '../../utils/prepareProfileData';
+import { AvatarFileInput } from '../inputs/avatar-file-input';
+import { BannerFileInput } from '../inputs/banner-file-input';
+import { Genres } from '../inputs/genres';
 
 interface Props {
   user: User;

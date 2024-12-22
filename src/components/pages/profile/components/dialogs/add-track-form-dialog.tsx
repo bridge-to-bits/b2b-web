@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { AddTrackForm } from './add-track-form';
+import { AddTrackForm } from '../forms/add-track-form';
 
 interface Props {}
 

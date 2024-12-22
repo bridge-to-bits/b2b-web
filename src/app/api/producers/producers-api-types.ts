@@ -17,3 +17,10 @@ export interface PaginatedProducer {
   totalPages: number;
   data: Producer[];
 }
+
+export interface RelatedPerformer {
+  username: string;
+  genres: Genre[];
+  rating: number;
+  backgroundPhoto: string;
+}

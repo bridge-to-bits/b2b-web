@@ -70,7 +70,7 @@ export const AddPerformerForm: FC<Props> = () => {
               <MultiSelect
                 options={data?.data?.map((genre) => ({
                   label: genre.username,
-                  value: genre.userId,
+                  value: genre.id,
                 }))}
                 onValueChange={setSelectedPerformerIds}
                 defaultValue={selectedPerformerIds}

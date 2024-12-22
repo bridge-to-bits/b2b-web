@@ -1,6 +1,6 @@
 import { QueryAllUsersDTO } from '../api-common.types';
 import { instance } from '../instance';
-import { PaginatedProducer } from './producers-api-types';
+import { PaginatedProducer, RelatedPerformer } from './producers-api-types';
 
 class ProducersApi {
   async getAll(query: QueryAllUsersDTO): Promise<PaginatedProducer> {
@@ -24,6 +24,18 @@ class ProducersApi {
       const response = await instance.post(
         `/producers/${producerId}/send-agreement`,
         { performerIds }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error to send agreement request', error);
+      throw new Error('Error to send agreement request');
+    }
+  }
+
+  async getPerformersById(producerId: string) {
+    try {
+      const response = await instance.get<RelatedPerformer[]>(
+        `/producers/${producerId}/performers`
       );
       return response.data;
     } catch (error) {

@@ -2,14 +2,14 @@
 
 import { User } from '@/app/api/users/users-api-types';
 import { FC, useState } from 'react';
-import { ProfileForm } from './profile-form';
 import { authApi } from '@/app/api/auth/auth-api';
 import { AuthToken } from '@/lib/types/auth.types';
 import { getClientCookie } from '@/lib/utils/getClientCookie';
 import { useQuery } from '@tanstack/react-query';
+import { AddPerformerFormDialog } from './dialogs/add-performer-form-dialog';
+import { AddTrackFormDialog } from './dialogs/add-track-form-dialog';
+import { ProfileForm } from './forms/profile-form';
 import { ProfileView } from './profile-view';
-import { AddPerformerFormDialog } from './add-performer-form-dialog';
-import { AddTrackFormDialog } from './add-track-form-dialog';
 
 interface Props {
   user: User;

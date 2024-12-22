@@ -4,9 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 import { User } from '@/app/api/users/users-api-types';
-import { socials } from '@/components/layout/footer/constants';
 import { Button } from '@/components/ui/button';
-import SongsList from '@/components/pages/profile/components/SongsList';
+import { SocialsList } from '@/components/pages/main/SocialsList';
+import SongsList from './SongsList';
+import { ProducerRelatedPerformers } from './producer-related-performers';
 
 interface Props {
   user: User;
@@ -24,6 +25,7 @@ export const ProfileView: FC<Props> = ({
     location,
     rating,
     username,
+    socials,
     userType,
   },
   userId,
@@ -34,35 +36,38 @@ export const ProfileView: FC<Props> = ({
   return (
     <div className='bg-black text-white min-h-screen'>
       {/* Profile Banner */}
-      <span className='relative block w-full pt-[25%]'>
+      <div className='relative w-full h-[300px]'>
         <Image
           src={banner}
           alt='Banner'
           fill
+          unoptimized
           sizes='100vw'
           className='left-0 top-0 h-full w-full object-cover'
         />
-      </span>
+      </div>
 
       {/* User Info Section */}
       <div className='relative max-w-[1280px] mx-auto px-20 pb-20'>
         {/* Avatar and "Написати" Button */}
-        <div className='relative w-32 h-32 md:w-44 md:h-44 border-4 border-none -translate-y-1/2'>
+        <div className='relative w-12 h-12 md:w-44 md:h-44 border-4 border-black -translate-y-1/2 group'>
           <Image
             src={avatar ?? ''}
             alt='Avatar'
             fill
             className='object-cover rounded-full z-10'
           />
+
           {/* "Написати" Button */}
           {!isMe && (
             <Link
               href={`/messages/${userId}`}
-              className='bg-orange py-2 px-6 rounded-full text-white font-bold absolute left-[90%] top-20 translate-y-[-50%]'
+              className='bg-orange py-4 px-20 text-lg rounded-full text-white font-bold absolute left-[80%] top-[30%] translate-x-[-100%] group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-300'
             >
               Написати
             </Link>
           )}
+
           {isMe && (
             <Button
               type='button'
@@ -97,34 +102,20 @@ export const ProfileView: FC<Props> = ({
               : 'Не вказані'}
           </p>
           <p className='flex items-center gap-2 mt-2'>
-            <MapPin /> {location || 'Не вказано'}
+            <MapPin className='text-orange' /> {location || 'Не вказано'}
           </p>
           <p className='mt-2'>{description || 'Опис не вказано'}</p>
 
-          {/* Socials */}
-          <ul className='flex gap-4 mt-4'>
-            {socials.map((social) => (
-              <li key={social.href}>
-                <social.icon className='w-6 h-6 hover:text-orange cursor-pointer' />
-              </li>
-            ))}
-          </ul>
+          <SocialsList socials={socials} />
         </div>
 
-        {/* Conditional Song or Related Performers Section */}
-        {isPerformer ? (
-          <div className='mt-8'>
+        <div className='mt-8'>
+          {isPerformer ? (
             <SongsList userId={userId} />
-          </div>
-        ) : (
-          //TODO
-          // <div className="mt-8">
-          //   <ProducerRelatedPerformers userId={userId} /> {/* Related performers for producers */}
-          // </div>
-          <div className='mt-8'>
-            <SongsList userId={userId} />
-          </div>
-        )}
+          ) : (
+            <ProducerRelatedPerformers userId={userId} />
+          )}
+        </div>
       </div>
     </div>
   );
