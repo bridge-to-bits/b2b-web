@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Link from 'next/link';
 
 const links = [
-  { href: '/about-us', text: 'Про нас' },
+  { href: '/news', text: 'Новини' },
   { href: '/qa', text: 'Q&A' },
 ];
 
