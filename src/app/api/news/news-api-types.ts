@@ -8,6 +8,17 @@ export interface BaseNewsItem {
 
 export interface Article extends BaseNewsItem {}
 
+export interface SingleArticle extends Article {
+  createdAt: string;
+  author?: {
+    rating: number;
+    username: string;
+    avatarUrl: string;
+  };
+  comments: Comment[];
+  rating: number;
+}
+
 export interface Interview extends BaseNewsItem {
-  videoLink: string; // Only present in interviews
+  videoLink: string;
 }

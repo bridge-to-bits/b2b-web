@@ -1,5 +1,9 @@
 import { instance } from '@/app/api/instance';
-import { Article, Interview } from '@/app/api/news/news-api-types';
+import {
+  Article,
+  Interview,
+  SingleArticle,
+} from '@/app/api/news/news-api-types';
 
 class NewsApi {
   static async getArticles(): Promise<Article[]> {
@@ -7,9 +11,19 @@ class NewsApi {
     return response.data.data;
   }
 
+  static async getArticleById(id: string) {
+    const response = await instance.get<SingleArticle>(`/news/articles/${id}`);
+    return response.data;
+  }
+
   static async getInterviews(): Promise<Interview[]> {
     const response = await instance.get('/news/interviews');
     return response.data.data;
+  }
+
+  static async getInterviewById(id: string): Promise<Interview> {
+    const response = await instance.get(`/news/interviews/${id}`);
+    return response.data;
   }
 }
 
