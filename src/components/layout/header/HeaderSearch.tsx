@@ -21,7 +21,7 @@ export const HeaderSearch: FC = () => {
         params.set('value', encodedValue);
         router.replace(`${pathname}?${params.toString()}`);
       } else {
-        router.push(`/search?value=${encodedValue}`);
+        router.push(`/search?search=${encodedValue}`);
       }
     }
   };
