@@ -12,7 +12,7 @@ export const ProducersSection: React.FC = () => {
     isError,
   } = useQuery({
     queryKey: ['producers', { pageNumber: 1, pageSize: 6 }],
-    queryFn: () => producersApi.getAll({ pageNumber: 1, pageSize: 6 }),
+    queryFn: () => producersApi.getAll({ pageNumber: 1, pageSize: 6, search: '' }),
     select: (data) => data.data,
   });
 

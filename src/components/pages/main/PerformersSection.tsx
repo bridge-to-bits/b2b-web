@@ -14,7 +14,7 @@ const PerformersSection: React.FC = () => {
     isError,
   } = useQuery({
     queryKey: ['performers', { pageNumber: 1, pageSize: 6 }],
-    queryFn: () => performersApi.getAll({ pageNumber: 1, pageSize: 6 }),
+    queryFn: () => performersApi.getAll({ pageNumber: 1, pageSize: 6, search: '' }),
     select: (data) => data.data,
   });
 
