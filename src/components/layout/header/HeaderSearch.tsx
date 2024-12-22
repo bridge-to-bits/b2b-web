@@ -1,17 +1,28 @@
 'use client';
+
 import { FC, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 export const HeaderSearch: FC = () => {
   const [value, setValue] = useState('');
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (value.trim()) {
-      router.push(`/search?search=${encodeURIComponent(value)}`);
+      const encodedValue = encodeURIComponent(value.trim());
+
+      if (pathname === '/search') {
+        const params = new URLSearchParams(searchParams);
+        params.set('value', encodedValue);
+        router.replace(`${pathname}?${params.toString()}`);
+      } else {
+        router.push(`/search?value=${encodedValue}`);
+      }
     }
   };
 

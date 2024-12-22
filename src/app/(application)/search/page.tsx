@@ -26,7 +26,7 @@ const SearchPage = () => {
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [search, setSearch] = useState('ji');
+  const [search, setSearch] = useState('');
 
   // Fetch available genres from API
   const { data: genres, isLoading: genresLoading } = useQuery({
@@ -44,7 +44,7 @@ const SearchPage = () => {
         .filter((id) => id.trim() !== '') || [];
     const queryUserType = searchParams.get('userType') || 'performer';
     const queryPageNumber = Number(searchParams.get('pageNumber')) || 1;
-    const search = searchParams.get('search') || 'ji';
+    const search = searchParams.get('search') || '';
 
     setSearch(search)
     setGenreIds(queryGenreIds);
