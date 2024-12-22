@@ -18,7 +18,7 @@ export const HeaderSearch: FC = () => {
 
       if (pathname === '/search') {
         const params = new URLSearchParams(searchParams);
-        params.set('value', encodedValue);
+        params.set('search', encodedValue);
         router.replace(`${pathname}?${params.toString()}`);
       } else {
         router.push(`/search?search=${encodedValue}`);
