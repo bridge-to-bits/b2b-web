@@ -35,7 +35,7 @@ export const AddPerformerForm: FC<Props> = () => {
 
   const { data } = useQuery({
     queryKey: ['all-performers'],
-    queryFn: () => performersApi.getAll({}),
+    queryFn: () => performersApi.getAll({search: ''}),
   });
 
   async function onSubmit(values: TAddPerformer) {
