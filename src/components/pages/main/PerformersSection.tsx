@@ -34,7 +34,7 @@ const PerformersSection: React.FC = () => {
       <SectionHeader text='Топ Виконавців' />
 
       {/* Performers Grid */}
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-x-[1%] gap-y-[2.5%] mt-[2%] mx-[5%]'>
+      <div className='grid w-[90vw] max-w-[1440px] grid-cols-1 md:grid-cols-2 gap-x-[1%] gap-y-[2.5%] mt-[2%] mx-[5%]'>
         {performers?.map((performer) => (
           <PerformerCard
             key={performer.username + performer.email}

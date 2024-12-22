@@ -12,7 +12,7 @@ export const PerformerCard: React.FC<PerformerCardProps> = ({ performer }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <div className='w-full min-h-[45vh] border-[4px] border-graphite p-4 rounded-xl shadow-md'>
+    <div className='w-full border-[4px] border-graphite p-4 rounded-xl shadow-md'>
       {/* Info Section */}
       <CardInfo
         name={performer.username}
