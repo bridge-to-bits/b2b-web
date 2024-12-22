@@ -32,7 +32,7 @@ export const ProducersSection: React.FC = () => {
       <SectionHeader text={'Топ продюсерів'} />
 
       {/* Producers List */}
-      <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-[20px] mt-[20px] px-[5%]'>
+      <div className='w-full max-w-[1440px] grid grid-cols-1 md:grid-cols-2 gap-[20px] mt-[20px] px-[5%]'>
         {producers?.map((producer) => (
           <ProducerCard
             key={producer.username + producer.email}

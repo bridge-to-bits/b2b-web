@@ -17,9 +17,9 @@ import { useParams, useRouter } from 'next/navigation';
 import { useCommonToast } from '@/components/ui/toast/use-common-toast';
 import { FC } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { Genres } from './genres';
+import { Genres } from '../inputs/genres';
 import { AddTrackSchema, TAddTrack } from '@/lib/schemas/addTrack.schemas';
-import { TrackFileInput } from './track-file-input';
+import { TrackFileInput } from '../inputs/track-file-input';
 import { tracksApi } from '@/app/api/tracks/tracks-api';
 import { boolean } from 'zod';
 
@@ -52,8 +52,9 @@ export const AddTrackForm: FC<Props> = ({}) => {
         track: values.track[0],
       });
       await queryClient.setQueryData(['user-by-id', userId], newProfileData);
-      toastSuccess('Ви успішно змінили профіль');
+      toastSuccess('Ви успішно додали трек');
       refresh();
+      form.reset();
     } catch (error) {
       toastError(error);
     }
