@@ -19,6 +19,7 @@ export interface Song {
 
 // QueryAllDTO
 export interface QueryAllDTO {
+  search: string;
   pageNumber?: number;
   pageSize?: number;
   sortBy?: string;

@@ -11,7 +11,7 @@ export const HeaderSearch: FC = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (value.trim()) {
-      router.push(`/searchPage?value=${encodeURIComponent(value)}`);
+      router.push(`/search?search=${encodeURIComponent(value)}`);
     }
   };
 
