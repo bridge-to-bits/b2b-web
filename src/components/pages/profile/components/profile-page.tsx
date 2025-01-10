@@ -1,11 +1,11 @@
 'use client';
 
-import { User } from '@/app/api/users/users-api-types';
-import { FC, useState } from 'react';
 import { authApi } from '@/app/api/auth/auth-api';
+import { User } from '@/app/api/users/users-api-types';
 import { AuthToken } from '@/lib/types/auth.types';
 import { getClientCookie } from '@/lib/utils/getClientCookie';
 import { useQuery } from '@tanstack/react-query';
+import { FC, useState } from 'react';
 import { AddPerformerFormDialog } from './dialogs/add-performer-form-dialog';
 import { AddTrackFormDialog } from './dialogs/add-track-form-dialog';
 import { ProfileForm } from './forms/profile-form';
@@ -37,7 +37,8 @@ export const ProfilePage: FC<Props> = ({ user, userId }) => {
         <ProfileView
           isMe={isMe}
           user={user}
-          userId={userId}
+          profileUserId={userId}
+          userId={me?.id}
           toggleEditing={toggleEditing}
         />
       ) : (

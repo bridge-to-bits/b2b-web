@@ -1,16 +1,12 @@
+import { instance } from '@/app/api/instance';
 import {
   FavoritePerformer,
   FavoriteTrack,
   UpdateUserDTO,
   User,
 } from '@/app/api/users/users-api-types';
-import { instance } from '@/app/api/instance';
-import { TProfile } from '@/lib/schemas/profile.schemas';
-import { Genre, QueryAllUsersDTO, Song } from '../api-common.types';
-import {
-  PaginatedPerformer,
-  Performer,
-} from '../performers/performers-api-types';
+import { Genre, QueryAllUsersDTO } from '../api-common.types';
+import { PaginatedPerformer } from '../performers/performers-api-types';
 import { PaginatedProducer } from '../producers/producers-api-types';
 
 class UsersApi {
@@ -110,6 +106,40 @@ class UsersApi {
       });
     } catch (error) {
       throw new Error('Unable to update profile.');
+    }
+  }
+
+  static async addLiked(targetUserId: string) {
+    try {
+      return await instance.post(`/users/favorites/performers/${targetUserId}`);
+    } catch (error) {
+      throw new Error('Unable to add like.');
+    }
+  }
+  static async deleteLiked(targetUserId: string) {
+    try {
+      return await instance.delete(
+        `/users/favorites/performers/${targetUserId}`
+      );
+    } catch (error) {
+      throw new Error('Unable to delete like.');
+    }
+  }
+  static async addRating(targetUserId: string, rating: number) {
+    try {
+      return await instance.post(`/users/${targetUserId}/rate`, { rating });
+    } catch (error) {
+      throw new Error('Unable to rate.');
+    }
+  }
+
+  static async getIsFavorite(userId: string, targetUserId: string) {
+    try {
+      return await instance.get<boolean>(
+        `/users/${userId}/favorites/performers/${targetUserId}`
+      );
+    } catch (error) {
+      throw new Error('Unable to get is favorite.');
     }
   }
 }
