@@ -23,6 +23,12 @@ export const HeaderSearch: FC = () => {
       } else {
         router.push(`/search?search=${encodedValue}`);
       }
+    } else {
+      if (pathname === '/search') {
+        const params = new URLSearchParams(searchParams);
+        params.delete('search');
+        router.replace(`${pathname}?${params.toString()}`);
+      }
     }
   };
 
