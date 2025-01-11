@@ -27,7 +27,8 @@ export const SocialsList: React.FC<SocialsListProps> = ({ socials }) => {
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-pointer"
+            className="cursor-pointer interactive"
+            onClick={(e) => e.stopPropagation()}
           >
             <Icon className="w-9 h-9 text-foreground hover:text-orange" />
           </a>

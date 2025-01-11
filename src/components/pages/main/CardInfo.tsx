@@ -19,7 +19,7 @@ export const CardInfo: React.FC<CardInfoProps> = ({
   const bgImage = image || '/blank-avatar.png';
 
   return (
-    <div className="w-full aspect-[4] rounded-xl relative">
+    <div className="w-full aspect-[4] rounded-xl relative pointer-events-none">
       <div className="absolute inset-0">
         <Image
           src={bgImage}
