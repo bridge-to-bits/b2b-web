@@ -19,11 +19,11 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 export const SocialsList: React.FC<SocialsListProps> = ({ socials }) => {
   return (
     <div className="mt-3 flex gap-4">
-      {socials.map(({link, name}) => {
+      {socials.map(({link, name}, index) => {
         const Icon = iconMap[name.toLowerCase()] || iconMap.default;
         return (
           <a
-            key={link}
+            key={`${index}:${link}`}
             href={link}
             target="_blank"
             rel="noopener noreferrer"

@@ -150,33 +150,23 @@ const SearchPage = () => {
         />
       </div>
 
-      {/* User Grid */}
-      <div className='flex flex-col gap-[10px] mt-[2%] mx-[5%]'>
-        {users?.map((user: Performer | Producer) => {
-          if (userType === 'performer') {
-            return (
-              <div
-                className='flex-grow basis-[calc(50%-1%)] sm:basis-[calc(50%-10px)]'
-                key={user.id}
-              >
+      {/* Items Grid */}
+      <div className='mx-[5%] mt-[2%]'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+          {users?.map((user: Performer | Producer) => (
+            <div key={user.id} className='w-full'>
+              {userType === 'performer' ? (
                 <PerformerCard performer={user} />
-              </div>
-            );
-          } else {
-            return (
-              <div
-                className='flex-grow basis-[calc(50%-10px)] sm:basis-[calc(50%-10px)]'
-                key={user.id}
-              >
+              ) : (
                 <ProducerCard producer={user} />
-              </div>
-            );
-          }
-        })}
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Pagination Controls */}
-      <div className='flex justify-center gap-[40%] my-10'>
+      <div className='flex justify-center gap-[40%] py-10'>
         <button
           className='text-blue'
           onClick={handlePrevPage}
