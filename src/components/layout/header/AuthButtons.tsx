@@ -6,7 +6,7 @@ export const AuthButtons: FC = () => {
   return (
     <div className='flex items-center gap-2'>
       <Link href='/auth/sign-in'>
-        <Button variant='default'>Log in</Button>
+        <Button variant='default' className='bg-blueOrangeChangeable hover:bg-orangeChangeable' >Log in</Button>
       </Link>
 
       <Link href='/auth/sign-up'>

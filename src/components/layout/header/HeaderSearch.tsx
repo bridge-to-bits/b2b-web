@@ -27,11 +27,11 @@ export const HeaderSearch: FC = () => {
   };
 
   return (
-    <form onSubmit={handleSearch} className='w-full max-w-[500px]'>
+    <form onSubmit={handleSearch} className='w-full max-w-[500px] bg-transparent'>
       <Input
-        className='w-full rounded-xl'
+        className='w-full rounded-xl bg-transparent text-foreground'
         value={value}
-        icon={<MagnifyingGlassIcon onClick={handleSearch} />}
+        icon={<MagnifyingGlassIcon onClick={handleSearch} className='text-foreground'/>}
         placeholder='Пошук'
         onChange={(e) => setValue(e.target.value)}
       />

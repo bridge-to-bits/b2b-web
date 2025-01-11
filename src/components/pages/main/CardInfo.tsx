@@ -1,4 +1,5 @@
 import { Star } from 'lucide-react';
+import Image from 'next/image';
 
 interface CardInfoProps {
   name: string;
@@ -8,43 +9,57 @@ interface CardInfoProps {
 }
 
 export const CardInfo: React.FC<CardInfoProps> = ({
-  name,
-  genres,
-  rating,
-  image,
-}) => {
+    name,
+    genres,
+    rating,
+    image,
+  }) => {
   const genresRow = genres ? genres.map((genre) => genre.name).join(',') : '';
   const totalStars = 5;
   const bgImage = image || '/blank-avatar.png';
-  return (
-    <div
-      className='w-full aspect-[4] rounded-xl bg-cover bg-center relative flex flex-col justify-center'
-      style={{
-        backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(${bgImage})`,
-      }}
-    >
-      <div className='pl-[5%] text-foreground'>
-        <h3 className='text-[24px] font-bold text-foreground'>{name}</h3>
-        <p className='text-[18px] text-foreground'>Жанр: {genresRow}</p>
-        <div className='flex items-center gap-2 mt-2'>
-          <div className='flex text-orange'>
-            {Array.from({ length: Math.floor(rating) }).map((_, index) => (
-              <Star
-                key={`filled-${name}-${index}`}
-                style={{ fill: 'currentColor', stroke: 'none' }}
-                size={24}
-              />
-            ))}
 
-            {Array.from({ length: totalStars - Math.floor(rating) }).map(
-              (_, index) => (
+  return (
+    <div className="w-full aspect-[4] rounded-xl relative">
+      <div className="absolute inset-0">
+        <Image
+          src={bgImage}
+          alt="Background"
+          fill
+          className="rounded-xl object-cover"
+        />
+        {/* Gradient overlay */}
+        <div
+          className="absolute inset-0 rounded-xl"
+          style={{
+            background: 'linear-gradient(to right, var(--card-gradient-left), var(--card-gradient-right))'
+          }}
+        />
+      </div>
+
+      <div className="relative z-9 h-full flex flex-col justify-center">
+        <div className='pl-[5%]'>
+          <h3 className='text-[24px] font-bold'>{name}</h3>
+          <p className='text-[18px]'>Жанр: {genresRow}</p>
+          <div className='flex items-center gap-2 mt-2'>
+            <div className='flex text-orangeChangeable'>
+              {Array.from({ length: Math.floor(rating) }).map((_, index) => (
                 <Star
-                  key={`unfilled-${name}-${index}`}
-                  style={{ fill: 'none', stroke: 'currentColor' }}
+                  key={`filled-${name}-${index}`}
+                  style={{ fill: 'currentColor', stroke: 'none' }}
                   size={24}
                 />
-              )
-            )}
+              ))}
+
+              {Array.from({ length: totalStars - Math.floor(rating) }).map(
+                (_, index) => (
+                  <Star
+                    key={`unfilled-${name}-${index}`}
+                    style={{ fill: 'none', stroke: 'currentColor' }}
+                    size={24}
+                  />
+                )
+              )}
+            </div>
           </div>
         </div>
       </div>

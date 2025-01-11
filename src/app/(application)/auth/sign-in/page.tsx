@@ -10,9 +10,9 @@ const SignInPage: React.FC = () => {
       <LoginForm />
 
       <p className='text-sm text-center'>
-        Don`t have an account?
+        В вас ще немає акаунту?
         <Link href='/auth/sign-up'>
-          <Button variant='link'>Sign up</Button>
+          <Button variant='link' className='text-orangeChangeable' >Зареєструватися</Button>
         </Link>
       </p>
     </section>

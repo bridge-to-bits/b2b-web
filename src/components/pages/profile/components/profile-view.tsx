@@ -41,7 +41,6 @@ export const ProfileView: FC<Props> = ({
           src={banner}
           alt='Banner'
           fill
-          unoptimized
           sizes='100vw'
           className='left-0 top-0 h-full w-full object-cover'
         />
@@ -85,7 +84,7 @@ export const ProfileView: FC<Props> = ({
             <h2 className='text-4xl font-bold'>{username}</h2>
             <div className='flex items-center gap-2'>
               {Array.from({ length: Math.floor(rating) }).map((_, index) => (
-                <Star key={index} className='text-orange fill-orange' />
+                <Star key={index} className='text-orangeChangeable fill-orange' />
               ))}
               {Array.from({ length: 5 - Math.floor(rating) }).map(
                 (_, index) => (

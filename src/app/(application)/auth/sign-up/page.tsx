@@ -12,9 +12,9 @@ const SignUpPage: FC = () => {
       <RegisterForm />
 
       <p className='text-sm text-center'>
-        Already have an account?
+        Вже є акаунт?
         <Link href='/auth/sign-in'>
-          <Button variant='link'>Sign in</Button>
+          <Button variant='link' className='text-orangeChangeable'>Вхід</Button>
         </Link>
       </p>
     </section>

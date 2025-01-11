@@ -12,7 +12,7 @@ export const PerformerCard: React.FC<PerformerCardProps> = ({ performer }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <div className='w-full border-[4px] border-graphite p-4 rounded-xl shadow-md'>
+    <div className='w-full border-[4px] border-graphiteVioletChangeable p-4 rounded-xl shadow-md'>
       {/* Info Section */}
       <CardInfo
         name={performer.username}
@@ -30,12 +30,12 @@ export const PerformerCard: React.FC<PerformerCardProps> = ({ performer }) => {
           <div className='text-foreground'>5:08{/*trackLength*/}</div>
           <button
             onClick={() => setIsPlaying((prev) => !prev)}
-            className='bg-foreground ml-[15px] rounded-full w-12 h-12 flex items-center justify-center'
+            className='bg-muted ml-[15px] rounded-full w-12 h-12 flex items-center justify-center'
           >
             {isPlaying ? (
-              <Pause className='text-blue' />
+              <Pause className='text-blue' style={{ fill: 'currentColor', stroke: 'none' }}/>
             ) : (
-              <Play className='text-blue' />
+              <Play className='text-blue' style={{ fill: 'currentColor', stroke: 'none' }}/>
             )}
           </button>
         </div>

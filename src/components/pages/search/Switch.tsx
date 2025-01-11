@@ -17,7 +17,7 @@ export const Switch: React.FC<SwitchProps> = ({
       <span
         className={`px-8 py-3 rounded-xl text-sm ${
           isOn
-            ? "bg-white text-graphite"
+            ? "bg-muted text-graphite"
             : "bg-graphite text-white"
         }`}
       >
@@ -27,7 +27,7 @@ export const Switch: React.FC<SwitchProps> = ({
       {/* Toggle Switch */}
       <button
         onClick={onToggle}
-        className='w-12 h-6 rounded-full relative transition-colors bg-orange-500'
+        className='w-12 h-6 rounded-full relative transition-colors bg-orangeChangeable'
       >
         <div
           className={`w-5 h-5 bg-background rounded-full absolute top-0.5 transition-transform ${
