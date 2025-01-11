@@ -27,24 +27,26 @@ export const ProducersSection: React.FC = () => {
   }
 
   return (
-    <section className='w-full flex flex-col items-center'>
+    <section className='w-full flex flex-col items-center pb-10'>
       {/* Section Header */}
       <SectionHeader text={'Топ продюсерів'} />
 
       {/* Producers List */}
-      <div className='w-full max-w-[1440px] grid grid-cols-1 md:grid-cols-2 gap-[20px] mt-[20px] px-[5%]'>
+      <div className='w-full max-w-[1440px] grid grid-cols-1 md:grid-cols-2 gap-5 mt-8 px-4 md:px-8'>
         {producers?.map((producer) => (
-          <ProducerCard
+          <div
             key={producer.username + producer.email}
-            producer={producer}
-          />
+            className="w-full transition-transform hover:scale-[1.01]"
+          >
+            <ProducerCard producer={producer} />
+          </div>
         ))}
       </div>
 
       {/* View More Link */}
       <Link
         href='/search?userType=producer'
-        className='mt-[4%] text-[21px] font-rubik italic text-orangeChangeable'
+        className='mt-8 text-xl font-rubik italic text-orangeChangeable'
       >
         Дивитись більше...
       </Link>

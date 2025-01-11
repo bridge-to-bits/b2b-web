@@ -29,27 +29,31 @@ const PerformersSection: React.FC = () => {
   }
 
   return (
-    <section className='w-full flex flex-col items-center mt-[2%]'>
+    <section className='w-full flex flex-col items-center mt-8'>
       {/* Section Header */}
       <SectionHeader text='Топ Виконавців' />
 
-      {/* Performers Grid */}
-      <div className='grid w-[90vw] max-w-[1440px] grid-cols-1 md:grid-cols-2 gap-x-[1%] gap-y-[2.5%] mt-[2%] mx-[5%]'>
-        {performers?.map((performer) => (
-          <PerformerCard
-            key={performer.username + performer.email}
-            performer={performer}
-          />
-        ))}
-      </div>
+      {/* Container with max-width and padding */}
+      <div className='w-full max-w-[1440px] px-4 md:px-8'>
+        {/* Performers Grid */}
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-8'>
+          {performers?.map((performer) => (
+            <div key={performer.username + performer.email} className='w-full'>
+              <PerformerCard performer={performer} />
+            </div>
+          ))}
+        </div>
 
-      {/* View More Link */}
-      <Link
-        href='/search?userType=performer'
-        className='mt-[8%] mb-[2%] text-[21px] font-rubik italic text-orangeChangeable'
-      >
-        Дивитись більше...
-      </Link>
+        {/* View More Link */}
+        <div className='flex justify-center mt-12 mb-8'>
+          <Link
+            href='/search?userType=performer'
+            className='text-xl font-rubik italic text-orangeChangeable'
+          >
+            Дивитись більше...
+          </Link>
+        </div>
+      </div>
     </section>
   );
 };

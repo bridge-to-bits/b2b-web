@@ -21,9 +21,7 @@ const SearchPage = () => {
 
   // State for genreIds, userType, pagination
   const [genreIds, setGenreIds] = useState<string[]>([]);
-  const [userType, setUserType] = useState<'performer' | 'producer'>(
-    'performer'
-  );
+  const [userType, setUserType] = useState<'performer' | 'producer'>('performer');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState('');
@@ -37,16 +35,12 @@ const SearchPage = () => {
 
   // Synchronize URL params with state
   useEffect(() => {
-    const queryGenreIds =
-      searchParams
-        .get('genreIds')
-        ?.split(',')
-        .filter((id) => id.trim() !== '') || [];
+    const queryGenreIds = searchParams.get('genreIds')?.split(',').filter((id) => id.trim() !== '') || [];
     const queryUserType = searchParams.get('userType') || 'performer';
     const queryPageNumber = Number(searchParams.get('pageNumber')) || 1;
     const search = searchParams.get('search') || '';
 
-    setSearch(search)
+    setSearch(search);
     setGenreIds(queryGenreIds);
     setUserType(queryUserType as 'performer' | 'producer');
     setCurrentPage(queryPageNumber);
@@ -72,22 +66,18 @@ const SearchPage = () => {
         pageNumber: currentPage,
       });
 
-      setTotalPages(response.totalPages); // Set total pages from response
+      setTotalPages(response.totalPages);
       return response;
     },
     select: (data) => data.data,
   });
 
   const handleGenreChange = (selectedGenres: string[]) => {
-    const filteredGenres = selectedGenres.filter(
-      (genreId) => genreId.trim() !== ''
-    );
-
+    const filteredGenres = selectedGenres.filter((genreId) => genreId.trim() !== '');
     setGenreIds(filteredGenres);
 
     const params = new URLSearchParams();
-    if (filteredGenres.length > 0)
-      params.set('genreIds', filteredGenres.join(','));
+    if (filteredGenres.length > 0) params.set('genreIds', filteredGenres.join(','));
     params.set('userType', userType);
 
     router.push(`?${params.toString()}`);
@@ -95,9 +85,28 @@ const SearchPage = () => {
 
   const handleUserTypeToggle = (type: 'performer' | 'producer') => {
     const cleanedGenreIds = genreIds.filter((id) => id.trim() !== '');
-
     setUserType(type);
     router.push(`?genreIds=${cleanedGenreIds.join(',')}&userType=${type}`);
+  };
+
+  const handleCardClick = (e: React.MouseEvent, userId: string) => {
+    // Check if click target is interactive
+    const path = e.nativeEvent.composedPath();
+    const isInteractiveElement = path.some((element) => {
+      if (element instanceof HTMLElement) {
+        return (
+          element.tagName.toLowerCase() === 'a' ||
+          element.tagName.toLowerCase() === 'button' ||
+          element.getAttribute('role') === 'button' ||
+          element.classList.contains('interactive')
+        );
+      }
+      return false;
+    });
+
+    if (!isInteractiveElement) {
+      router.push(`/profile/${userId}`);
+    }
   };
 
   // Page change handlers
@@ -130,23 +139,16 @@ const SearchPage = () => {
     <div className='w-full mt-2'>
       {/* Filter Row */}
       <div className='flex justify-between py-3 mx-[5%]'>
-        {/* Genre Filter */}
         <GenresDropdown
           genres={genres || []}
           selected={genreIds}
           onChange={handleGenreChange}
         />
-
-        {/* UserType Switch */}
         <Switch
           onLabel='Виконавці'
           offLabel='Продюсери'
           isOn={userType === 'performer'}
-          onToggle={() =>
-            handleUserTypeToggle(
-              userType === 'performer' ? 'producer' : 'performer'
-            )
-          }
+          onToggle={() => handleUserTypeToggle(userType === 'performer' ? 'producer' : 'performer')}
         />
       </div>
 
@@ -154,11 +156,15 @@ const SearchPage = () => {
       <div className='mx-[5%] mt-[2%]'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           {users?.map((user: Performer | Producer) => (
-            <div key={user.id} className='w-full'>
+            <div
+              key={user.id}
+              className='w-full cursor-pointer transition-transform hover:scale-[1.01]'
+              onClick={(e) => handleCardClick(e, user.id)}
+            >
               {userType === 'performer' ? (
-                <PerformerCard performer={user} />
+                <PerformerCard performer={user as Performer} />
               ) : (
-                <ProducerCard producer={user} />
+                <ProducerCard producer={user as Producer} />
               )}
             </div>
           ))}
