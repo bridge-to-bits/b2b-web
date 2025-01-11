@@ -6,7 +6,7 @@ import Banner from '@/components/pages/main/Banner';
 
 const Page: React.FC = () => {
   return (
-    <div className='min-h-screen bg-background text-foreground'>
+    <div className='min-h-screen text-foreground'>
       <Banner />
       <PerformersSection />
       <ProducersSection />

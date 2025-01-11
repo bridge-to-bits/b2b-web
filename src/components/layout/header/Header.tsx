@@ -21,7 +21,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className='bg-graphite fixed z-10 w-full'>
+    <header className='bg-graphiteVioletChangeable fixed z-10 w-full'>
       <div className='mx-auto flex h-full max-w-[1280px] items-center justify-between gap-8 px-4 py-1'>
         <div className='flex w-full items-center gap-4 md:gap-8 lg:max-w-[40%]'>
           <Link href='/' passHref>

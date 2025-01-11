@@ -74,7 +74,7 @@ export const LoginForm = () => {
 
         <Button
           type='submit'
-          className='w-full'
+          className='w-full bg-blue'
           disabled={form.formState.isSubmitting}
         >
           Увійти

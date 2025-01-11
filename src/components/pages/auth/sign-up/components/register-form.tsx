@@ -153,7 +153,7 @@ export const RegisterForm = () => {
         />
 
         <Button
-          className='w-full'
+          className='w-full bg-blue'
           onClick={() => form.handleSubmit(onSubmit)}
           disabled={form.formState.isSubmitting}
         >

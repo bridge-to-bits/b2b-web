@@ -31,12 +31,12 @@ export const GenresDropdown: React.FC<GenresDropdownProps> = ({
   return (
     <div className="relative inline-block text-left">
       {/* Dropdown Label */}
-      <span className="block text-white text-sm mb-1">Фільтрувати за:</span>
+      <span className="block text-sm mb-1">Фільтрувати за:</span>
 
       {/* Dropdown Button */}
       <button
         onClick={toggleDropdown}
-        className="bg-orange text-white px-4 py-2 rounded-xl flex items-center gap-7"
+        className="bg-orangeChangeable text-white px-4 py-2 rounded-xl flex items-center gap-7"
       >
         Жанр
         <span className={`transform ${isOpen ? "rotate-180" : ""}`}>
@@ -46,8 +46,8 @@ export const GenresDropdown: React.FC<GenresDropdownProps> = ({
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute mt-2 w-48 bg-gray-800 text-white rounded-lg shadow-lg z-10">
-          <div className="max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-gray-700">
+        <div className="absolute mt-2 w-48 bg-graphiteVioletChangeable rounded-lg shadow-lg z-10">
+          <div className="max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-orangeChangeable scrollbar-track-gray-700">
             {genres.map((genre) => (
               <div
                 key={genre.id}

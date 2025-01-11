@@ -8,7 +8,7 @@ interface ProducerCardProps {
 
 export const ProducerCard: React.FC<ProducerCardProps> = ({ producer }) => {
   return (
-    <div className='w-full aspect-[4] border-[4px] border-graphite p-5 rounded-md shadow-md'>
+    <div className='w-full aspect-[4] border-[4px] border-graphiteVioletChangeable p-5 rounded-md shadow-md'>
       {/* Info Section */}
       <CardInfo
         name={producer.username}

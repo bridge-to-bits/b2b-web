@@ -24,7 +24,7 @@ const config = {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
-  			background: 'var(--background-main)',
+  			background: 'var(--background)',
   			foreground: 'var(--foreground)',
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
@@ -38,10 +38,6 @@ const config = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
   			accent: {
   				DEFAULT: 'hsl(var(--accent))',
   				foreground: 'hsl(var(--accent-foreground))'
@@ -54,15 +50,18 @@ const config = {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
   			},
-  			orange: {
-  				DEFAULT: 'var(--orange)'
-  			},
-  			blue: {
-  				DEFAULT: 'var(--blue)'
-  			},
-  			graphite: {
-  				DEFAULT: 'var(--graphite)'
-  			},
+				muted: 'var(--muted)',
+  			orange: 'var(--orange)',
+  			blue: 'var(--blue)',
+  			graphite: 'var(--graphite)',
+				nero: 'var(--nero)',
+        blueChangeable: 'var(--blue-changeable)',
+				blueOrangeChangeable: 'var(--blue-orange-changeable)',
+				orangeChangeable: 'var(--orange-changeable)',
+				graphiteVioletChangeable: 'var(--graphite-violet-changeable)',
+				graphiteBellChangeable: 'var(--graphite-bell-changeable)',
+				performerSearchedEntityBg: 'var(--performer-searched-entity-bg)',
+				producerSearchedEntityBg: 'var(--performer-searched-entity-bg)',
   			sidebar: {
   				DEFAULT: 'hsl(var(--sidebar-background))',
   				foreground: 'hsl(var(--sidebar-foreground))',
