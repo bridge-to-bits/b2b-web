@@ -5,7 +5,7 @@ import {
   UpdateUserDTO,
   User,
 } from '@/app/api/users/users-api-types';
-import { Genre, QueryAllUsersDTO } from '../api-common.types';
+import { Genre, QueryAllUsersDTO, Song } from '../api-common.types';
 import { PaginatedPerformer } from '../performers/performers-api-types';
 import { PaginatedProducer } from '../producers/producers-api-types';
 
@@ -89,6 +89,42 @@ class UsersApi {
     }
   }
 
+  static async getTracksByPerformerId(userId: string) {
+    try {
+      return await instance.get<Song[]>(`/users/${userId}/favorites/tracks`);
+    } catch (error) {
+      throw new Error('Unable to get user`s favorite performers');
+    }
+  }
+
+  static async getIsFavoriteTrack(userId: string, targetTrackId: string) {
+    try {
+      return await instance.get<boolean>(
+        `/users/${userId}/favorites/tracks/${targetTrackId}`
+      );
+    } catch (error) {
+      throw new Error('Unable to get is favorite track.');
+    }
+  }
+
+  static async addLikedTrack(userId: string, targetTrackId: string) {
+    try {
+      return await instance.post(
+        `/users/${userId}/favorites/tracks/${targetTrackId}`
+      );
+    } catch (error) {
+      throw new Error('Unable to add like.');
+    }
+  }
+  static async deleteLikedTrack(userId: string, targetTrackId: string) {
+    try {
+      return await instance.delete(
+        `/users/${userId}/favorites/tracks/${targetTrackId}`
+      );
+    } catch (error) {
+      throw new Error('Unable to delete like.');
+    }
+  }
   static async getFavoriteTracks(userId: string) {
     try {
       return await instance.get<FavoriteTrack[]>(

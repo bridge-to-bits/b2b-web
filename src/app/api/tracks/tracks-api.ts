@@ -1,7 +1,21 @@
 import { instance } from '../instance';
-import { CreateTrackDto } from './tracks-api-types';
+import {
+  CreateTrackDto,
+  GetTracksQueryParams,
+  GetTracksRes,
+} from './tracks-api-types';
 
 class TracksApi {
+  async getAll(params: Partial<GetTracksQueryParams>) {
+    try {
+      return await instance.get<GetTracksRes>('/tracks', {
+        params,
+      });
+    } catch (error) {
+      throw new Error('Error fetching tracks');
+    }
+  }
+
   async addListen(id: string) {
     try {
       const response = await instance.post(`/tracks/${id}/increment`);

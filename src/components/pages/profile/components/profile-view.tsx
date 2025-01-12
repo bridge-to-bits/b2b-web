@@ -6,8 +6,7 @@ import { MapPin } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { FC } from 'react';
-import SongsList from './SongsList';
-import {} from './feedback-wrapper';
+import { SongsList } from './SongsList';
 import { ProducerRelatedPerformers } from './producer-related-performers';
 const FeedbackWrapper = dynamic(
   () => import('./feedback-wrapper').then((module) => module.FeedbackWrapper),
@@ -107,7 +106,11 @@ export const ProfileView: FC<Props> = ({
 
         <div className='mt-8'>
           {isPerformer ? (
-            <SongsList userId={profileUserId} />
+            <SongsList
+              profileUserId={profileUserId}
+              userId={userId}
+              isMe={isMe}
+            />
           ) : (
             <ProducerRelatedPerformers userId={profileUserId} />
           )}

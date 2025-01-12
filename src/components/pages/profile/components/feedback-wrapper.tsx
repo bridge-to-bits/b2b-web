@@ -28,6 +28,7 @@ export const FeedbackWrapper: FC<Props> = ({
   const [rating, setRating] = useState(initialRating);
   const { toastError, toastSuccess } = useCommonToast();
   const qc = useQueryClient();
+
   const { data: isFavorite } = useQuery({
     queryKey: ['getFeedback', userId, profileUserId],
     queryFn: () => UsersApi.getIsFavorite(userId!, profileUserId),
