@@ -57,7 +57,7 @@ export const ProducerRelatedPerformers: FC<Props> = ({ userId }) => {
                 </div>
 
                 <div className='mt-2 rounded-xl p-4 min-h-32 block border relative w-full pb-[75%]'>
-                  <div className='relative z-10 text-white'>
+                  <div className='relative z-[1] text-white'>
                     <h3 className='font-bold'>{performer.username}</h3>
                     <p className='text-sm'>
                       Жанр:{' '}
@@ -72,6 +72,13 @@ export const ProducerRelatedPerformers: FC<Props> = ({ userId }) => {
                     fill
                     sizes='40vw'
                     className='left-0 top-0 h-full w-full object-cover rounded-xl z-0'
+                  />
+                  <div
+                    className='absolute inset-0 rounded-xl'
+                    style={{
+                      background:
+                        'linear-gradient(to right, var(--card-gradient-left), var(--card-gradient-right))',
+                    }}
                   />
                 </div>
               </Link>
