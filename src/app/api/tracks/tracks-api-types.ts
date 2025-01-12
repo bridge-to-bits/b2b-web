@@ -1,23 +1,6 @@
-import { Genre, Social } from '../api-common.types';
+import { Genre } from '../api-common.types';
 
 //PerformerResponse
-export interface Performer {
-  id: string;
-  username: string;
-  genres: Genre[];
-  rating: number;
-  avatar: string;
-  socials: Social[];
-  email: string;
-}
-
-export interface PaginatedPerformer {
-  currentPage: number;
-  nextPage: number;
-  prevPage: number;
-  totalPages: number;
-  data: Performer[];
-}
 
 export interface CreateTrackDto {
   name: string;
@@ -54,4 +37,11 @@ export interface Track {
   url: string;
   performerId: string;
   genres: Genre[];
+}
+
+export interface FavoriteTrack {
+  id: string;
+  description?: string;
+  url: string;
+  name: string;
 }

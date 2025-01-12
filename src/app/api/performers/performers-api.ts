@@ -1,6 +1,6 @@
 import { QueryAllUsersDTO } from '../api-common.types';
 import { instance } from '../instance';
-import { PaginatedPerformer } from './performers-api-types';
+import { FavoritePerformer, PaginatedPerformer } from './performers-api-types';
 
 class PerformersApi {
   async getAll(query: QueryAllUsersDTO): Promise<PaginatedPerformer> {
@@ -14,8 +14,39 @@ class PerformersApi {
       const response = await instance.get('/performers', { params });
       return response.data;
     } catch (error) {
-      console.error('Error fetching performers:', error);
       throw new Error('Unable to fetch performers.');
+    }
+  }
+
+  async getFavoritePerformers() {
+    try {
+      return await instance.get<FavoritePerformer[]>(`/performers/favorites`);
+    } catch (error) {
+      throw new Error('Unable to get user`s favorite performers');
+    }
+  }
+  async getIsFavorite(targetUserId: string) {
+    try {
+      return await instance.get<boolean>(
+        `/performers/favorites/${targetUserId}`
+      );
+    } catch (error) {
+      throw new Error('Unable to get is favorite.');
+    }
+  }
+
+  async addLiked(targetUserId: string) {
+    try {
+      return await instance.post(`/performers/favorites/${targetUserId}`);
+    } catch (error) {
+      throw new Error('Unable to add like.');
+    }
+  }
+  async deleteLiked(targetUserId: string) {
+    try {
+      return await instance.delete(`/performers/favorites/${targetUserId}`);
+    } catch (error) {
+      throw new Error('Unable to delete like.');
     }
   }
 }

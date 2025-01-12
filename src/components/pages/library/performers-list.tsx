@@ -1,15 +1,15 @@
+import { FavoritePerformer } from '@/app/api/performers/performers-api-types';
+import { CustomAvatar } from '@/components/layout/header/CustomAvatar';
 import {
   Sidebar,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { ComponentProps } from 'react';
-import { CustomAvatar } from '@/components/layout/header/CustomAvatar';
-import { Twitter, Instagram, CirclePlay } from 'lucide-react';
 import { Spotify } from '@/lib/icons/spotify';
+import { CirclePlay, Instagram, Twitter } from 'lucide-react';
 import Link from 'next/link';
-import { FavoritePerformer } from '@/app/api/users/users-api-types';
+import { ComponentProps } from 'react';
 
 export const socialIcons: Record<string, JSX.Element> = {
   spotify: <Spotify className='w-5 h-5 text-white' />,

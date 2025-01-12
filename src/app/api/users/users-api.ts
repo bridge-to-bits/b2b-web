@@ -1,10 +1,5 @@
 import { instance } from '@/app/api/instance';
-import {
-  FavoritePerformer,
-  FavoriteTrack,
-  UpdateUserDTO,
-  User,
-} from '@/app/api/users/users-api-types';
+import { UpdateUserDTO, User } from '@/app/api/users/users-api-types';
 import { Genre, QueryAllUsersDTO, Song } from '../api-common.types';
 import { PaginatedPerformer } from '../performers/performers-api-types';
 import { PaginatedProducer } from '../producers/producers-api-types';
@@ -79,57 +74,9 @@ class UsersApi {
     }
   }
 
-  static async getFavoritePerformers(userId: string) {
-    try {
-      return await instance.get<FavoritePerformer[]>(
-        `/users/${userId}/favorites/performers`
-      );
-    } catch (error) {
-      throw new Error('Unable to get user`s favorite performers');
-    }
-  }
-
   static async getTracksByPerformerId(userId: string) {
     try {
       return await instance.get<Song[]>(`/users/${userId}/favorites/tracks`);
-    } catch (error) {
-      throw new Error('Unable to get user`s favorite performers');
-    }
-  }
-
-  static async getIsFavoriteTrack(userId: string, targetTrackId: string) {
-    try {
-      return await instance.get<boolean>(
-        `/users/${userId}/favorites/tracks/${targetTrackId}`
-      );
-    } catch (error) {
-      throw new Error('Unable to get is favorite track.');
-    }
-  }
-
-  static async addLikedTrack(userId: string, targetTrackId: string) {
-    try {
-      return await instance.post(
-        `/users/${userId}/favorites/tracks/${targetTrackId}`
-      );
-    } catch (error) {
-      throw new Error('Unable to add like.');
-    }
-  }
-  static async deleteLikedTrack(userId: string, targetTrackId: string) {
-    try {
-      return await instance.delete(
-        `/users/${userId}/favorites/tracks/${targetTrackId}`
-      );
-    } catch (error) {
-      throw new Error('Unable to delete like.');
-    }
-  }
-  static async getFavoriteTracks(userId: string) {
-    try {
-      return await instance.get<FavoriteTrack[]>(
-        `/users/${userId}/favorites/tracks`
-      );
     } catch (error) {
       throw new Error('Unable to get user`s favorite performers');
     }
@@ -145,37 +92,11 @@ class UsersApi {
     }
   }
 
-  static async addLiked(targetUserId: string) {
-    try {
-      return await instance.post(`/users/favorites/performers/${targetUserId}`);
-    } catch (error) {
-      throw new Error('Unable to add like.');
-    }
-  }
-  static async deleteLiked(targetUserId: string) {
-    try {
-      return await instance.delete(
-        `/users/favorites/performers/${targetUserId}`
-      );
-    } catch (error) {
-      throw new Error('Unable to delete like.');
-    }
-  }
   static async addRating(targetUserId: string, rating: number) {
     try {
       return await instance.post(`/users/${targetUserId}/rate`, { rating });
     } catch (error) {
       throw new Error('Unable to rate.');
-    }
-  }
-
-  static async getIsFavorite(userId: string, targetUserId: string) {
-    try {
-      return await instance.get<boolean>(
-        `/users/${userId}/favorites/performers/${targetUserId}`
-      );
-    } catch (error) {
-      throw new Error('Unable to get is favorite.');
     }
   }
 }

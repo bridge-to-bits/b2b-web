@@ -1,4 +1,5 @@
 'use client';
+import { performersApi } from '@/app/api/performers/performers-api';
 import UsersApi from '@/app/api/users/users-api';
 import { useCommonToast } from '@/components/ui/toast/use-common-toast';
 import { starRatingTheme } from '@/lib/constants/starTheme';
@@ -31,7 +32,7 @@ export const FeedbackWrapper: FC<Props> = ({
 
   const { data: isFavorite } = useQuery({
     queryKey: ['getFeedback', userId, profileUserId],
-    queryFn: () => UsersApi.getIsFavorite(userId!, profileUserId),
+    queryFn: () => performersApi.getIsFavorite(profileUserId),
     select: (data) => data.data,
     enabled: !!userId && (!isMe || isPerformer),
   });
@@ -53,9 +54,9 @@ export const FeedbackWrapper: FC<Props> = ({
     }
     try {
       if (!isFavorite) {
-        await UsersApi.addLiked(profileUserId);
+        await performersApi.addLiked(profileUserId);
       } else {
-        await UsersApi.deleteLiked(profileUserId);
+        await performersApi.deleteLiked(profileUserId);
       }
 
       await qc.invalidateQueries({

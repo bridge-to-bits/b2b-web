@@ -1,12 +1,11 @@
 'use client';
-import { FC } from 'react';
-import { Play, Heart, BookHeart } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import {
-  FavoritePerformer,
-  FavoriteTrack,
-} from '@/app/api/users/users-api-types';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { BookHeart, Heart } from 'lucide-react';
+import { FC } from 'react';
+
+import { FavoritePerformer } from '@/app/api/performers/performers-api-types';
+import { FavoriteTrack } from '@/app/api/tracks/tracks-api-types';
 import { LibraryPerformersList } from './performers-list';
 
 export const LibrarySongsList: FC<{

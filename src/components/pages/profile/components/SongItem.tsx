@@ -1,6 +1,6 @@
 'use client';
+import { tracksApi } from '@/app/api/tracks/tracks-api';
 import { Track } from '@/app/api/tracks/tracks-api-types';
-import UsersApi from '@/app/api/users/users-api';
 import { useCommonToast } from '@/components/ui/toast/use-common-toast';
 import { AuthToken } from '@/lib/types/auth.types';
 import { getClientCookie } from '@/lib/utils/getClientCookie';
@@ -29,8 +29,8 @@ export const SongItem: FC<Props> = ({
 
   const { data: isFavorite } = useQuery({
     queryKey: ['get-track-is-favorite', id, userId],
-    queryFn: () => UsersApi.getIsFavoriteTrack(userId!, id),
-    select: (data) => data.data,
+    queryFn: () => tracksApi.getIsFavorite(id),
+    select: (data) => data.data.isFavoriteTrack,
     enabled: !!userId && !isMe,
   });
 
@@ -41,9 +41,9 @@ export const SongItem: FC<Props> = ({
     }
     try {
       if (!isFavorite) {
-        await UsersApi.addLikedTrack(userId!, id);
+        await tracksApi.addLiked(id);
       } else {
-        await UsersApi.deleteLikedTrack(userId!, id);
+        await tracksApi.deleteLiked(id);
       }
 
       await qc.invalidateQueries({

@@ -18,3 +18,11 @@ export interface PaginatedPerformer {
   totalPages: number;
   data: Performer[];
 }
+
+export interface FavoritePerformer {
+  userId: string;
+  username: string;
+  socials: Social[] | null;
+  rating: number;
+  avatar?: string;
+}
