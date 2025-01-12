@@ -9,34 +9,36 @@ interface CardInfoProps {
 }
 
 export const CardInfo: React.FC<CardInfoProps> = ({
-    name,
-    genres,
-    rating,
-    image,
-  }) => {
+  name,
+  genres,
+  rating,
+  image,
+}) => {
   const genresRow = genres ? genres.map((genre) => genre.name).join(',') : '';
   const totalStars = 5;
   const bgImage = image || '/blank-avatar.png';
 
   return (
-    <div className="w-full aspect-[4] rounded-xl relative pointer-events-none">
-      <div className="absolute inset-0">
+    <div className='w-full aspect-[4] rounded-xl relative pointer-events-none'>
+      <div className='absolute inset-0'>
         <Image
           src={bgImage}
-          alt="Background"
+          alt='Background'
           fill
-          className="rounded-xl object-cover"
+          sizes='33vw'
+          className='rounded-xl object-cover'
         />
         {/* Gradient overlay */}
         <div
-          className="absolute inset-0 rounded-xl"
+          className='absolute inset-0 rounded-xl'
           style={{
-            background: 'linear-gradient(to right, var(--card-gradient-left), var(--card-gradient-right))'
+            background:
+              'linear-gradient(to right, var(--card-gradient-left), var(--card-gradient-right))',
           }}
         />
       </div>
 
-      <div className="relative z-9 h-full flex flex-col justify-center">
+      <div className='relative z-9 h-full flex flex-col justify-center'>
         <div className='pl-[5%]'>
           <h3 className='text-[24px] font-bold'>{name}</h3>
           <p className='text-[18px]'>Жанр: {genresRow}</p>
