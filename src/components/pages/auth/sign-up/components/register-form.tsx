@@ -121,7 +121,7 @@ export const RegisterForm = () => {
 
         <FormField
           control={form.control}
-          name='type'
+          name='userType'
           render={({ field }) => (
             <FormItem className='space-y-3'>
               <FormControl>

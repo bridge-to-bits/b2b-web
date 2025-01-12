@@ -9,5 +9,5 @@ export interface RegisterBody {
   password: string;
   lastName?: string;
   userName: string;
-  type: UserType;
+  userType: UserType;
 }

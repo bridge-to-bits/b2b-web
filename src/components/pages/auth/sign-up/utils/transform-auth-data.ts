@@ -6,5 +6,5 @@ export const transformAuthData = (data: TSignUp): RegisterBody => ({
   password: data.password,
   userName: data.userName,
   lastName: data.lastName,
-  type: data.type,
+  userType: data.userType,
 });

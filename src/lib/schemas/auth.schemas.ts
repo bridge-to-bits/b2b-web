@@ -19,7 +19,7 @@ export const SignUpSchema = z
       .string({ required_error: 'Підтвердіть пароль' })
       .min(6, 'Пароль має бути не коротше 6 символів')
       .max(32, 'Пароль має бути не довше 32 символів'),
-    type: z.nativeEnum(USER_TYPE, {
+    userType: z.nativeEnum(USER_TYPE, {
       required_error: 'You need to select a type of account.',
     }),
   })
