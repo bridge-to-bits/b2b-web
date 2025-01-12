@@ -49,7 +49,7 @@ const Page: FC<PageProps> = async ({ searchParams: { playedSongId } }) => {
     <section className='my-10'>
       <SidebarProvider className='items-start min-h-[75vh]'>
         <LibrarySidebar performers={performers} />
-        <LibrarySongsList songs={tracks} performers={performers} />
+        <LibrarySongsList userId={id} songs={tracks} performers={performers} />
       </SidebarProvider>
     </section>
   );
