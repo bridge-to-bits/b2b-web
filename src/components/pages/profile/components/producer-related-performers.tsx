@@ -5,6 +5,7 @@ import { RelatedPerformer } from '@/app/api/producers/producers-api-types';
 import { useQuery } from '@tanstack/react-query';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FC } from 'react';
 
 interface Props {
@@ -35,14 +36,13 @@ export const ProducerRelatedPerformers: FC<Props> = ({ userId }) => {
 
   const rowSizes = [3, 2];
   const rows = performers ? chunkPerformers(performers, rowSizes) : [];
-
   return (
     <div className='flex flex-col gap-6'>
       {!!rows.length &&
         rows.map((row, rowIndex) => (
           <div key={rowIndex} className={`flex gap-4`}>
             {row?.map((performer, index) => (
-              <div key={index} className={`flex-1`}>
+              <Link href={performer.userId} key={index} className={`flex-1`}>
                 <div className='flex items-center gap-2'>
                   {Array.from({ length: Math.floor(performer.rating) }).map(
                     (_, index) => (
@@ -57,7 +57,7 @@ export const ProducerRelatedPerformers: FC<Props> = ({ userId }) => {
                 </div>
 
                 <div className='mt-2 rounded-xl p-4 min-h-32 block border relative w-full pb-[75%]'>
-                  <div className='relative z-10 text-white'>
+                  <div className='relative z-[1] text-white'>
                     <h3 className='font-bold'>{performer.username}</h3>
                     <p className='text-sm'>
                       Жанр:{' '}
@@ -73,8 +73,15 @@ export const ProducerRelatedPerformers: FC<Props> = ({ userId }) => {
                     sizes='40vw'
                     className='left-0 top-0 h-full w-full object-cover rounded-xl z-0'
                   />
+                  <div
+                    className='absolute inset-0 rounded-xl'
+                    style={{
+                      background:
+                        'linear-gradient(to right, var(--card-gradient-left), var(--card-gradient-right))',
+                    }}
+                  />
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         ))}

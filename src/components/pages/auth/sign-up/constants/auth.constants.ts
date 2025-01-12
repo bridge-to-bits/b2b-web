@@ -7,5 +7,5 @@ export const SignUpDefaultValues: TSignUp = {
   lastName: '',
   password: '',
   confirmPassword: '',
-  type: USER_TYPE.PERFORMER,
+  userType: USER_TYPE.PERFORMER,
 };

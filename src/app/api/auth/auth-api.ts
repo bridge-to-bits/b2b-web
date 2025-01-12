@@ -1,6 +1,6 @@
+import { User } from '@/lib/types/auth.types';
 import { instance } from '../instance';
 import { LoginBody, RegisterBody } from './auth-api.types';
-import { User } from '@/lib/types/auth.types';
 
 class AuthApi {
   async register(body: RegisterBody) {

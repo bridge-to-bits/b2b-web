@@ -1,5 +1,5 @@
 import { UserType } from '@/lib/types/user-type';
-import { Social, Genre } from '../api-common.types';
+import { Genre, Social } from '../api-common.types';
 
 // UpdateUserDTO
 export interface UpdateUserDTO {
@@ -23,19 +23,4 @@ export interface User {
   genres: Genre[];
   location: string;
   description: string;
-}
-
-export interface FavoritePerformer {
-  userId: string;
-  username: string;
-  socials: Social[] | null;
-  rating: number;
-  avatar?: string;
-}
-
-export interface FavoriteTrack {
-  id: string;
-  description?: string;
-  url: string;
-  name: string;
 }

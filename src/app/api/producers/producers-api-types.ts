@@ -19,6 +19,7 @@ export interface PaginatedProducer {
 }
 
 export interface RelatedPerformer {
+  userId: string;
   username: string;
   genres: Genre[];
   rating: number;

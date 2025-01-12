@@ -1,3 +1,4 @@
+import { FavoritePerformer } from '@/app/api/performers/performers-api-types';
 import {
   Sidebar,
   SidebarContent,
@@ -6,7 +7,6 @@ import {
   SidebarMenu,
 } from '@/components/ui/sidebar';
 import { ComponentProps } from 'react';
-import { FavoritePerformer } from '@/app/api/users/users-api-types';
 import { LibraryPerformersList } from './performers-list';
 
 interface AppSidebarProps extends ComponentProps<typeof Sidebar> {
