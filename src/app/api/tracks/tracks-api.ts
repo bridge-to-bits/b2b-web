@@ -55,9 +55,7 @@ class TracksApi {
   }
   async getIsFavorite(targetTrackId: string) {
     try {
-      return await instance.get<{ isFavoriteTrack: boolean }>(
-        `/tracks/favorites/${targetTrackId}`
-      );
+      return await instance.get<boolean>(`/tracks/favorites/${targetTrackId}`);
     } catch (error) {
       throw new Error('Unable to get is favorite track.');
     }

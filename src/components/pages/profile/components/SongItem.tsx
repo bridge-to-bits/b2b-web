@@ -30,7 +30,7 @@ export const SongItem: FC<Props> = ({
   const { data: isFavorite } = useQuery({
     queryKey: ['get-track-is-favorite', id, userId],
     queryFn: () => tracksApi.getIsFavorite(id),
-    select: (data) => data.data.isFavoriteTrack,
+    select: (data) => data.data,
     enabled: !!userId && !isMe,
   });
 
@@ -55,7 +55,6 @@ export const SongItem: FC<Props> = ({
       toastError(error);
     }
   };
-
   return (
     <div key={id} className='flex items-center'>
       <div className='flex items-center justify-between bg-gray-800 p-4  rounded-lg w-full'>
