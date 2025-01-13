@@ -11,7 +11,6 @@ export const ProducerCard: React.FC<ProducerCardProps> = ({ producer }) => {
   const router = useRouter();
 
   const handleCardClick = (e: React.MouseEvent) => {
-    // Check if click target is interactive
     const path = e.nativeEvent.composedPath();
     const isInteractiveElement = path.some((element) => {
       if (element instanceof HTMLElement) {
@@ -33,7 +32,7 @@ export const ProducerCard: React.FC<ProducerCardProps> = ({ producer }) => {
   return (
     <div
       onClick={handleCardClick}
-      className='w-full aspect-[4] border-[4px] border-graphiteVioletChangeable p-5 rounded-md shadow-md cursor-pointer'
+      className='min-h-50 w-full aspect-[4] border-[4px] border-graphiteVioletChangeable p-5 rounded-md shadow-md cursor-pointer'
     >
       {/* Info Section */}
       <CardInfo

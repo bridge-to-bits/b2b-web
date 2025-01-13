@@ -1,6 +1,11 @@
 import { Genre, Social } from '../api-common.types';
 
-//PerformerResponse
+interface ShortTrack {
+  id: string;
+  url: string;
+  name: string;
+}
+
 export interface Performer {
   id: string;
   username: string;
@@ -9,6 +14,7 @@ export interface Performer {
   avatar: string;
   socials: Social[];
   email: string;
+  track: ShortTrack;
 }
 
 export interface PaginatedPerformer {

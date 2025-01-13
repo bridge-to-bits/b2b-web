@@ -190,7 +190,7 @@ export const ProfileForm: FC<Props> = ({
             />
           </div>
 
-          <Button type='submit' disabled={form.formState.isSubmitting}>
+          <Button type='submit' className='bg-orangeChangeable text-muted' variant='ghost' disabled={form.formState.isSubmitting}>
             Зберегти
           </Button>
         </div>

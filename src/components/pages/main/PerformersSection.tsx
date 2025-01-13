@@ -30,12 +30,9 @@ const PerformersSection: React.FC = () => {
 
   return (
     <section className='w-full flex flex-col items-center mt-8'>
-      {/* Section Header */}
       <SectionHeader text='Топ Виконавців' />
 
-      {/* Container with max-width and padding */}
       <div className='w-full max-w-[1440px] px-4 md:px-8'>
-        {/* Performers Grid */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-8'>
           {performers?.map((performer) => (
             <div key={performer.username + performer.email} className='w-full'>
@@ -44,7 +41,6 @@ const PerformersSection: React.FC = () => {
           ))}
         </div>
 
-        {/* View More Link */}
         <div className='flex justify-center mt-12 mb-8'>
           <Link
             href='/search?userType=performer'
