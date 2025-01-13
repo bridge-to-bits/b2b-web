@@ -7,6 +7,7 @@ import { AuthToken } from '@/lib/types/auth.types';
 import { getClientCookie } from '@/lib/utils/getClientCookie';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { HeartIcon } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { FC, useState } from 'react';
 import { StarRating } from 'star-rating-react-ts';
@@ -25,6 +26,8 @@ export const FeedbackWrapper: FC<Props> = ({
   isPerformer,
   userId,
 }) => {
+  const { theme } = useTheme();
+
   const isAuth = !!getClientCookie(AuthToken.AccessToken);
   const [rating, setRating] = useState(initialRating);
   const { toastError, toastSuccess } = useCommonToast();
@@ -86,7 +89,7 @@ export const FeedbackWrapper: FC<Props> = ({
         <StarRating
           numStars={5}
           initialRating={rating}
-          theme={starRatingTheme}
+          theme={starRatingTheme(theme)}
           onClick={handleRatingChange}
           readOnly={!isCanRate}
         />
