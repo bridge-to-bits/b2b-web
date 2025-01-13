@@ -12,7 +12,7 @@ interface PageProps {
   };
 }
 
-const Page: FC<PageProps> = async ({ params: { articleId } }) => {
+const MainPage: FC<PageProps> = async ({ params: { articleId } }) => {
   const qc = getQueryClient();
 
   const {
@@ -84,4 +84,4 @@ const Page: FC<PageProps> = async ({ params: { articleId } }) => {
   );
 };
 
-export default Page;
+export default MainPage;

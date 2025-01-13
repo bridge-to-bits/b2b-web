@@ -43,7 +43,7 @@ export const ProfileView: FC<Props> = ({
   const isPerformer = userType === 'performer';
 
   return (
-    <div className='bg-black text-white min-h-screen'>
+    <div className='text-foreground min-h-screen'>
       {/* Profile Banner */}
       <div className='relative w-full h-[300px]'>
         <Image
@@ -80,8 +80,9 @@ export const ProfileView: FC<Props> = ({
           {isMe && (
             <Button
               type='button'
-              className='mt-4 absolute right-0 top-20'
+              className='mt-4 absolute right-0 top-20 bg-blueOrangeChangeable hover:!brightness-90 text-muted'
               onClick={toggleEditing}
+              variant="ghost"
             >
               Редагувати профіль
             </Button>

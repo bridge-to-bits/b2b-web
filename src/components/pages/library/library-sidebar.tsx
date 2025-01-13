@@ -17,7 +17,7 @@ export function LibrarySidebar({ performers, ...props }: AppSidebarProps) {
   return (
     <Sidebar
       collapsible='none'
-      className='hidden py-4 rounded-r-xl md:flex bg-graphite'
+      className='hidden py-4 rounded-r-xl md:flex bg-graphiteBellChangeable text-foreground'
     >
       <SidebarContent>
         <SidebarGroup>

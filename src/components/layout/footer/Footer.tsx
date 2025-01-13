@@ -4,10 +4,10 @@ import { mainLinks, socials, supportLinks } from './constants';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-graphite p-10">
+    <footer className="w-full bg-graphiteVioletChangeable p-10 text-foreground">
       <div className="flex flex-col md:flex-row justify-between items-center md:items-start">
         {/* Left Section: Logo and Contact */}
-        <div className="text-muted text-center md:text-left mb-5 md:mb-0 md:w-[30%]">
+        <div className="text-center md:text-left mb-5 md:mb-0 md:w-[30%]">
           <div className="font-bold text-[30px]">Bridge to Bits</div>
           <p className="mt-2">
             Незалежний сайт для музикантів та продюсерів
@@ -17,13 +17,13 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Center Section: Navigation */}
-        <div className="flex flex-col md:flex-row gap-10 text-muted text-center md:text-left">
+        <div className="flex flex-col md:flex-row gap-10 text-center md:text-left">
           <LinksSection sectionTitle="Основні посилання" links={mainLinks} />
           <LinksSection sectionTitle="Підтримка" links={supportLinks} />
         </div>
 
         {/* Right Section: Socials */}
-        <div className="flex flex-col items-center md:items-end text-muted mt-5 md:mt-0">
+        <div className="flex flex-col items-center md:items-end mt-5 md:mt-0">
           <h3 className="font-bold text-[18px] mb-2">Соцмережі</h3>
           <div className="flex gap-5">
             {socials.map(({ href, icon: SocialIcon }) => (

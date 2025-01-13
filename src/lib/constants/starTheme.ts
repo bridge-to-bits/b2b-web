@@ -1,8 +1,8 @@
 export const starRatingTheme = {
   colors: {
-    backgroundDefault: '#4dff7c28',
-    backgroundColorHover: '#4dff7c',
-    backgroundColorActive: '#4dff7c',
+    backgroundDefault: '#8c3908',
+    backgroundColorHover: '#ec5d0b',
+    backgroundColorActive: '#ec5d0b',
   },
   size: 24,
 };

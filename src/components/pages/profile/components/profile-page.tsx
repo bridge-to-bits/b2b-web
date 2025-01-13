@@ -48,7 +48,7 @@ export const ProfilePage: FC<Props> = ({ user, userId }) => {
             userId={userId}
             toggleEditing={toggleEditing}
           />
-          <div className='mx-auto w-full h-full max-w-[1280px] gap-8 px-4 my-12'>
+          <div className='mx-auto w-full h-full max-w-[1280px] gap-8 px-4 mt-12 pb-12'>
             {user.userType === 'performer' ? (
               <AddTrackFormDialog />
             ) : (
