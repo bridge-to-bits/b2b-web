@@ -40,15 +40,16 @@ export const SongItem: FC<Props> = ({
 
   return (
     <div key={id} className='flex items-center'>
-      <div className='flex items-center justify-between bg-gray-800 p-4  rounded-lg w-full'>
+      <div className='flex items-center justify-between bg-graphiteBellChangeable p-4  rounded-lg w-full'>
         <div className='flex flex-col mr-2 max-w-[50%] w-full'>
           <span className='text-orange text-2xl font-semibold text-nowrap'>
             {name}
           </span>
-          <span className='text-white text-xl font-semibold'>
+          <span className='text-foregorund text-xl font-semibold'>
             {description}
           </span>
         </div>
+
 
         <iframe
           src={url}

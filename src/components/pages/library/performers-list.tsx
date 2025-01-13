@@ -28,7 +28,7 @@ export function LibraryPerformersList({
 }: AppSidebarProps) {
   return (
     <SidebarMenu className='gap-2'>
-      <span className='font-bold text-2xl my-2 text-white mx-2'>
+      <span className='font-bold text-2xl my-2 text-foreground mx-2'>
         Уподобані виконавці
       </span>
 
