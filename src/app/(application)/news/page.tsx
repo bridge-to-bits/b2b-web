@@ -1,12 +1,11 @@
 'use client'
 
-import React from 'react'
+import React, { memo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import NewsApi from '@/app/api/news/news-api'
 import Link from 'next/link'
-import Image from 'next/image';
+import Image from 'next/image'
 
-// Define props for the Section component
 interface SectionProps<T> {
   title: string
   items: T[]
@@ -14,7 +13,6 @@ interface SectionProps<T> {
   type: 'articles' | 'interviews'
 }
 
-// Update interface to include id
 interface CardProps {
   id: string
   title: string
@@ -22,18 +20,17 @@ interface CardProps {
   type: 'articles' | 'interviews'
 }
 
-// Main Page Component
 const MainPage: React.FC = () => {
   const { data: articles, isLoading: articlesLoading } = useQuery({
     queryKey: ['articles'],
     queryFn: NewsApi.getArticles,
-    select: (data) => data.slice(0,4),
+    select: (data) => data.slice(0, 4),
   })
 
   const { data: interviews, isLoading: interviewsLoading } = useQuery({
     queryKey: ['interviews'],
     queryFn: NewsApi.getInterviews,
-    select: (data) => data.slice(0,4),
+    select: (data) => data.slice(0, 4),
   })
 
   if (articlesLoading || interviewsLoading) {
@@ -55,7 +52,7 @@ const MainPage: React.FC = () => {
           <Link
             key={item.label}
             href={item.href}
-            className="bg-orange px-8 py-2 rounded-lg text-white hover:opacity-90 transition-opacity"
+            className="px-8 py-2 rounded-lg bg-orange-500 text-white hover:bg-orange-600 transition"
           >
             {item.label}
           </Link>
@@ -80,62 +77,68 @@ const MainPage: React.FC = () => {
   )
 }
 
-// Section Component
-const Section = <T extends { id: string; title: string; backgroundPhotoUrl: string }>({
-                                                                                        title,
-                                                                                        items,
-                                                                                        isScrollable = false,
-                                                                                        type,
-                                                                                      }: SectionProps<T>) => (
-  <div className="mb-12">
-    <div className="relative py-3">
-      {/* Background gradient container */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue to-transparent opacity-20" />
+const Section = memo(
+  <T extends { id: string; title: string; backgroundPhotoUrl: string }>({
+      title,
+      items,
+      isScrollable = false,
+      type,
+    }: SectionProps<T>) => (
+    <div className="mb-12">
+      <div className="relative py-3">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-20" />
 
-      {/* Title with its own gradient for text */}
-      <h2 className="text-xl font-bold text-center relative z-10 bg-clip-text">
-        {title}
-      </h2>
-    </div>
-    <div className="relative mt-6">
-      <div className="max-w-7xl mx-auto">
-        <div
-          className={`grid ${
-            isScrollable
-              ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4'
-              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
-          } gap-4 justify-items-center`}
-        >
-          {items.map((item) => (
-            <Card
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              backgroundPhotoUrl={item.backgroundPhotoUrl}
-              type={type}
-            />
-          ))}
-        </div>
+        {/* Title */}
+        <h2 className="text-xl font-bold text-center relative z-10">
+          {title}
+        </h2>
+      </div>
+
+      {/* Cards Container */}
+      <div
+        className={`grid gap-4 ${
+          isScrollable
+            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+            : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
+        }`}
+      >
+        {items.map((item) => (
+          <Card
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            backgroundPhotoUrl={item.backgroundPhotoUrl}
+            type={type}
+          />
+        ))}
       </div>
     </div>
-  </div>
+  )
 )
+Section.displayName = 'Section'
 
-// Card Component
-const Card: React.FC<CardProps> = ({ id, title, backgroundPhotoUrl, type }) => (
+const Card: React.FC<CardProps> = memo(({ id, title, backgroundPhotoUrl, type }) => (
   <Link
     href={`/news/${type}/${id}`}
-    className="relative aspect-[4/3] rounded-lg overflow-hidden group cursor-pointer w-full max-w-sm block"
+    className="relative group w-full max-w-xs mx-auto rounded-lg overflow-hidden bg-gray-800 shadow-lg"
   >
+    {/* Image */}
     <Image
       src={backgroundPhotoUrl}
-      alt={title}
-      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      alt={`Image for ${title}`}
+      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+      width={300}
+      height={200}
+      loading="lazy"
     />
-    <div className="absolute inset-0 bg-black/50 flex items-end p-4 opacity-100">
-      <p className="text-white text-sm font-medium">{title}</p>
+
+    {/* Title Overlay */}
+    <div className="absolute inset-0 bg-black/60 flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+      <p className="text-sm font-medium text-white">{title}</p>
     </div>
   </Link>
-)
+))
+Card.displayName = 'Card'
 
 export default MainPage
