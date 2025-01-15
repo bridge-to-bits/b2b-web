@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import AccordionItem from "./AccordingItem";
+import AccordionItem from "./AccordionItem"; // Убедитесь, что компонент AccordionItem правильно импортирован
 
 type AccordionItemType = {
   question: string;
@@ -53,16 +53,14 @@ const QAndA: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen max-w-screen-xl   mb-20 mx-auto text-[#D9D9D9]">
+    <div className="flex flex-col min-h-screen max-w-screen-xl mb-20 mx-auto text-[#D9D9D9]">
       <div className="flex flex-col items-center mt-28">
-        {/* Сделать текст того же цвета, что и для "Що таке Bridge to Beats?" */}
-        <h1 className="text-center text-4xl font-rubik  font-medium text-[#D9D9D9]">
+        <h1 className="text-center text-4xl font-rubik font-medium text-[#D9D9D9]">
           Q&A (Питання та відповіді)
         </h1>
       </div>
 
-      {/* Группировка элементов с градиентным фоном по два элемента в строку, выравнивание по центру */}
-      <div className="flex flex-wrap gap-8 mt-28 justify-center font-rubik ">
+      <div className="flex flex-wrap gap-8 mt-28 justify-center font-rubik">
         {accordionItems.map((item, index) => (
           <AccordionItem
             key={index}
@@ -76,7 +74,6 @@ const QAndA: React.FC = () => {
         ))}
       </div>
 
-      {/* Добавляем отступ снизу, чтобы последний элемент не налазил на футер */}
       <div className="mt-20"></div>
     </div>
   );
