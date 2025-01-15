@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
     --orange: #ec5d0b;
@@ -116,6 +117,7 @@
   body {
     color: var(--foreground);
     height: 100%;
+    @apply font-sans;
   }
 
   main {
