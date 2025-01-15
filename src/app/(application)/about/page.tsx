@@ -1,9 +1,6 @@
 "use client";
 import React from 'react';
-import Rectangle62 from './../../../../public/Rectangle 62.png';
 import NextImage from 'next/image';
-import Rectangle63 from './../../../../public/Rectangle 63.png';
-import Rectangle63 from './../../../../public/Rectangle 63.png';
 
 const About: React.FC = () => {
   return (
@@ -11,7 +8,7 @@ const About: React.FC = () => {
       {/* Banner Section */}
       <div className="flex flex-col sm:flex-row items-center mt-0 justify-center">
         <div className="relative w-full sm:w-[810px] h-[300px] sm:h-[492px]">
-          <NextImage src={Rectangle62} alt="Banner" className="w-full h-full object-cover" />
+          <NextImage src='/Rectangle 62.png' alt="Banner" className="w-full h-full object-cover" width={50} height={50}/>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-[24px] sm:text-[48px] lg:text-[96px] font-rubik">
             Про нас
           </div>
@@ -48,7 +45,7 @@ const About: React.FC = () => {
           </p>
         </div>
         <div className="w-full sm:w-[950px] h-auto sm:h-[608px] mt-5 sm:mt-0">
-          <NextImage src={Rectangle63} alt="Second Banner" className="w-full h-full object-cover" />
+          <NextImage src='/Rectangle 63.png' alt="Second Banner" className="w-full h-full object-cover" width={100} height={100}/>
         </div>
       </div>
 
@@ -63,8 +60,6 @@ const About: React.FC = () => {
     Об’єднувати музикантів і продюсерів, надихаючи на співпрацю, що руйнує кордони й створює звук майбутнього.
   </div>
 </div>
-
-
       {/* Vision Section */}
       <div className="flex flex-col  mt-16 px-4 sm:px-0">
         <div className="w-full sm:w-[1052px] text-[24px] sm:text-[48px] lg:text-[96px] font-rubik ml-0 sm:ml-5 text-left">Наша візія</div>
@@ -76,7 +71,9 @@ const About: React.FC = () => {
 
       {/* Join Us Section */}
       <div className="flex flex-col items-center mt-16" >
-        <div className="w-full sm:w-[1132px] text-[24px] sm:text-[48px] lg:text-[96px] font-rubik-italic text-center">Приєднуйтеся до нас</div>
+        <div className="w-full sm:w-[1132px] text-[24px] sm:text-[48px] lg:text-[96px] font-rubik-italic text-center">
+          Приєднуйтеся до нас
+        </div>
         <div className="w-full sm:w-[1638px] text-[16px] sm:text-[18px] lg:text-[36px] font-rubik mt-16 text-center">
           Готові створювати музику? Приєднуйтеся до Beat to Beat і
           відкрийте для себе світ музичних можливостей.
