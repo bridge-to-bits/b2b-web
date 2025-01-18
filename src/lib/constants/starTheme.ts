@@ -3,9 +3,9 @@ export const starRatingTheme = (theme?: string) => {
 
   return {
     colors: {
-      backgroundDefault: resolvedTheme === 'dark' ? '#333' : '#4dff7c28',
-      backgroundColorHover: resolvedTheme === 'dark' ? '#555' : '#4dff7c',
-      backgroundColorActive: resolvedTheme === 'dark' ? '#777' : '#4dff7c',
+      backgroundDefault: resolvedTheme === 'dark' ? '#5b55e7' : '#d27546',
+      backgroundColorHover: resolvedTheme === 'dark' ? '#100ad9' : '#ff5e00',
+      backgroundColorActive: resolvedTheme === 'dark' ? '#1E18C2' : '#ec5d0b',
     },
     size: 24,
   };

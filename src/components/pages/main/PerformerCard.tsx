@@ -1,4 +1,3 @@
-import { Play, Pause } from 'lucide-react';
 import { CardInfo } from './CardInfo';
 import { SocialsList } from './SocialsList';
 import { Performer } from '@/app/api/performers/performers-api-types';

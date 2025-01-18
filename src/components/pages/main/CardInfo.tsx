@@ -1,5 +1,6 @@
 import { Star } from 'lucide-react';
 import Image from 'next/image';
+import { StarsBasedRating } from '@/components/pages/main/StarsBasedRating';
 
 interface CardInfoProps {
   name: string;
@@ -15,7 +16,6 @@ export const CardInfo: React.FC<CardInfoProps> = ({
   image,
 }) => {
   const genresRow = genres ? genres.map((genre) => genre.name).join(',') : '';
-  const totalStars = 5;
   const bgImage = image || '/blank-avatar.png';
 
   return (
@@ -43,25 +43,7 @@ export const CardInfo: React.FC<CardInfoProps> = ({
           <h3 className='text-[24px] font-bold'>{name}</h3>
           <p className='text-[18px]'>Жанр: {genresRow}</p>
           <div className='flex items-center gap-2 mt-2'>
-            <div className='flex text-orangeChangeable'>
-              {Array.from({ length: Math.floor(rating) }).map((_, index) => (
-                <Star
-                  key={`filled-${name}-${index}`}
-                  style={{ fill: 'currentColor', stroke: 'none' }}
-                  size={24}
-                />
-              ))}
-
-              {Array.from({ length: totalStars - Math.floor(rating) }).map(
-                (_, index) => (
-                  <Star
-                    key={`unfilled-${name}-${index}`}
-                    style={{ fill: 'none', stroke: 'currentColor' }}
-                    size={24}
-                  />
-                )
-              )}
-            </div>
+            <StarsBasedRating rating={rating}/>
           </div>
         </div>
       </div>
