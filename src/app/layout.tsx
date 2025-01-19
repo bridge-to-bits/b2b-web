@@ -1,12 +1,15 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import '@fontsource/rubik/400.css';
+import '@fontsource/rubik/500.css';
+import '@fontsource/rubik/700.css';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
-
 export const metadata: Metadata = {
-  title: 'Title of the site',
-  description: 'Description of the site',
+  title: 'Bridge to Beats',
+  description: 'A platform for collaboration between musicians, producers, ' +
+    'and sound designers that helps find partners, create projects, and share experiences.\n' +
+    'The project is aimed at supporting creative individuals, providing opportunities for professional growth, ' +
+    'and creating high-quality musical content.',
 };
 
 export default function RootLayout({
@@ -16,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='uk' suppressHydrationWarning>
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

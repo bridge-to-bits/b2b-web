@@ -1,9 +1,13 @@
+import { UserType } from '@/lib/types/user-type';
+
 export interface LoginBody {
   email: string;
+  password: string;
 }
 export interface RegisterBody {
   email: string;
-  firstName: string;
-  lastName: string;
-  middleName: string | null;
+  password: string;
+  lastName?: string;
+  userName: string;
+  userType: UserType;
 }

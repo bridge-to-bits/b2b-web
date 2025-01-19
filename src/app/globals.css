@@ -2,10 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+    --orange: #ec5d0b;
+    --blue: #1e18c2;
+    --muted: #e5e5de;
+    --darkest-black: #030303;
+    --nero: #1f1e1e;
+    --graphite: #202229;
+
+    --light-violet: #625ECE;
+    --blue-bell: #A9A7DE;
+    --eerie-black: #1E1E1E;
+    --light-wheat: #DAD6CC;
+    --antique-brass : #CC8962;
+
+    --blue-changeable: var(--blue);
+    --orange-changeable: var(--orange);
+    --blue-orange-changeable: var(--blue);
+    --graphite-violet-changeable: var(--graphite);
+    --graphite-bell-changeable: var(--graphite);
+    --card-gradient-left: rgba(0, 0, 0, 1);
+    --card-gradient-right: rgba(0, 0, 0, 0);
+    --banner-hover-color: rgba(0, 0, 0, 0);
+    --performer-searched-entity-bg: var(--muted);
+    --producer-searched-entity-bg: var(--graphite);
+
+    --background: var(--darkest-black);
+    --background-secondary: var(--nero);
+    --foreground: var(--muted);
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
     --popover: 0 0% 100%;
@@ -14,7 +40,6 @@
     --primary-foreground: 210 20% 98%;
     --secondary: 220 14.3% 95.9%;
     --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
     --muted-foreground: 220 8.9% 46.1%;
     --accent: 220 14.3% 95.9%;
     --accent-foreground: 220.9 39.3% 11%;
@@ -24,11 +49,32 @@
     --input: 220 13% 91%;
     --ring: 262.1 83.3% 57.8%;
     --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
+    --blue-changeable: var(--light-violet);
+    --orange-changeable: var(--blue);
+    --graphite-violet-changeable: var(--light-violet);
+    --graphite-bell-changeable: var(--blue-bell);
+    --blue-orange-changeable: var(--orange);
+
+    --background: var(--light-wheat);
+    --background-secondary: #C2C0F7;
+    --foreground: var(--graphite);
+    --card-gradient-left: #DAD6CB;
+    --card-gradient-right: rgba(0, 0, 0, 0);
+    --banner-hover-color: rgba(236, 93, 11, 30);
+    --performer-searched-entity-bg: var(--light-violet);
+    --producer-searched-entity-bg: var(--light-violet);
+
     --card: 224 71.4% 4.1%;
     --card-foreground: 210 20% 98%;
     --popover: 224 71.4% 4.1%;
@@ -37,7 +83,6 @@
     --primary-foreground: 210 20% 98%;
     --secondary: 215 27.9% 16.9%;
     --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
     --muted-foreground: 217.9 10.6% 64.9%;
     --accent: 215 27.9% 16.9%;
     --accent-foreground: 210 20% 98%;
@@ -46,6 +91,14 @@
     --border: 215 27.9% 16.9%;
     --input: 215 27.9% 16.9%;
     --ring: 263.4 70% 50.4%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -53,7 +106,33 @@
   * {
     @apply border-border;
   }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #202229 inset !important;
+    -webkit-text-fill-color: white !important;
+  }
 
+  body {
+    color: var(--foreground);
+    height: 100%;
+    @apply font-sans;
+  }
+
+  main {
+    background: linear-gradient(
+      to bottom,
+      var(--background),
+      var(--background-secondary)
+    );
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
   body {
     @apply bg-background text-foreground;
   }
