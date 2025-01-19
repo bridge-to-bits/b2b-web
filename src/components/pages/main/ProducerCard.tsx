@@ -34,15 +34,13 @@ export const ProducerCard: React.FC<ProducerCardProps> = ({ producer }) => {
       onClick={handleCardClick}
       className='min-h-50 w-full aspect-[4] border-[4px] border-graphiteVioletChangeable p-5 rounded-md shadow-md cursor-pointer'
     >
-      {/* Info Section */}
       <CardInfo
         name={producer.username}
         genres={producer.genres}
         rating={producer.rating}
-        image={producer.avatar}
+        image={producer.profileBackground}
       />
 
-      {/* Socials Section */}
       <div className="mt-auto">
         <SocialsList socials={producer.socials} />
       </div>

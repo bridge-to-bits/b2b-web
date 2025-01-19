@@ -12,6 +12,7 @@ export interface Performer {
   genres: Genre[];
   rating: number;
   avatar: string;
+  profileBackground: string;
   socials: Social[];
   email: string;
   track: ShortTrack;

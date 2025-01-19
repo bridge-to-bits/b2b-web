@@ -6,6 +6,7 @@ export interface Producer {
   genres: Genre[];
   rating: number;
   avatar: string;
+  profileBackground: string;
   socials: Social[];
   email: string;
 }

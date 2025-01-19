@@ -82,6 +82,14 @@ class TracksApi {
       throw new Error('Unable to get user`s favorite performers');
     }
   }
+
+  async incrementListenings(targetTrackId: string) {
+    try {
+      return await instance.post(`/tracks/${targetTrackId}/increment`);
+    } catch (error) {
+      throw new Error('Unable to increment listening amount');
+    }
+  }
 }
 
 export const tracksApi = new TracksApi();
