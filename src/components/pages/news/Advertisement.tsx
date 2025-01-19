@@ -1,5 +1,5 @@
 export const Advertisement: React.FC = () => (
-  <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-lg p-6 flex items-center justify-center">
-    <p className="text-4xl font-bold">ADs</p>
+  <div className="bg-foreground rounded-lg p-4 md:p-6 flex items-center justify-center h-full min-h-[200px]">
+    <p className="text-2xl md:text-4xl text-red">ADs</p>
   </div>
 );

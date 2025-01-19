@@ -38,10 +38,8 @@ const MainPage: React.FC = () => {
   }
 
   const navigationItems = [
-    { label: 'Статті', href: '/articles' },
-    { label: 'Інтерв\'ю', href: '/interviews' },
-    { label: 'Альбоми', href: '/albums' },
-    { label: 'Треки', href: '/tracks' },
+    { label: 'Статті', href: '/news/articles' },
+    { label: 'Інтерв\'ю', href: '/news/interviews' },
   ]
 
   return (
@@ -90,7 +88,7 @@ const Section = memo(
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-20" />
 
         {/* Title */}
-        <h2 className="text-xl font-bold text-center relative z-10">
+        <h2 className="text-xl font-bold text-center relative">
           {title}
         </h2>
       </div>

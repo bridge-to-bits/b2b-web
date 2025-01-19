@@ -16,7 +16,7 @@ export const Comment: React.FC<CommentProps> = ({ comment }) => {
   return (
     <div className="flex items-start gap-3 p-2">
       <div className="flex flex-col items-center gap-1">
-        <div className="relative w-24 h-24 flex-shrink-0">
+        <div className="relative w-16 h-16 md:w-24 md:h-24 flex-shrink-0">
           <Image
             src={comment.comentator.avatarUrl ?? '/blank-avatar.png'}
             alt={`${comment.comentator.username}'s avatar`}
@@ -24,13 +24,13 @@ export const Comment: React.FC<CommentProps> = ({ comment }) => {
             className="object-cover rounded-full"
           />
         </div>
-        <span className="">
+        <span className="text-sm md:text-base">
           {comment.comentator.username}
         </span>
       </div>
-      <div className="flex flex-col gap-1 bg-orange rounded-3xl rounded-ss-none p-3 pb-1 mt-8">
-        <div className='pr-4 mb-1'>
-          <p className="break-words">
+      <div className="flex flex-col gap-1 bg-orange rounded-3xl rounded-ss-none p-2 md:p-3 pb-1 mt-4 md:mt-8">
+        <div className='pr-2 md:pr-4 mb-1'>
+          <p className="break-words text-sm md:text-base">
             {comment.text}
           </p>
         </div>

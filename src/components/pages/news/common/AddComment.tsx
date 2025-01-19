@@ -49,7 +49,8 @@ export const AddComment: React.FC<AddCommentProps> = ({ interviewId, onCommentAd
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            className="w-full bg-zinc-800/50 rounded-xl p-4 pr-12 text-white resize-none focus:ring-2 focus:ring-blue-500 outline-none min-h-[48px]"
+            className="w-full bg-zinc-800/50 rounded-xl p-3 md:p-4 pr-12 text-white
+            resize-none focus:ring-2 focus:ring-blue-500 outline-none text-sm md:text-base min-h-[48px]"
             placeholder="Write your comment..."
             rows={1}
             style={{

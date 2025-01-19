@@ -8,7 +8,7 @@ interface InterviewUsersProps {
 
 export const InterviewUsers: React.FC<InterviewUsersProps> = ({ author, respondent }) => {
   return (
-    <div className="flex items-start gap-96 mt-14 mb-6 ml-20">
+    <div className="flex flex-col md:flex-row w-full gap-6 md:gap-96">
       <MentionedNewsUser user={author} role="interviewer" />
       <MentionedNewsUser user={respondent} role="respondent" />
     </div>
