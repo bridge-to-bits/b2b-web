@@ -32,8 +32,8 @@ const PerformersSection: React.FC = () => {
     <section className='w-full flex flex-col items-center mt-8'>
       <SectionHeader text='Топ Виконавців' />
 
-      <div className='w-full max-w-[1440px] px-4 md:px-8'>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-8'>
+      <div className='w-full max-w-[1440px] md:px-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-8'>
           {performers?.map((performer) => (
             <div key={performer.username + performer.email} className='w-full'>
               <PerformerCard performer={performer} />
@@ -41,7 +41,7 @@ const PerformersSection: React.FC = () => {
           ))}
         </div>
 
-        <div className='flex justify-center mt-12 mb-8'>
+        <div className='flex justify-center mt-8 md:mt-12 mb-8'>
           <Link
             href='/search?userType=performer'
             className='text-xl font-rubik italic text-orangeChangeable'

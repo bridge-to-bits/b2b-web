@@ -34,7 +34,7 @@ export const PerformerCard: React.FC<PerformerCardProps> = ({ performer }) => {
   return (
     <div
       onClick={handleCardClick}
-      className='w-full min-h-80 border-[4px] border-graphiteVioletChangeable p-4 rounded-xl shadow-md cursor-pointer transition-transform hover:scale-[1.01]'
+      className='w-full border-[4px] border-graphiteVioletChangeable rounded-xl shadow-md cursor-pointer transition-transform hover:scale-[1.01] pt-4 px-4 md:p-4 flex flex-col'
     >
       <CardInfo
         name={performer.username}
@@ -47,8 +47,9 @@ export const PerformerCard: React.FC<PerformerCardProps> = ({ performer }) => {
         <CustomAudioPlayer track={performer.track} />
       )}
 
-      {/* Socials Section */}
-      <SocialsList socials={performer.socials} />
+      <div className="mt-auto pb-4">
+        <SocialsList socials={performer.socials} />
+      </div>
     </div>
   );
 };
