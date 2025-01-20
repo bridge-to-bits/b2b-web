@@ -9,6 +9,7 @@ import { authApi } from '@/app/api/auth/auth-api';
 import { AuthToken } from '@/lib/types/auth.types';
 import { getClientCookie } from '@/lib/utils/getClientCookie';
 import { ToggleTheme } from './ToggleTheme';
+import { HeaderMobileLinks } from '@/components/layout/header/HeaderMobleLinks';
 
 export const MobileMenu = () => {
   const cookie = getClientCookie(AuthToken.AccessToken);
@@ -31,7 +32,7 @@ export const MobileMenu = () => {
             {user ? <UserMenu /> : <AuthButtons />}
           </div>
 
-          <HeaderLinks />
+          <HeaderMobileLinks />
           <ToggleTheme />
         </div>
       </SheetContent>
