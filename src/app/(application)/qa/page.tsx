@@ -1,16 +1,17 @@
 "use client";
+
 import React, { useState } from "react";
 import AccordionItem from "./AccordionItem"; // Убедитесь, что компонент AccordionItem правильно импортирован
 
-type AccordionItemType = {
-  question: string;
-  answer: string;
-};
-
-const QAndA: React.FC = () => {
+const QAndA = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
 
-  const accordionItems: AccordionItemType[] = [
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  };
+
+  const accordionItems = [
     {
       question: "Що таке Bridge to Beats?",
       answer:
@@ -53,14 +54,24 @@ const QAndA: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen max-w-screen-xl mb-20 mx-auto text-[#D9D9D9]">
-      <div className="flex flex-col items-center mt-28">
-        <h1 className="text-center text-4xl font-rubik font-medium text-[#D9D9D9]">
+    <div
+      className={`flex flex-col min-h-screen max-w-screen-xl mb-0 mx-auto transition-colors duration-300 ${
+        isDarkTheme ? "bg-black text-[#D9D9D9]" : "bg-white text-black"
+      }`}
+    >
+      <div className="flex flex-col items-center mt-10">
+        <h1 className="text-center text-4xl font-rubik font-medium">
           Q&A (Питання та відповіді)
         </h1>
+        <button
+          onClick={toggleTheme}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          {isDarkTheme ? "Світла тема" : "Темна тема"}
+        </button>
       </div>
 
-      <div className="flex flex-wrap gap-8 mt-28 justify-center font-rubik">
+      <div className="flex flex-wrap gap-8 mt-16 justify-center font-rubik">
         {accordionItems.map((item, index) => (
           <AccordionItem
             key={index}
@@ -69,12 +80,14 @@ const QAndA: React.FC = () => {
             toggleDropdown={toggleDropdown}
             question={item.question}
             answer={item.answer}
-            backgroundClass="bg-gradient-to-r from-[#1E18C2] to-[#030303]"
+            backgroundClass={
+              index % 2 === 0
+                ? "bg-gradient-to-r from-[#1E18C2] to-[#030303]"
+                : "bg-gradient-to-r from-[#030303] to-[#1E18C2]"
+            }
           />
         ))}
       </div>
-
-      <div className="mt-20"></div>
     </div>
   );
 };
