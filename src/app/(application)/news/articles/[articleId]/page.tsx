@@ -1,9 +1,18 @@
-import { getQueryClient } from '@/app/api/get-query-client';
-import NewsApi from '@/app/api/news/news-api';
-import { CustomAvatar } from '@/components/layout/header/CustomAvatar';
-import { Star } from 'lucide-react';
-import Image from 'next/image';
-import { FC } from 'react';
+'use client'
+
+import React, { FC } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Loader } from '@/components/common/components/Loader';
+import newsApi from '@/app/api/news/news-api';
+import { NewsBanner } from '@/components/pages/news/NewsBanner';
+import { NewsContent } from '@/components/pages/news/NewsContent';
+import { Advertisement } from '@/components/pages/news/Advertisement';
+import { CommentSection } from '@/components/pages/news/common/CommentSection';
+import { InterviewUsers } from '@/components/pages/news/interview/InterviewUsers';
+import { InterviewVideoPlayer } from '@/components/pages/news/interview/InterviewVideoPlayer';
+import { AddComment } from '@/components/pages/news/common/AddComment';
+import MentionedNewsUser from '@/components/pages/news/MentionedNewsUserCard';
+import { AddArticleComment } from '@/components/pages/news/article/AddComment';
 
 interface PageProps {
   params: {
@@ -11,104 +20,57 @@ interface PageProps {
   };
 }
 
-const Page: FC<PageProps> = async ({ params: { articleId } }) => {
-  const qc = getQueryClient();
-
+const SpecificArticlePage: FC<PageProps> = ({ params: { articleId } }) => {
   const {
-    author,
-    backgroundPhotoUrl,
-    content,
-    createdAt,
-    title,
-  } = await qc.fetchQuery({
-    queryKey: ['article-by-id', articleId],
-    queryFn: () => NewsApi.getArticleById(articleId),
+    data: article,
+    isLoading,
+    isError,
+    refetch
+  } = useQuery({
+    queryKey: ['article', articleId],
+    queryFn: () => newsApi.getArticleById(articleId),
   });
 
+  if (isLoading) return <Loader />;
+  if (isError) return <div className='text-center text-red-500'>Error fetching article!</div>;
+  if (!article) return <div className='text-center'>No article data found</div>;
+
   return (
-    <section>
-      {/* Background Image Section */}
-      <span className="relative block w-full pt-[25%]">
-        <Image
-          src={backgroundPhotoUrl}
-          alt="Image preview will appear here"
-          fill
-          sizes="100vw"
-          className="absolute left-0 top-0 h-full w-full object-cover"
-        />
-        <span className="absolute bg-gradient-to-b from-black/70 to-transparent z-10 left-0 top-0 w-full h-full" />
-        <span className="absolute text-center z-10 top-1/2 font-bold text-3xl -translate-y-1/2 left-1/2 -translate-x-1/2 text-white">
-          {title}
-        </span>
-      </span>
+    <div className="w-full mx-auto text-foreground">
+      <NewsBanner imgUrl={article.backgroundPhotoUrl} title={article.title} />
 
-      {/* Article Content */}
-      <div className="max-w-[1280px] mx-auto px-4 my-12">
-        {/* Author Profile Section */}
-        {author && (
-          <div className="flex items-center gap-4 rounded-lg p-4 shadow-lg">
-            {/* Avatar */}
-            <div
-              className={`relative w-12 h-12 rounded-full overflow-hidden bg-gray-700 w-16 h-16 rounded-full border-2 border-gray-700`}
-            >
-              {author.avatarUrl ? (
-                <Image
-                  src={author.avatarUrl}
-                  alt={'avatar'}
-                  fill
-                  className="object-cover"
-                />
-              ) : (
-                <div className="flex items-center justify-center w-full h-full text-white text-sm font-semibold bg-gray-500">
-                  N/A
-                </div>
-              )}
-            </div>
+      <div className="px-4 md:px-20">
+        <div className="mt-8 md:mt-14 flex flex-col md:flex-row md:gap-96 mb-6">
+          <MentionedNewsUser user={article.author!} role="interviewer" />
+        </div>
 
-            {/* Author Info */}
-            <div>
-              {/* Author Name */}
-              <h3 className="text-lg font-semibold text-white">
-                {author.username}
-              </h3>
-
-              {/* Rating */}
-              <div className="flex items-center gap-1 mt-1">
-                {Array.from({ length: Math.floor(author.rating) }).map(
-                  (_, index) => (
-                    <Star
-                      key={`filled-${index}`}
-                      className="text-orange fill-orange"
-                      size={18}
-                    />
-                  )
-                )}
-                {Array.from({ length: 5 - Math.floor(author.rating) }).map(
-                  (_, index) => (
-                    <Star
-                      key={`empty-${index}`}
-                      className="text-gray-500"
-                      size={18}
-                    />
-                  )
-                )}
-              </div>
-
-              {/* Published Date */}
-              <p className="text-sm text-gray-400 mt-1">
-                {new Date(createdAt).toLocaleDateString()}
-              </p>
+        <div className="mt-6 md:mt-0 grid grid-cols-1 lg:grid-cols-5 gap-4 md:gap-8">
+          <NewsContent
+            content={article.content}
+            createdAt={article.createdAt}
+          />
+          <div className="lg:col-span-1 w-full h-full">
+            <div className="sticky top-4 w-full h-full">
+              <Advertisement />
             </div>
           </div>
-        )}
+        </div>
 
-        {/* Article Content */}
-        <div className="mt-8">
-          <p className="text-white text-lg leading-relaxed">{content}</p>
+        <div className="mt-10 md:mt-14">
+          <div className="w-full mb-10 md:mb-20 bg-gradient-to-r from-transparent via-[var(--blue-orange-changeable)] to-transparent py-[1%] flex justify-center items-center">
+            <h2 className="text-xl md:text-[25px] font-medium font-rubik text-white leading-none">
+              Коментарі
+            </h2>
+          </div>
+          <CommentSection comments={article.comments} />
+          <AddArticleComment
+            articleId={articleId}
+            onCommentAdded={() => refetch()}
+          />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default Page;
+export default SpecificArticlePage;
