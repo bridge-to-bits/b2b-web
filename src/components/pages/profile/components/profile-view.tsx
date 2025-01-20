@@ -55,9 +55,7 @@ export const ProfileView: FC<Props> = ({
         />
       </div>
 
-      {/* User Info Section */}
       <div className='relative max-w-[1280px] mx-auto px-20 pb-20'>
-        {/* Avatar and "Написати" Button */}
         <div className='relative -translate-y-1/2 group w-full'>
           <div className='flex gap-2 '>
             <span className='relative w-12 h-12 block md:w-44 md:h-44 border-4 border-black  rounded-full'>
@@ -90,7 +88,8 @@ export const ProfileView: FC<Props> = ({
         </div>
 
         {/* User Info Section */}
-        <div className='mt-[-60px]'>
+        <div className='mt-[-70px] text-xl'>
+          <p className='font-medium text-2xl'>{username}</p>
           <p className='mt-2'>
             Жанр:{' '}
             {genres.length

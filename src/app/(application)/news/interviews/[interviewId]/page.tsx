@@ -37,34 +37,42 @@ const SpecificInterviewPage: FC<PageProps> = ({ params: { interviewId } }) => {
     <div className="w-full mx-auto text-foreground">
       <NewsBanner imgUrl={interview.backgroundPhotoUrl} title={interview.title} />
 
-      <InterviewUsers author={interview.author} respondent={interview.respondent} />
-
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 ml-20">
-        <NewsContent
-          content={interview.content}
-          createdAt={interview.createdAt}
-        />
-        <Advertisement />
-      </div>
-
-      <div className="mt-28 mx-20">
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          Відео формат інтерв&#39;ю
-        </h2>
-        <InterviewVideoPlayer videoUrl={interview.videoLink}/>
-      </div>
-
-      <div className="mt-14 mx-20">
-        <div className="w-full mb-20 bg-gradient-to-r from-transparent via-[var(--blue-orange-changeable)] to-transparent py-[1%] flex justify-center items-center">
-          <h2 className="text-[25px] font-medium font-rubik text-white leading-none">
-            Коментарі
-          </h2>
+      <div className="px-4 md:px-20">
+        <div className="mt-8 md:mt-14 flex flex-col md:flex-row md:gap-96 mb-6">
+          <InterviewUsers author={interview.author} respondent={interview.respondent} />
         </div>
-        <CommentSection comments={interview.comments} />
-        <AddComment
-          interviewId={interviewId}
-          onCommentAdded={() => refetch()}
-        />
+
+        <div className="mt-6 md:mt-0 grid grid-cols-1 lg:grid-cols-5 gap-4 md:gap-8">
+          <NewsContent
+            content={interview.content}
+            createdAt={interview.createdAt}
+          />
+          <div className="lg:col-span-1 w-full h-full">
+            <div className="sticky top-4 w-full h-full">
+              <Advertisement />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-16 md:mt-28">
+          <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">
+            Відео формат інтерв&#39;ю
+          </h2>
+          <InterviewVideoPlayer videoUrl={interview.videoLink}/>
+        </div>
+
+        <div className="mt-10 md:mt-14">
+          <div className="w-full mb-10 md:mb-20 bg-gradient-to-r from-transparent via-[var(--blue-orange-changeable)] to-transparent py-[1%] flex justify-center items-center">
+            <h2 className="text-xl md:text-[25px] font-medium font-rubik text-white leading-none">
+              Коментарі
+            </h2>
+          </div>
+          <CommentSection comments={interview.comments} />
+          <AddComment
+            interviewId={interviewId}
+            onCommentAdded={() => refetch()}
+          />
+        </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { CardInfo } from './CardInfo';
 import { SocialsList } from './SocialsList';
 import { Performer } from '@/app/api/performers/performers-api-types';
 import { useRouter } from 'next/navigation';
+import CustomAudioPlayer from '@/components/pages/main/CustomAudioPlayer';
 
 interface PerformerCardProps {
   performer: Performer;
@@ -39,46 +40,11 @@ export const PerformerCard: React.FC<PerformerCardProps> = ({ performer }) => {
         name={performer.username}
         genres={performer.genres}
         rating={performer.rating}
-        image={performer.avatar}
+        image={performer.profileBackground}
       />
 
       {performer.track?.url && (
-        <div className='mt-[2%] bg-orange rounded-xl px-[5%] py-[1.5%] flex items-center justify-between interactive'>
-          <div className='text-white font-bold text-[20px]'>
-            {performer.track.name}
-          </div>
-
-          <div className='flex items-center'>
-            <div className='flex-1 interactive'>
-              <iframe
-                src={performer.track.url}
-                className='w-full h-14'
-                style={{
-                  borderRadius: '10px',
-                  background: 'transparent',
-                  pointerEvents: 'auto',
-                  border: 'none'
-                }}
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              ></iframe>
-            </div>
-          </div>
-
-          {/*<button*/}
-          {/*  onClick={(e) => {*/}
-          {/*    e.stopPropagation();*/}
-          {/*    setIsPlaying((prev) => !prev);*/}
-          {/*  }}*/}
-          {/*  className='bg-muted ml-[15px] rounded-full w-12 h-12 flex items-center justify-center'*/}
-          {/*>*/}
-          {/*  {isPlaying ? (*/}
-          {/*    <Pause className='text-blue' style={{ fill: 'currentColor', stroke: 'none' }}/>*/}
-          {/*  ) : (*/}
-          {/*    <Play className='text-blue' style={{ fill: 'currentColor', stroke: 'none' }}/>*/}
-          {/*  )}*/}
-          {/*</button>*/}
-
-        </div>
+        <CustomAudioPlayer track={performer.track} />
       )}
 
       {/* Socials Section */}

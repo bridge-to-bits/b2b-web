@@ -8,7 +8,6 @@ import { getClientCookie } from '@/lib/utils/getClientCookie';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { HeartIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import Link from 'next/link';
 import { FC, useState } from 'react';
 import { StarRating } from 'star-rating-react-ts';
 interface Props {
@@ -76,14 +75,14 @@ export const FeedbackWrapper: FC<Props> = ({
 
   return (
     <div className='relative ml-4 pt-20 flex gap-2 items-center justify-center'>
-      {!isMe && (
-        <Link
-          href={`/messages/${profileUserId}`}
-          className='bg-orange py-4 px-20 text-lg rounded-full text-white font-bold absolute top-[25%] translate-x-[-100%] group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-300'
-        >
-          Написати
-        </Link>
-      )}
+      {/*{!isMe && (*/}
+      {/*  <Link*/}
+      {/*    href={`/messages/${profileUserId}`}*/}
+      {/*    className='bg-orange py-4 px-20 text-lg rounded-full text-white font-bold absolute top-[25%] translate-x-[-100%] group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-300'*/}
+      {/*  >*/}
+      {/*    Написати*/}
+      {/*  </Link>*/}
+      {/*)}*/}
 
       <div className='flex items-center gap-2'>
         <StarRating
@@ -97,7 +96,7 @@ export const FeedbackWrapper: FC<Props> = ({
       {!isMe && isPerformer && (
         <HeartIcon
           className={`ml-2 cursor-pointer transition-colors duration-300 
-          ${isFavorite ? 'text-red-500 fill-red-500' : 'hover:text-red-500 hover:fill-red-500'}`}
+          ${isFavorite ? 'text-red fill-red hover:fill-transparent' : 'hover:fill-red hover:text-red'}`}
           onClick={handleLike}
         />
       )}

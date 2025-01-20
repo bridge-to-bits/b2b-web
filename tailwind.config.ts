@@ -50,6 +50,7 @@ const config = {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
   			},
+				red: 'var(--red)',
 				muted: 'var(--muted)',
   			orange: 'var(--orange)',
   			blue: 'var(--blue)',

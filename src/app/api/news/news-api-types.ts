@@ -8,6 +8,7 @@ export interface BaseNewsItem {
 }
 
 interface BaseUser {
+  id: string;
   "username": string;
   "avatarUrl": string;
 }

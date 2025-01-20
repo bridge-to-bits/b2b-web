@@ -7,9 +7,9 @@ interface CommentSectionProps {
 }
 
 export const CommentSection: React.FC<CommentSectionProps> = ({ comments }) => (
-    <div className="space-y-4 ml-40">
-      {comments?.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
-      ))}
-    </div>
+  <div className="space-y-4 mx-2 md:ml-40">
+    {comments?.map((comment) => (
+      <Comment key={comment.id} comment={comment} />
+    ))}
+  </div>
 );
