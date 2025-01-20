@@ -44,7 +44,6 @@ const MainPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#1C1C1C] p-6 text-white">
-      {/* Navigation Buttons */}
       <nav className="flex justify-center space-x-4 mb-8">
         {navigationItems.map((item) => (
           <Link
@@ -57,14 +56,12 @@ const MainPage: React.FC = () => {
         ))}
       </nav>
 
-      {/* Articles Section */}
       <Section
         title="Головні новини тижня"
         items={articles ?? []}
         type="articles"
       />
 
-      {/* Interviews Section */}
       <Section
         title="Топ тижневих інтерв'ю"
         items={interviews ?? []}
@@ -121,19 +118,21 @@ const Card: React.FC<CardProps> = memo(({ id, title, backgroundPhotoUrl, type })
     href={`/news/${type}/${id}`}
     className="relative group w-full max-w-xs mx-auto rounded-lg overflow-hidden bg-gray-800 shadow-lg"
   >
-    {/* Image */}
-    <Image
-      src={backgroundPhotoUrl}
-      alt={`Image for ${title}`}
-      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-      width={300}
-      height={200}
-      loading="lazy"
-    />
+    <div className="relative">
+      {/* Image */}
+      <Image
+        src={backgroundPhotoUrl}
+        alt={`Image for ${title}`}
+        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+        width={300}
+        height={200}
+        loading="lazy"
+      />
 
-    {/* Title Overlay */}
-    <div className="absolute inset-0 bg-black/60 flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-      <p className="text-sm font-medium text-white">{title}</p>
+      {/* Always visible title overlay */}
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-black/0 p-4">
+        <p className="text-sm font-medium text-white line-clamp-2">{title}</p>
+      </div>
     </div>
   </Link>
 ))
