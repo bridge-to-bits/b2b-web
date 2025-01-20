@@ -1,20 +1,16 @@
 "use client";
+
 import React, { useState } from "react";
-import AccordionItem from "./AccordingItem";
+import AccordionItem from '@/app/(application)/qa/AccordingItem';
 
-type AccordionItemType = {
-  question: string;
-  answer: string;
-};
-
-const QAndA: React.FC = () => {
+const QAndA = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const accordionItems: AccordionItemType[] = [
+  const accordionItems = [
     {
       question: "Що таке Bridge to Beats?",
       answer:
-        "Beat to Beat – це онлайн-платформа для музикантів та продюсерів, створена для того, щоб спростити процес пошуку ідеальних партнерів для спільної роботи. Наша місія – об’єднувати музичні таланти для спільного створення нових треків і проєктів."
+        "Bridge to Beats – це онлайн-платформа для музикантів та продюсерів, створена для того, щоб спростити процес пошуку ідеальних партнерів для спільної роботи. Наша місія – об’єднувати музичні таланти для спільного створення нових треків і проєктів."
     },
     {
       question: "Як створити обліковий запис?",
@@ -53,16 +49,16 @@ const QAndA: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen max-w-screen-xl   mb-20 mx-auto text-[#D9D9D9]">
-      <div className="flex flex-col items-center mt-28">
-        {/* Сделать текст того же цвета, что и для "Що таке Bridge to Beats?" */}
-        <h1 className="text-center text-4xl font-rubik  font-medium text-[#D9D9D9]">
+    <div
+      className={`flex flex-col min-h-screen max-w-screen-xl mb-0 mx-auto transition-colors duration-300`}
+    >
+      <div className="flex flex-col items-center mt-10">
+        <h1 className="text-center text-4xl font-rubik font-medium">
           Q&A (Питання та відповіді)
         </h1>
       </div>
 
-      {/* Группировка элементов с градиентным фоном по два элемента в строку, выравнивание по центру */}
-      <div className="flex flex-wrap gap-8 mt-28 justify-center font-rubik ">
+      <div className="flex flex-wrap gap-8 mt-16 justify-center font-rubik">
         {accordionItems.map((item, index) => (
           <AccordionItem
             key={index}
@@ -71,13 +67,14 @@ const QAndA: React.FC = () => {
             toggleDropdown={toggleDropdown}
             question={item.question}
             answer={item.answer}
-            backgroundClass="bg-gradient-to-r from-[#1E18C2] to-[#030303]"
+            backgroundClass={
+              index % 2 === 0
+                ? "bg-gradient-to-r from-[#1E18C2] to-[#030303]"
+                : "bg-gradient-to-r from-[#030303] to-[#1E18C2]"
+            }
           />
         ))}
       </div>
-
-      {/* Добавляем отступ снизу, чтобы последний элемент не налазил на футер */}
-      <div className="mt-20"></div>
     </div>
   );
 };
