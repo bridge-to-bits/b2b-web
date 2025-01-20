@@ -8,13 +8,12 @@ export const mainLinks: LinkItem[] = [
 ]
 
 export const supportLinks: LinkItem[] = [
-  {text: 'Конфіденційність', href: '/privacy'},
   {text: 'Q&A', href: '/qa'},
   {text: 'Про нас', href: '/about'},
 ]
 
 export const socials = [
-  { href: "https://github.com", icon: Github },
+  { href: "https://github.com/orgs/bridge-to-bits/repositories", icon: Github },
   { href: "https://instagram.com", icon: Instagram },
   { href: "https://telegram.org", icon: Send },
 ];
