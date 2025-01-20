@@ -33,6 +33,13 @@ class NewsApi {
     });
     return response.data;
   }
+
+  static async addArticleComment(articleId: string, text: string) {
+    const response = await instance.post(`/news/articles/${articleId}/comments`, {
+      text
+    });
+    return response.data;
+  }
 }
 
 export default NewsApi;
